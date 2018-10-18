@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "pretty-quick --staged",
+    "build": "rm -rf ./_spec && cp -rf ./example ./_spec && node ./index.js",
+    "server": "http-server ./_spec",
+    "server:template": "http-server -p 8081 ./_template",
+    "generate": "cd template-src && npm run build && cd ../ && npm run build"
   },
   "repository": {
     "type": "git",
@@ -16,5 +21,21 @@
   "bugs": {
     "url": "https://github.com/tomof/screen-spec-md/issues"
   },
-  "homepage": "https://github.com/tomof/screen-spec-md#readme"
+  "homepage": "https://github.com/tomof/screen-spec-md#readme",
+  "dependencies": {
+    "globby": "^8.0.1",
+    "handlebars": "^4.0.12",
+    "http-server": "^0.11.1",
+    "image-size": "^0.6.3",
+    "js-yaml": "^3.12.0",
+    "lodash": "^4.17.11",
+    "marked": "^0.5.1",
+    "ncp": "^2.0.0",
+    "viz.js": "^1.8.0"
+  },
+  "devDependencies": {
+    "husky": "^1.1.1",
+    "prettier": "^1.14.3",
+    "pretty-quick": "^1.7.0"
+  }
 }
