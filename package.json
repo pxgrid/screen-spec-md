@@ -31,11 +31,13 @@
     "lodash": "^4.17.11",
     "marked": "^0.5.1",
     "ncp": "^2.0.0",
-    "viz.js": "^1.8.0"
+    "viz.js": "^1.8.0",
+    "vue-loader": "^15.4.2"
   },
   "devDependencies": {
     "husky": "^1.1.1",
     "prettier": "^1.14.3",
-    "pretty-quick": "^1.7.0"
+    "pretty-quick": "^1.7.0",
+    "webpack": "^4.21.0"
   }
 }
