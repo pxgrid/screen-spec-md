@@ -61,6 +61,7 @@ typings/
 .next
 
 # screen-spec-md
+dist/
 _template/
 _spec/
 example/
