@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     :style="{ left: styleLeft }"
     class="Separator"
     draggable="true"
@@ -44,7 +44,7 @@ export default {
   top: 48px;
   left: 50%;
   bottom: 0;
-  width: 11px;
+  width: 1px;
   padding: 0 5px;
   margin-left: -5px;
   &:after {
