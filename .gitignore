@@ -68,4 +68,4 @@ example/
 
 ## dummies
 src/components/Spec/dummies/*
-static/img/dummies
+public/img/dummies/*

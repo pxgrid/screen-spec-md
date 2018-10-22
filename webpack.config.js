@@ -73,7 +73,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new CopyWebpackPlugin([{ from: 'public/**/*', to: '../', flatten: true }]),
+    new CopyWebpackPlugin([{ from: 'public', to: '../' }]),
     new CopyWebpackPlugin([{ from: 'node_modules/vue/dist/vue.min.js', to: './' }]),
     new WriteFilePlugin(), // This is necessary for CopyWebpackPlugin used with webpack-dev-server
     new webpack.HotModuleReplacementPlugin(),
