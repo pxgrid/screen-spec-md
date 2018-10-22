@@ -5,9 +5,13 @@
   <title>hello webpack</title>
   <script src="./_screen-spec-md/vue.min.js"></script>
   <script src="./_screen-spec-md/vendors~index~tree.bundle.js"></script>
+  <script src="./_screen-spec-md/vendors~index.bundle.js"></script>
   <script src="./_screen-spec-md/index.bundle.js"></script>
   <script>
     Vue.component('TheHeader', TheHeader)
+    Vue.component('Screen', Screen)
+    Vue.component('Separator', Separator)
+    Vue.component('Document', Document)
   </script>
 </head>
 <body>
@@ -33,7 +37,7 @@
   <TheHeader
     :is-dev="isDev"
   />
-  <div class="Spec">
+  <div style="display: flex; max-height: calc(100vh - 48px); width: 100%;">
     <Screen
       :is-dev="isDev"
       :width="screenWidth"

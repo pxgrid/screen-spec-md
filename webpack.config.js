@@ -4,6 +4,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'production',
@@ -29,8 +30,34 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
+        test: /\.css$/,
+        use: ['vue-style-loader', 'css-loader'],
+      },
+      {
+        test: /assets\.scss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
+      {
         test: /\.scss$/,
         use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.html/,
+        use: 'raw-loader',
       },
     ],
   },
@@ -51,5 +78,9 @@ module.exports = {
     new WriteFilePlugin(), // This is necessary for CopyWebpackPlugin used with webpack-dev-server
     new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
   ],
 }
