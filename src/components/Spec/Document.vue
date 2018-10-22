@@ -94,7 +94,7 @@ export default {
 <style lang="scss" scoped>
 .Document {
   width: 50%;
-  overflow: auto;
+  overflow: hidden;
   &_Tools {
     background-color: #eeeeee;
     font-size: 0.9rem;

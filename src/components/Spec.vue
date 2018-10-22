@@ -1,10 +1,9 @@
 <template>
-  <div>
+  <div class="Spec">
     <TheHeader
       :is-dev="isDev"
-
     />
-    <div class="Spec">
+    <div>
       <Screen
         :is-dev="isDev"
         :width="screenWidth"

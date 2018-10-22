@@ -75,7 +75,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import dummySvgCanvasHtml from './dummies/dummySvgCanvas.html'
-import ScreenToolbar from './Screen/ScreenToolbar'
+import ScreenToolbar from './Screen/ScreenToolbar.vue'
 
 const ZOOM_MAX = 200
 const ZOOM_MIN = 25
