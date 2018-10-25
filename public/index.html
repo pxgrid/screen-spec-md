@@ -3,56 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>hello webpack</title>
-  <script src="./_screen-spec-md/vue.min.js"></script>
-  <script src="./_screen-spec-md/vendors~index~tree.bundle.js"></script>
-  <script src="./_screen-spec-md/vendors~index.bundle.js"></script>
-  <script src="./_screen-spec-md/index.bundle.js"></script>
-  <script>
-    Vue.component('TheHeader', TheHeader)
-    Vue.component('Screen', Screen)
-    Vue.component('Separator', Separator)
-    Vue.component('Document', Document)
-  </script>
 </head>
 <body>
-  <div id="app"></div>
-  <script>
-    new Vue({
-      el: '#app',
-      data() {
-        return {
-          isDev: true,
-          screenWidth: '50%',
-          documentWidth: '50%',
-        }
-      },
-      methods: {
-        onSeparatorDrag({ leftScreenRate }) {
-          this.screenWidth = `${leftScreenRate * 100}%`
-          this.documentWidth = `${(1 - leftScreenRate) * 100}%`
-        },
-      },
-      template: `
-<div>
-  <TheHeader
-    :is-dev="isDev"
-  />
-  <div style="display: flex; max-height: calc(100vh - 48px); width: 100%;">
-    <Screen
-      :is-dev="isDev"
-      :width="screenWidth"
-    />
-    <Separator
-      @drag="onSeparatorDrag"
-    />
-    <Document
-      :is-dev="isDev"
-      :width="documentWidth"
-    />
-  </div>
-</div>
-`
-    })
-  </script>
+<div id="app"></div>
+<script>
+window.SCREEN_SPEC_MD = {
+  convertedHtml: '<b>sample</b>',
+  updatedDate: '',
+  updatedAuthorName: '',
+  createdDate: '',
+  createdAuthorName: '',
+}
+</script>
 </body>
 </html>

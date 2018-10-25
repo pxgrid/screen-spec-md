@@ -5,53 +5,21 @@
   >
     <nav class="Document_Tools">
       <div>
-        <div
-          v-if="isDev"
-        >
-          <span>
-            LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}
-          </span>
-          <span>
-            Created: {{ createdDate }} {{ createdAuthorName }}
-          </span>
-        </div>
-        <div
-          v-else
-        >
-          <span
-            v-pre
-          >
-            <!-- eslint-disable-next-line vue/no-parsing-error -->
-            LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}
-          </span>
-          <span
-            v-pre
-          >
-            <!-- eslint-disable-next-line vue/no-parsing-error -->
-            Created: {{ createdDate }} {{ createdAuthorName }}
-          </span>
-        </div>
+        <span>
+          LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}
+        </span>
+        <span>
+          Created: {{ createdDate }} {{ createdAuthorName }}
+        </span>
       </div>
     </nav>
     <div
-      v-if="isDev"
       class="Document_Inner"
     >
       <div
         class="UISP-Md"
-        v-html="dummyBodyHtml"
-      />
-    </div>
-    <div
-      v-else
-      class="Document_Inner"
-    >
-      <div
-        v-pre
-        class="UISP-Md"
+        v-html="convertedHtml"
       >
-        <!-- eslint-disable-next-line vue/no-parsing-error -->
-        {{{ body }}}
       </div>
     </div>
   </div>
@@ -72,20 +40,25 @@ export default {
     },
   },
   computed: {
-    dummyBodyHtml() {
-      return dummyBodyHtml
+    convertedHtml() {
+      if (this.isDev) return dummyBodyHtml
+      return window.SCREEN_SPEC_MD.convertedHtml
     },
     updatedDate() {
-      return '2018/12/31'
+      if (this.isDev) return '2018/12/31'
+      return window.SCREEN_SPEC_MD.updatedDate
     },
     updatedAuthorName() {
-      return 'Pixel Gurio'
+      if (this.isDev) return 'Pixel Gurio'
+      return window.SCREEN_SPEC_MD.updatedAuthorName
     },
     createdDate() {
-      return '2018/01/01'
+      if (this.isDev) return '2018/01/01'
+      return window.SCREEN_SPEC_MD.createdDate
     },
     createdAuthorName() {
-      return 'Pixel Gurio'
+      if (this.isDev) return 'Pixel Gurio'
+      return window.SCREEN_SPEC_MD.createdAuthorName
     },
   },
 }

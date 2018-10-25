@@ -1,12 +1,12 @@
 import './assets/template.scss'
+import '@babel/polyfill'
 
 import Vue from 'vue'
-import TheHeader from './components/TheHeader.vue'
-import Screen from './components/Spec/Screen.vue'
-import Separator from './components/Spec/Separator.vue'
-import Document from './components/Spec/Document.vue'
+import Spec from './components/Spec.vue'
 
-window.TheHeader = Vue.component('TheHeader', TheHeader)
-window.Screen = Vue.component('Screen', Screen)
-window.Separator = Vue.component('Separator', Separator)
-window.Document = Vue.component('Document', Document)
+Vue.config.productionTip = false
+
+new Vue({
+  el: '#app',
+  render: h => h(Spec),
+})

@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      isDev: process.env.isDev,
+      isDev: true, //process.env.isDev,
       screenWidth: '50%',
       documentWidth: '50%',
     }
