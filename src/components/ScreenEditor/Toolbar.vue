@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import ItemSrcControl from './Toolbar/ItemSrcControl'
-import ItemCoordinateControl from './Toolbar/ItemCoordinateControl'
-import ItemZoomControl from './Toolbar/ItemZoomControl'
-import ItemOrderControl from './Toolbar/ItemOrderControl'
+import ItemSrcControl from './Toolbar/ItemSrcControl.vue'
+import ItemCoordinateControl from './Toolbar/ItemCoordinateControl.vue'
+import ItemZoomControl from './Toolbar/ItemZoomControl.vue'
+import ItemOrderControl from './Toolbar/ItemOrderControl.vue'
 export default {
   name: 'Toolbar',
   components: {

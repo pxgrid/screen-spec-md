@@ -13,8 +13,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import EditorCanvas from './ViewPort/EditorCanvas'
-import EditorDrop from './ViewPort/EditorDrop'
+import EditorCanvas from './ViewPort/EditorCanvas.vue'
+import EditorDrop from './ViewPort/EditorDrop.vue'
 export default {
   name: 'Viewport',
   components: {

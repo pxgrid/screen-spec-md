@@ -29,7 +29,7 @@
 <script>
 import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
 import rootTypes from '../../../store/types'
-import Highlight from './EditorCanvas/Highlight'
+import Highlight from './EditorCanvas/Highlight.vue'
 export default {
   name: 'EditorCanvas',
   components: {
