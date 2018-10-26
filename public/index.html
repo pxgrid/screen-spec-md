@@ -3,12 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>hello webpack</title>
+  <script src="/_screen-spec-md/handlebars.js"></script>
 </head>
 <body>
 <div id="app"></div>
+<script id="entry-template" type="text/x-handlebars-template">
+{{{ body }}}
+</script>
 <script>
+const source = document.getElementById('entry-template').innerHTML;
+const convertedFunction = Handlebars.compile(source);
 window.SCREEN_SPEC_MD = {
-  convertedHtml: '<b>sample</b>',
+  convertedHtml: convertedFunction(),
   updatedDate: '',
   updatedAuthorName: '',
   createdDate: '',
