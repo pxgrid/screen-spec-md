@@ -30,7 +30,7 @@
           <a
             v-pre
             target="_blank"
-            href="/_nuxt/__screen-editor.html?src={{{screen}}}"
+            href="/__image-canvas.html?src={{{screen}}}"
           >
             edit
           </a>

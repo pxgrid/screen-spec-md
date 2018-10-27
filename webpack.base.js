@@ -16,6 +16,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist', '_screen-spec-md'),
+    publicPath: '/_screen-spec-md/',
   },
   resolve: {
     extensions: ['.js'],
@@ -88,8 +89,13 @@ module.exports = {
       excludeChunks: ['image-canvas', 'tree'],
     }),
     new HtmlWebpackPlugin({
-      filename: '../image-canvas.html',
-      template: 'public/image-canvas.html',
+      filename: '../spec.html',
+      template: './public/spec.html',
+      excludeChunks: ['image-canvas', 'tree'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: '../__image-canvas.html',
+      template: 'public/__image-canvas.html',
       excludeChunks: ['index', 'tree'],
     }),
   ],
