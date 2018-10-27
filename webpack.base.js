@@ -11,6 +11,7 @@ module.exports = {
   entry: {
     index: './src/index.js',
     tree: './src/tree.js',
+    spec: './src/spec.js',
     'image-canvas': './src/image-canvas.js',
   },
   output: {
@@ -86,17 +87,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: '../index.html',
       template: './public/index.html',
-      excludeChunks: ['image-canvas', 'tree'],
+      excludeChunks: ['image-canvas', 'spec', 'tree'],
     }),
     new HtmlWebpackPlugin({
       filename: '../spec.html',
       template: './public/spec.html',
-      excludeChunks: ['image-canvas', 'tree'],
+      excludeChunks: ['image-canvas', 'index', 'tree'],
     }),
     new HtmlWebpackPlugin({
       filename: '../__image-canvas.html',
       template: 'public/__image-canvas.html',
-      excludeChunks: ['index', 'tree'],
+      excludeChunks: ['index', 'tree', 'spec'],
     }),
   ],
 }
