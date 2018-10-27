@@ -23,23 +23,7 @@
     <span
       class="TheHeader_PageTitle"
     >
-      <template
-        v-if="isDev"
-      >
-        <span>
-          {{ title }}
-        </span>
-      </template>
-      <template
-        v-else
-      >
-        <span
-          v-pre
-        >
-          <!-- eslint-disable-next-line vue/no-parsing-error -->
-          {{ title }}
-        </span>
-      </template>
+      {{ title }}
     </span>
     <div class="TheHeader_NavForDeveloper">
       <a
@@ -75,7 +59,8 @@ export default {
   },
   computed: {
     title() {
-      return '画面仕様書'
+      if (this.isDev) return '画面仕様書'
+      return window.SCREEN_SPEC_MD.title
     },
   },
 }

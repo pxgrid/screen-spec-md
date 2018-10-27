@@ -17,7 +17,6 @@
           v-if="isDev"
         >
           <a
-
             @click.prevent="openDevEditor()"
           >
             edit

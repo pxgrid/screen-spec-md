@@ -21,6 +21,7 @@ const convertSvgCanvasFunction = Handlebars.compile(svgCanvasSource)
 window.SCREEN_SPEC_MD = {
   convertedHtml: convertBodyFunction(),
   svgCanvasHtml: convertSvgCanvasFunction(),
+  title: '{{ title }}',
   updatedDate: '',
   updatedAuthorName: '',
   createdDate: '',
