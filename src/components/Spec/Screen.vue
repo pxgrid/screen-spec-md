@@ -41,31 +41,14 @@
       class="Screen_Main"
     >
       <div
-        v-if="isDev"
         class="Screen_MainInner"
       >
         <div
           ref="svgWrapper"
           :class="{'UISP-Screen--fit': isScreenFit, 'UISP-Screen--highlight': isHighlight}"
           class="UISP-Screen"
-          v-html="dummySvgCanvasHtml"
-        />
-      </div>
-      <div
-        v-else
-        class="Screen_MainInner"
-      >
-        <div
-          ref="svgWrapper"
-          :class="{'UISP-Screen--fit': isScreenFit, 'UISP-Screen--highlight': isHighlight}"
-          class="UISP-Screen"
+          v-html="svgCanvasHtml"
         >
-          <div
-            v-pre
-          >
-            <!-- eslint-disable-next-line vue/no-parsing-error -->
-            {{{ svgCanvas }}}
-          </div>
         </div>
       </div>
     </div>
@@ -109,8 +92,9 @@ export default {
     editorUrlQuery() {
       return `?src=${this.filenameWithCoordinates}`
     },
-    dummySvgCanvasHtml() {
-      return dummySvgCanvasHtml
+    svgCanvasHtml() {
+      if (this.isDev) return dummySvgCanvasHtml
+      return window.SCREEN_SPEC_MD.svgCanvasHtml
     },
   },
   methods: {

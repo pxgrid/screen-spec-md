@@ -7,14 +7,20 @@
 </head>
 <body>
 <div id="app"></div>
-<script id="entry-template" type="text/x-handlebars-template">
+<script id="body-template" type="text/x-handlebars-template">
 {{{ body }}}
 </script>
+<script id="svg-canvas-template" type="text/x-handlebars-template">
+{{{ svgCanvas }}}
+</script>
 <script>
-const source = document.getElementById('entry-template').innerHTML;
-const convertedFunction = Handlebars.compile(source);
+const bodySource = document.getElementById('body-template').innerHTML
+const convertBodyFunction = Handlebars.compile(bodySource)
+const svgCanvasSource = document.getElementById('svg-canvas-template').innerHTML
+const convertSvgCanvasFunction = Handlebars.compile(svgCanvasSource)
 window.SCREEN_SPEC_MD = {
-  convertedHtml: convertedFunction(),
+  convertedHtml: convertBodyFunction(),
+  svgCanvasHtml: convertSvgCanvasFunction(),
   updatedDate: '',
   updatedAuthorName: '',
   createdDate: '',
