@@ -111,7 +111,7 @@ export default {
     },
     _removeZoomClass() {},
     _getSVGRootRef() {
-      return this.$refs['svgWrapper'].firstChild
+      return this.$refs['svgWrapper'].getElementsByTagName('svg')[0]
     },
     _setSVGSize() {
       const svgRoot = this._getSVGRootRef()
