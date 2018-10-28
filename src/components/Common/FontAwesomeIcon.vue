@@ -9,7 +9,13 @@
 
 <script>
 import { FontAwesomeIcon as FAIcon } from '@fortawesome/vue-fontawesome'
-import { faSearchPlus, faSearchMinus, faExpandArrowsAlt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faHome,
+  faSearch,
+  faSearchPlus,
+  faSearchMinus,
+  faExpandArrowsAlt,
+} from '@fortawesome/free-solid-svg-icons'
 
 export default {
   name: 'FontAwesomeIcon',
@@ -37,6 +43,10 @@ export default {
   computed: {
     faIcon() {
       switch (this.icon) {
+        case 'home':
+          return faHome
+        case 'search':
+          return faSearch
         case 'search-plus':
           return faSearchPlus
         case 'search-minus':

@@ -1,23 +1,23 @@
 <template>
   <div class="TheHeader">
-    <nav class="TheHeader_NavMain">
+    <nav class="TheHeader_MainNav">
       <a
         class="TheHeader_IconLink"
         href="/"
       >
-        Search
+        <FontAwesomeIcon
+          icon="search"
+          size="lg"
+        />
       </a>
       <a
         class="TheHeader_IconLink"
         href="/"
       >
-        Logo
-      </a>
-      <a
-        class="TheHeader_IconLink"
-        href="/"
-      >
-        Home
+        <FontAwesomeIcon
+          icon="home"
+          size="lg"
+        />
       </a>
     </nav>
     <span
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import FontAwesomeIcon from './Common/FontAwesomeIcon.vue'
 export default {
   name: 'TheHeader',
   props: {
@@ -59,6 +60,9 @@ export default {
       return window.SCREEN_SPEC_MD.title
     },
   },
+  components: {
+    FontAwesomeIcon,
+  },
 }
 </script>
 
@@ -66,14 +70,14 @@ export default {
 .TheHeader {
   display: grid;
   grid-template-rows: 48px;
-  grid-template-columns: 150px 1fr auto;
+  grid-template-columns: 100px 1fr auto;
   position: relative;
   height: 48px;
   background-color: #2f6fad;
-  &_NavMain {
+  &_MainNav {
     display: grid;
     grid-template-rows: 48px;
-    grid-template-columns: 50px 50px 50px;
+    grid-template-columns: 50px 50px;
     grid-column: 1 / 2;
     align-items: center;
   }
@@ -86,9 +90,9 @@ export default {
   &_PageTitle {
     display: block;
     color: #ffffff;
-    font-weight: bold;
+    font-size: 18px;
     line-height: 48px;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 20px;
     grid-column: 2 / 3;
   }
   &_NavForDeveloper {
