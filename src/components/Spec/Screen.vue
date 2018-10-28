@@ -12,15 +12,16 @@
         @zoomOut="onZoomOut()"
         @toggleHighlight="onToggleHighlight()"
       />
-      <div>
-        <span>
-          <a
-            target="EDT-Editor"
-            :href="imageCanvasPath"
-          >
-            edit
-          </a>
-        </span>
+      <div
+        class="Screen_ToolLinks"
+      >
+        <a
+          class="Screen_ImageCanvasLink"
+          :href="imageCanvasPath"
+          target="EDT-Editor"
+        >
+          edit
+        </a>
       </div>
     </nav>
     <div
@@ -136,6 +137,15 @@ export default {
     grid-template-rows: 30px;
     background-color: #eeeeee;
     font-size: 0.9rem;
+  }
+  &_ToolLinks {
+    text-align: right;
+  }
+  &_ImageCanvasLink {
+    font-size: 12px;
+    display: inline-block;
+    line-height: 100%;
+    padding: 10px;
   }
   &_Magnification {
     background-color: #dddddd;
