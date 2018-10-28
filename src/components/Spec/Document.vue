@@ -74,6 +74,7 @@ export default {
     min-height: 2em;
   }
   &_Inner {
+    box-sizing: border-box;
     padding: 20px;
     height: calc(100vh - 48px - 30px); // 30pxはScreen_Toolsクラスの高さ
     overflow: scroll;
