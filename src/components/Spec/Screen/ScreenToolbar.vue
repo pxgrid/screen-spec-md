@@ -1,47 +1,57 @@
 <template>
-  <div class="ScreenToolbar">
-    <a
-      :class="{_disabled: isScreenFit}"
-      class="ScreenToolbar_Item"
-      @click="zoomOut()"
-    >
-      <FontAwesomeIcon
-        icon="search-minus"
-        size="1x"
-      />
-    </a>
-    <span
-      :class="{_disabled: isScreenFit}"
-      class="Screen_Magnification"
-    >
-      {{ zoomValue }}
-    </span>
-    <a
-      :class="{_disabled: isScreenFit}"
-      class="ScreenToolbar_Item"
-      @click="zoomIn()"
-    >
-      <FontAwesomeIcon
-        icon="search-plus"
-        size="1x"
-      />
-    </a>
-    <a
-      class="ScreenToolbar_Item"
-      @click="zoomFit()"
-    >
-      <FontAwesomeIcon
-        icon="expand-arrows-alt"
-        size="1x"
-      />
-    </a>
-    <a
-      class="ScreenToolbar_Item"
-      @click="toggleHighlight()"
-    >
-      highlight
-    </a>
-  </div>
+  <ul class="ScreenToolbar">
+    <li class="ScreenToolbar_Item">
+      <button
+        :class="{_disabled: isScreenFit}"
+        class="ScreenToolbar_IconButton"
+        @click="zoomOut()"
+      >
+        <FontAwesomeIcon
+          icon="search-minus"
+          size="1x"
+        />
+      </button>
+    </li><!--
+    --><li class="ScreenToolbar_Item">
+      <output
+        :class="{_disabled: isScreenFit}"
+        class="ScreenToolbar_Output"
+      >
+        {{ zoomValue }}
+      </output>
+    </li><!--
+    --><li class="ScreenToolbar_Item">
+      <button
+        :class="{_disabled: isScreenFit}"
+        class="ScreenToolbar_IconButton"
+        @click="zoomIn()"
+      >
+        <FontAwesomeIcon
+          icon="search-plus"
+          size="1x"
+        />
+      </button>
+    </li><!--
+    --><li class="ScreenToolbar_Item">
+      <button
+        class="ScreenToolbar_IconButton"
+        @click="zoomFit()"
+      >
+        <FontAwesomeIcon
+          icon="expand-arrows-alt"
+          size="1x"
+        />
+      </button>
+    </li><!--
+    --><li class="ScreenToolbar_Item">
+      <button
+        class="ScreenToolbar_IconButton ScreenToolbar_Highlight"
+        @click="toggleHighlight()"
+      >
+        highlight
+      </button>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -81,11 +91,39 @@ export default {
 
 <style lang="scss" scoped>
 .ScreenToolbar {
+  margin: 0;
+  padding: 0;
   &_Item {
+    line-height: 100%;
+    display: inline-block;
+  }
+  &_IconButton {
+    color: inherit;
+    text-align: center;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 0;
+    border: none;
+    background: none;
+    margin-right: 0;
     &._disabled {
-      color: #999999;
+      pointer-events: none;
       cursor: default;
+      opacity: 0.4;
     }
+  }
+  &_Output {
+    font-size: 10px;
+    display: block;
+    text-align: center;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    background: #d6d6d6;
+  }
+  &_Highlight {
+    padding: 0 10px;
+    font-size: 12px;
   }
 }
 </style>
