@@ -5,7 +5,10 @@
       class="ScreenToolbar_Item"
       @click="zoomOut()"
     >
-      zoomout
+      <FontAwesomeIcon
+        icon="search-minus"
+        size="1x"
+      />
     </a>
     <span
       :class="{_disabled: isScreenFit}"
@@ -18,13 +21,19 @@
       class="ScreenToolbar_Item"
       @click="zoomIn()"
     >
-      zoomin
+      <FontAwesomeIcon
+        icon="search-plus"
+        size="1x"
+      />
     </a>
     <a
       class="ScreenToolbar_Item"
       @click="zoomFit()"
     >
-      fit
+      <FontAwesomeIcon
+        icon="expand-arrows-alt"
+        size="1x"
+      />
     </a>
     <a
       class="ScreenToolbar_Item"
@@ -36,6 +45,8 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '../../Common/FontAwesomeIcon.vue'
+
 export default {
   name: 'ScreenToolbar',
   props: {
@@ -61,6 +72,9 @@ export default {
     toggleHighlight() {
       this.$emit('toggleHighlight')
     },
+  },
+  components: {
+    FontAwesomeIcon,
   },
 }
 </script>
