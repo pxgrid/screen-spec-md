@@ -1,6 +1,6 @@
 <template>
   <div class="ItemOrderControl">
-    <div>
+    <div class="ItemOrderControl_Item">
       <a
         @click="onChangeSelectedItemLabel(-1)"
       >
@@ -9,11 +9,12 @@
     </div>
     <div>
       <input
+        class="ItemOrderControl_Input"
         :value="selectedItemLabel"
         type="text"
       >
     </div>
-    <div>
+    <div class="ItemOrderControl_Item">
       <a
         @click="onChangeSelectedItemLabel(1)"
       >
@@ -47,6 +48,13 @@ export default {
 <style lang="scss" scoped>
 .ItemOrderControl {
   display: grid;
-  grid-template-columns: 20px 1fr 20px;
+  grid-template-columns: 20px 50px 20px;
+  &_Item {
+    text-align: center;
+  }
+  &_Input {
+    height: 14px;
+    width: 40px;
+  }
 }
 </style>

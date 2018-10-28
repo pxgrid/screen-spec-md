@@ -53,12 +53,13 @@ export default {
 
 <style lang="scss" scoped>
 .Toolbar {
+  font-size: 12px;
   display: grid;
-  grid-template-columns: 100px 1fr;
-  grid-template-rows: 30px 30px;
-  column-gap: 10px;
-  row-gap: 10px;
-  padding: 0.5rem;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: 20px 20px;
+  column-gap: 5px;
+  row-gap: 5px;
+  padding: 5px;
   color: #eeeeee;
   background-color: #666666;
   &_Label {
@@ -68,7 +69,7 @@ export default {
   }
   &_HighlightControllers {
     display: grid;
-    grid-template-columns: 300px 100px 100px 100px 100px 300px;
+    grid-template-columns: 100px 100px 100px 100px 100px 300px;
   }
 }
 </style>

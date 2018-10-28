@@ -1,14 +1,14 @@
 <template>
   <div class="ItemCoordinateControl">
-    <div>
+    <div class="ItemCoordinateControl_Label">
       <a>
-        {{ coordinateKey }}
+        {{ coordinateKey }}:
       </a>
     </div>
     <div>
       <input
         :value="coordinateValue"
-        class=""
+        class="ItemCoordinateControl_Input"
         type="number"
         min="0"
         max="10000"
@@ -81,5 +81,11 @@ export default {
 .ItemCoordinateControl {
   display: grid;
   grid-template-columns: 20px 1fr;
+  &_Label {
+    text-align: center;
+  }
+  &_Input {
+    height: 14px;
+  }
 }
 </style>
