@@ -25,7 +25,9 @@
     >
       {{ title }}
     </span>
-    <div class="TheHeader_NavForDeveloper">
+    <div class="TheHeader_NavForDeveloper"
+      v-if="isDev"
+    >
       <a
         class="TheHeader_Link"
         href="/spec"
@@ -37,12 +39,6 @@
         href="/list"
       >
         List
-      </a>
-      <a
-        class="TheHeader_Link"
-        href="/screen-editor"
-      >
-        Screen Editor
       </a>
     </div>
   </div>
@@ -98,7 +94,7 @@ export default {
   &_NavForDeveloper {
     display: grid;
     grid-template-rows: 48px;
-    grid-template-columns: 50px 50px 100px;
+    grid-template-columns: 50px 50px;
     grid-column: 3 / 4;
     align-items: center;
   }
