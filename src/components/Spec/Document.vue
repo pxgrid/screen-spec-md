@@ -3,16 +3,14 @@
     :style="{ width: width }"
     class="Document"
   >
-    <nav class="Document_Tools">
-      <div>
-        <span>
-          LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}
-        </span>
-        <span>
-          Created: {{ createdDate }} {{ createdAuthorName }}
-        </span>
-      </div>
-    </nav>
+    <ul class="Document_Info">
+      <li class="Document_InfoItem">
+        LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}
+      </li>
+      <li class="Document_InfoItem">
+        Created: {{ createdDate }} {{ createdAuthorName }}
+      </li>
+    </ul>
     <div
       class="Document_Inner"
     >
@@ -68,10 +66,20 @@ export default {
 .Document {
   width: 50%;
   overflow: hidden;
-  &_Tools {
+  &_Info {
     background-color: #eeeeee;
     font-size: 0.9rem;
-    min-height: 2em;
+    margin: 0;
+    padding: 0 10px 0 0;
+    height: 30px;
+    text-align: right;
+  }
+  &_InfoItem {
+    line-height: 30px;
+    display: inline-block;
+    height: 30px;
+    font-size: 12px;
+    margin-left: 10px;
   }
   &_Inner {
     box-sizing: border-box;
