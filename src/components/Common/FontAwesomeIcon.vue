@@ -14,6 +14,7 @@ import {
   faSearch,
   faSearchPlus,
   faSearchMinus,
+  faTimes,
   faExpandArrowsAlt,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -43,6 +44,9 @@ export default {
   computed: {
     faIcon() {
       switch (this.icon) {
+        case 'close':
+        case 'times':
+          return faTimes
         case 'home':
           return faHome
         case 'search':
