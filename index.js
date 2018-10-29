@@ -4,7 +4,7 @@ const globby = require('globby')
 
 const loadTmpl = require('./lib/load-tmpl')
 const buildPage = require('./lib/build-page')
-// const buildList = require('./lib/build-list');
+const buildTreeJson = require('./lib/build-tree-json')
 const copyCoreFiles = require('./lib/copy-core-files')
 
 // templateのタイプをキーに、HandlebarsのTemplate関数を持つ
@@ -18,7 +18,12 @@ Promise.resolve()
   .then(paths => Promise.all(paths.map(tmplPath => loadTmpl(tmplPath, tmplMap))))
   // MarkDownを変換・埋め込み
   .then(() => globby('./example/**/*.md')) //TODO: 設定ファイルか引数で渡されるものにする
-  .then(paths => buildPage(paths, { rootDir, destDir, tmplMap }))
+  .then(paths => {
+    return Promise.all([
+      buildPage(paths, { rootDir, destDir, tmplMap }),
+      buildTreeJson(paths, { rootDir, destDir }),
+    ])
+  })
   // Vueのコアファイルをコピー
   .then(() => copyCoreFiles())
 
