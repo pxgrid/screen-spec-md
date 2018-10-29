@@ -31,10 +31,19 @@
 export default {
   name: 'TreeItem',
   props: {
+    opened: {
+      type: Boolean,
+      default: false,
+    },
     treeData: {
       type: Object,
       required: true,
     },
+  },
+  mounted() {
+    if (this.opened) {
+      this.open = true
+    }
   },
   data: function() {
     return {

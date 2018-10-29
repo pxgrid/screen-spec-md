@@ -2,6 +2,7 @@
   <ul class="PageTree">
     <TreeItem
       class="PageTree_Item"
+      :opened="true"
       :treeData="treeData"
     />
   </ul>
@@ -14,10 +15,7 @@ export default {
   name: 'PageTree',
   computed: {
     treeData() {
-      return {
-        title: 'Top',
-        children: dummyTreeData, //TODO: modeがdevelopment時のみdummyデータ
-      }
+      return dummyTreeData //TODO: modeがdevelopment時のみdummyデータ
     },
   },
   components: {
