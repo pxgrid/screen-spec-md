@@ -3,7 +3,7 @@
     <div
       @click="toggle"
     >
-      <a :href="treeData.filename">
+      <a :href="treeData.rootPath">
         {{ treeData.title }}
       </a>
       <span
