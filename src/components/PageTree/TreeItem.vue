@@ -3,14 +3,14 @@
     <div
       @click="toggle"
     >
-      <a :href="treeData.rootPath">
-        {{ treeData.title }}
-      </a>
       <span
         v-if="isDir"
       >
         [{{ open ? '-' : '+' }}]
       </span>
+      <a :href="treeData.rootPath">
+        {{ treeData.title }}
+      </a>
     </div>
     <ul
       v-if="isDir"
