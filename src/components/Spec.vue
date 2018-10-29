@@ -25,9 +25,6 @@
         :overflowScroll="true"
         @close="onCloseTreeDialog"
       >
-        <div slot="header">
-          ページツリー
-        </div>
         <div slot="main">
           <PageTree />
         </div>

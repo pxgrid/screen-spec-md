@@ -8,7 +8,11 @@
       >
         [{{ open ? '-' : '+' }}]
       </span>
-      <a :href="treeData.rootPath">
+      <a
+        class="TreeItem_PageTitle"
+        :class="{_match: !matchFilter}"
+        :href="treeData.rootPath"
+      >
         {{ treeData.title }}
       </a>
     </div>
@@ -20,7 +24,9 @@
         class="item"
         v-for="(treeData, index) in treeData.children"
         :key="index"
+        :filterWord="filterWord"
         :treeData="treeData"
+        @expand="onExpand"
       >
       </TreeItem>
     </ul>
@@ -35,6 +41,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    filterWord: {
+      type: String,
+      default: '',
+    },
     treeData: {
       type: Object,
       required: true,
@@ -45,25 +55,49 @@ export default {
       this.open = true
     }
   },
-  data: function() {
+  data() {
     return {
       open: false,
     }
   },
+  watch: {
+    filterWord(newWord) {
+      if (this.matchFilter && newWord !== '') {
+        this.$emit('expand')
+      }
+    },
+  },
   computed: {
-    isDir: function() {
+    isDir() {
       return this.treeData.children && this.treeData.children.length
+    },
+    matchFilter() {
+      const title = this.treeData.title
+      const regExp = new RegExp(this.filterWord)
+      if (this.filterWord === '' || !title) return true
+      return regExp.test(title)
     },
   },
   methods: {
-    toggle: function() {
+    toggle() {
       if (this.isDir) {
         this.open = !this.open
       }
+    },
+    onExpand() {
+      this.open = true
+      this.$emit('expand')
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
+.TreeItem {
+  &_PageTitle {
+    &._match {
+      color: #bbbbbb;
+    }
+  }
+}
 </style>
