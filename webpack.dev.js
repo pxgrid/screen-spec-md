@@ -1,4 +1,5 @@
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const merge = require('webpack-merge')
 const base = require('./webpack.base.js')
@@ -11,4 +12,5 @@ module.exports = merge(base, {
     disableHostCheck: true,
   },
   devtool: 'eval-source-map',
+  plugins: [new CopyWebpackPlugin([{ from: './public/dummies', to: '../' }])],
 })
