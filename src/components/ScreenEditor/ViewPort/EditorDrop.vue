@@ -1,6 +1,6 @@
 <template>
   <!-- ${ dragStateClass } -->
-  <div 
+  <div
     class="EditorDrop"
     @dragenter.prevent="onDragEnter($event)"
     @dragover.prevent="onDragOver($event)"
@@ -8,7 +8,7 @@
     @drop.prevent="onDrop($event)"
   >
     <div class="EditorDrop_Target">
-      <svg 
+      <svg
         class="EditorDrop_Icon"
         width="50"
         height="43"
@@ -22,14 +22,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import rootTypes from '../../../store/types'
 export default {
   name: 'EditorDrop',
   methods: {
-    ...mapActions({
-      setImage: rootTypes.SET_IMAGE,
-    }),
     onDragEnter(e) {},
     onDragOver(e) {},
     onDragLeave(e) {},
@@ -54,6 +49,9 @@ export default {
         this.setImage({ src: e.target.result, filename: file.name })
       }
       reader.readAsDataURL(file)
+    },
+    setImage({ src, filename }) {
+      this.$emit('setImage', { src, filename })
     },
   },
 }

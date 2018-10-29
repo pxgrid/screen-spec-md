@@ -27,32 +27,30 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
-import rootTypes from '../../../store/types'
 import Highlight from './EditorCanvas/Highlight.vue'
 export default {
   name: 'EditorCanvas',
   components: {
     Highlight,
   },
-  computed: {
-    ...mapState({
-      editScreen: 'editScreen',
-      coordinates: 'coordinates',
-    }),
-    ...mapGetters({
-      zoomedWidth: 'zoomedWidth',
-      zoomedHeight: 'zoomedHeight',
-      viewbox: 'viewbox',
-    }),
+  props: {
+    editScreen: {
+      type: Object,
+    },
+    coordinates: {
+      type: Array,
+    },
+    zoomedWidth: {
+      type: Number,
+    },
+    zoomedHeight: {
+      type: Number,
+    },
+    viewbox: {
+      type: String,
+    },
   },
   methods: {
-    ...mapMutations({
-      addHighlight: rootTypes.ADD_HIGHLIGHT,
-    }),
-    ...mapActions({
-      setImage: rootTypes.SET_IMAGE,
-    }),
     onClickSVG(e) {
       e.preventDefault
       e.stopPropagation()
@@ -68,6 +66,9 @@ export default {
       p.x = x | 0
       p.y = y | 0
       return p.matrixTransform(svg.getScreenCTM().inverse())
+    },
+    addHighlight(svgCoordinate) {
+      this.$emit('addHighlight', svgCoordinate)
     },
   },
 }

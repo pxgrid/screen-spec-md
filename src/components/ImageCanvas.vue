@@ -2,23 +2,57 @@
   <div class="ScreenEditor">
     <Toolbar />
     <div class="ScreenEditor_Container">
-      <ViewPort />
+      <ViewPort
+        :editScreen="editScreen"
+        :coordinates="coordinates"
+        :zoomedWidth="zoomedWidth"
+        :zoomedHeight="zoomedHeight"
+        :viewbox="viewbox"
+        @addHighlight="onAddHighlight"
+        @setImage="onSetImage"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
+import rootTypes from '../store/types'
 import Toolbar from '../components/ScreenEditor/Toolbar.vue'
 import ViewPort from '../components/ScreenEditor/ViewPort.vue'
 export default {
   name: 'ScreenEditor',
-  layout: 'ImageCanvasEditorLayout',
   components: {
     Toolbar,
     ViewPort,
   },
   data() {
     return {}
+  },
+  computed: {
+    ...mapState({
+      editScreen: 'editScreen',
+      coordinates: 'coordinates',
+    }),
+    ...mapGetters({
+      zoomedWidth: 'zoomedWidth',
+      zoomedHeight: 'zoomedHeight',
+      viewbox: 'viewbox',
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      addHighlight: rootTypes.ADD_HIGHLIGHT,
+    }),
+    ...mapActions({
+      setImage: rootTypes.SET_IMAGE,
+    }),
+    onAddHighlight(svgCoordinate) {
+      this.addHighlight(svgCoordinate)
+    },
+    onSetImage({ src, filename }) {
+      this.setImage({ src, filename })
+    },
   },
 }
 </script>

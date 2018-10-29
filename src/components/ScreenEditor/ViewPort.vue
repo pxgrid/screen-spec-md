@@ -3,16 +3,22 @@
     <div class="Viewport_Inner">
       <EditorCanvas
         v-if="editScreen.src"
+        :editScreen="editScreen"
+        :coordinates="coordinates"
+        :zoomedWidth="zoomedWidth"
+        :zoomedHeight="zoomedHeight"
+        :viewbox="viewbox"
+        @addHighlight="onAddHighlight"
       />
       <EditorDrop
         v-else
+        @setImage="onSetImage"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import EditorCanvas from './ViewPort/EditorCanvas.vue'
 import EditorDrop from './ViewPort/EditorDrop.vue'
 export default {
@@ -21,10 +27,30 @@ export default {
     EditorCanvas,
     EditorDrop,
   },
-  computed: {
-    ...mapState({
-      editScreen: 'editScreen',
-    }),
+  props: {
+    editScreen: {
+      type: Object,
+    },
+    coordinates: {
+      type: Array,
+    },
+    zoomedWidth: {
+      type: Number,
+    },
+    zoomedHeight: {
+      type: Number,
+    },
+    viewbox: {
+      type: String,
+    },
+  },
+  methods: {
+    onAddHighlight(svgCoordinate) {
+      this.$emit('addHighlight', svgCoordinate)
+    },
+    onSetImage({ src, filename }) {
+      this.$emit('setImage', { src, filename })
+    },
   },
 }
 </script>
