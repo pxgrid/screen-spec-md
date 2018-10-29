@@ -2,6 +2,7 @@
   <div>
     <TheHeader
       :is-dev="isDev"
+      @openTreeDialog="onOpenTreeDialog"
     />
     <div class="Spec">
       <Screen
@@ -16,18 +17,38 @@
         :width="documentWidth"
       />
     </div>
+    <OverlayScreen
+      v-show="isShowTreeDialog"
+      @close="onCloseTreeDialog"
+    >
+      <BaseDialog
+        :overflowScroll="false"
+        @close="onCloseTreeDialog"
+      >
+        <div
+          slot="main"
+        >
+          dialog
+        </div>
+      </BaseDialog>
+    </OverlayScreen>
   </div>
 </template>
 
 <script>
 import TheHeader from './TheHeader.vue'
+import OverlayScreen from './Common/OverlayScreen.vue'
+import BaseDialog from './Common/BaseDialog.vue'
 import Screen from './Spec/Screen.vue'
 import Separator from './Spec/Separator.vue'
 import Document from './Spec/Document.vue'
+
 export default {
   name: 'Spec',
   components: {
     TheHeader,
+    OverlayScreen,
+    BaseDialog,
     Screen,
     Separator,
     Document,
@@ -35,6 +56,7 @@ export default {
   data() {
     return {
       isDev: process.env.NODE_ENV === 'development',
+      isShowTreeDialog: false,
       screenWidth: '50%',
       documentWidth: '50%',
     }
@@ -43,6 +65,12 @@ export default {
     onSeparatorDrag({ leftScreenRate }) {
       this.screenWidth = `${leftScreenRate * 100}%`
       this.documentWidth = `${(1 - leftScreenRate) * 100}%`
+    },
+    onOpenTreeDialog() {
+      this.isShowTreeDialog = true
+    },
+    onCloseTreeDialog() {
+      this.isShowTreeDialog = false
     },
   },
 }

@@ -1,15 +1,15 @@
 <template>
   <div class="TheHeader">
     <nav class="TheHeader_MainNav">
-      <a
-        class="TheHeader_IconLink"
-        href="/"
+      <button
+        class="TheHeader_IconButton"
+        @click="openTreeDialog"
       >
         <FontAwesomeIcon
           icon="search"
           size="lg"
         />
-      </a>
+      </button>
       <a
         class="TheHeader_IconLink"
         href="/"
@@ -60,6 +60,11 @@ export default {
       return window.SCREEN_SPEC_MD.title
     },
   },
+  methods: {
+    openTreeDialog() {
+      this.$emit('openTreeDialog')
+    },
+  },
   components: {
     FontAwesomeIcon,
   },
@@ -86,6 +91,17 @@ export default {
     width: 50px;
     font-size: 12px;
     text-align: center;
+  }
+  &_IconButton {
+    color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+    min-width: 50px;
+    min-height: 50px;
+    padding: 0;
+    border: none;
+    background: none;
+    margin-right: 0;
   }
   &_PageTitle {
     display: block;
