@@ -67,5 +67,6 @@ _spec/
 example/
 
 ## dummies
-src/components/Spec/dummies/*
 public/dummies/*
+src/components/Spec/dummies/*
+src/components/PageTree/dummies/*

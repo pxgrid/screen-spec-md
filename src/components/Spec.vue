@@ -22,13 +22,14 @@
       @close="onCloseTreeDialog"
     >
       <BaseDialog
-        :overflowScroll="false"
+        :overflowScroll="true"
         @close="onCloseTreeDialog"
       >
-        <div
-          slot="main"
-        >
-          dialog
+        <div slot="header">
+          ページツリー
+        </div>
+        <div slot="main">
+          <PageTree />
         </div>
       </BaseDialog>
     </OverlayScreen>
@@ -42,6 +43,7 @@ import BaseDialog from './Common/BaseDialog.vue'
 import Screen from './Spec/Screen.vue'
 import Separator from './Spec/Separator.vue'
 import Document from './Spec/Document.vue'
+import PageTree from './PageTree.vue'
 
 export default {
   name: 'Spec',
@@ -52,6 +54,7 @@ export default {
     Screen,
     Separator,
     Document,
+    PageTree,
   },
   data() {
     return {
