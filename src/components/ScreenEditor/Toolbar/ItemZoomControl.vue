@@ -7,14 +7,29 @@
       <input
         class="ItemZoomControl_Range"
         type="range"
+        step="0.25"
+        min="0.5"
+        max="1.5"
+        @input="onInput"
       >
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import rootTypes from '../../../store/types'
 export default {
   name: 'ItemZoomControl',
+  methods: {
+    ...mapMutations({
+      zoom: rootTypes.ZOOM,
+    }),
+    onInput(e) {
+      //changeイベントでは、リアルタイムに変更が反映されない
+      this.zoom(e.target.value)
+    },
+  },
 }
 </script>
 
