@@ -5,6 +5,9 @@ export default {
   [types.SET_IMAGE](state, { width, height, src, filename }) {
     Object.assign(state.editScreen, { width, height, src, filename })
   },
+  [types.INIT_COORDINATES](state, { coordinateArrayList }) {
+    state.coordinates = coordinateArrayList
+  },
 
   [types.SET_COORDINATES](state, { order, coordinateArray }) {
     const currentCoordinate = state.coordinates[order]
@@ -13,7 +16,7 @@ export default {
       imageHeight: state.editScreen.height,
     })
     state.coordinates[order] = [x, y, w, h]
-    state.coordinates = [...state.coordinates]
+    state.coordinates = [...state.coordinates] //変更を検知させるため
   },
 
   [types.ADD_HIGHLIGHT](state, { x, y }) {

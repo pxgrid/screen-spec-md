@@ -1,5 +1,6 @@
 export default {
   SET_IMAGE: 'setImage',
+  INIT_COORDINATES: 'initCoordinates',
   SET_COORDINATES: 'setCoordinates',
   ADD_HIGHLIGHT: 'addHighlight',
   REMOVE_HIGHLIGHT: 'removeHighlight',

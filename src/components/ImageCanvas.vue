@@ -26,8 +26,8 @@ export default {
     Toolbar,
     ViewPort,
   },
-  data() {
-    return {}
+  mounted() {
+    this.initByQueries()
   },
   computed: {
     ...mapState({
@@ -38,11 +38,14 @@ export default {
       zoomedWidth: 'zoomedWidth',
       zoomedHeight: 'zoomedHeight',
       viewbox: 'viewbox',
+      filenameWithCoordinates: 'filenameWithCoordinates',
     }),
   },
   methods: {
     ...mapMutations({
       addHighlight: rootTypes.ADD_HIGHLIGHT,
+      initCoordinates: rootTypes.INIT_COORDINATES,
+      selectHighlight: rootTypes.SELECT_HIGHLIGHT,
     }),
     ...mapActions({
       setImage: rootTypes.SET_IMAGE,
@@ -52,6 +55,25 @@ export default {
     },
     onSetImage({ src, filename }) {
       this.setImage({ src, filename })
+    },
+    initByQueries() {
+      const queries = window.location.search
+      const queriesList = queries.slice(1).split('&')
+      let src = ''
+      let highlight = ''
+      queriesList.forEach(query => {
+        const [key, val] = query.split('=')
+        if (key === 'src') {
+          src = val
+        }
+        if (key === 'highlight') {
+          highlight = val
+        }
+      })
+      const filename = src.split('/').pop()
+      this.setImage({ src, filename })
+      this.selectHighlight(0)
+      this.initCoordinates({ coordinateArrayList: JSON.parse(highlight) })
     },
   },
 }
