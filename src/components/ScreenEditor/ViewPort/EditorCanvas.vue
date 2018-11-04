@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import rootTypes from '../../../store/types'
 import Highlight from './EditorCanvas/Highlight.vue'
 export default {
   name: 'EditorCanvas',
@@ -50,7 +52,26 @@ export default {
       type: String,
     },
   },
+  created() {
+    this._handleKeyDown = this._handleKeyDown.bind(this)
+  },
+  mounted() {
+    document.removeEventListener('keydown', this._handleKeyDown)
+    document.addEventListener('keydown', this._handleKeyDown)
+  },
+  unmounted() {
+    document.removeEventListener('keydown', this._handleKeyDown)
+  },
   methods: {
+    ...mapMutations({
+      removeHighlight: rootTypes.REMOVE_HIGHLIGHT,
+    }),
+    _handleKeyDown(e) {
+      if (e.keyCode === 8) {
+        e.preventDefault()
+        this.removeHighlight()
+      }
+    },
     onClickSVG(e) {
       e.preventDefault
       e.stopPropagation()
