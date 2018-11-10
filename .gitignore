@@ -64,7 +64,6 @@ typings/
 dist/
 _template/
 _spec/
-example/
 
 ## dummies
 public/dummies/*
