@@ -10,10 +10,7 @@
         :viewbox="viewbox"
         @addHighlight="onAddHighlight"
       />
-      <EditorDrop
-        v-else
-        @setImage="onSetImage"
-      />
+      <EditorDrop v-else @setImage="onSetImage" />
     </div>
   </div>
 </template>

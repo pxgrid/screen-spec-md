@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.production.js",
     "build:dev": "webpack --config webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -32,10 +32,16 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.7",
     "@fortawesome/free-solid-svg-icons": "^5.4.2",
     "@fortawesome/vue-fontawesome": "^0.1.1",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.4",
     "css-loader": "^1.0.0",
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-vue": "^5.0.0-beta.3",
     "globby": "^8.0.1",
     "handlebars": "^4.0.12",
     "html-webpack-plugin": "^3.2.0",
@@ -47,6 +53,7 @@
     "mini-css-extract-plugin": "^0.4.4",
     "ncp": "^2.0.0",
     "node-sass": "^4.9.4",
+    "prettier": "^1.16.3",
     "raw-loader": "^0.5.1",
     "sass-loader": "^7.1.0",
     "viz.js": "^1.8.0",
@@ -63,8 +70,7 @@
   },
   "devDependencies": {
     "husky": "^1.1.1",
-    "lint-staged": "^8.0.4",
-    "prettier": "^1.15.1"
+    "lint-staged": "^8.0.4"
   },
   "husky": {
     "hooks": {

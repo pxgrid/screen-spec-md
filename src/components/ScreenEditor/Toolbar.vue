@@ -1,13 +1,12 @@
 <template>
   <div class="Toolbar">
-
     <div>
       <label class="Toolbar_Label">
         src
       </label>
     </div>
     <div>
-      <ItemSrcControl/>
+      <ItemSrcControl />
     </div>
 
     <div>
@@ -16,22 +15,13 @@
       </label>
     </div>
     <div class="Toolbar_HighlightControllers">
-      <ItemOrderControl/>
-      <ItemCoordinateControl
-        :coordinate-key="'x'"
-      />
-      <ItemCoordinateControl
-        :coordinate-key="'y'"
-      />
-      <ItemCoordinateControl
-        :coordinate-key="'w'"
-      />
-      <ItemCoordinateControl
-        :coordinate-key="'h'"
-      />
-      <ItemZoomControl/>
+      <ItemOrderControl />
+      <ItemCoordinateControl :coordinate-key="'x'" />
+      <ItemCoordinateControl :coordinate-key="'y'" />
+      <ItemCoordinateControl :coordinate-key="'w'" />
+      <ItemCoordinateControl :coordinate-key="'h'" />
+      <ItemZoomControl />
     </div>
-
   </div>
 </template>
 

@@ -1,8 +1,5 @@
 <template>
-  <div
-    :style="{ width: width }"
-    class="Screen"
-  >
+  <div :style="{ width: width }" class="Screen">
     <nav class="Screen_Tools">
       <ScreenToolbar
         :is-screen-fit="isScreenFit"
@@ -12,31 +9,23 @@
         @zoomOut="onZoomOut()"
         @toggleHighlight="onToggleHighlight()"
       />
-      <div
-        class="Screen_ToolLinks"
-      >
-        <a
-          class="Screen_ImageCanvasLink"
-          :href="imageCanvasPath"
-          target="EDT-Editor"
-        >
+      <div class="Screen_ToolLinks">
+        <a class="Screen_ImageCanvasLink" :href="imageCanvasPath" target="EDT-Editor">
           edit
         </a>
       </div>
     </nav>
-    <div
-      class="Screen_Main"
-    >
-      <div
-        class="Screen_MainInner"
-      >
+    <div class="Screen_Main">
+      <div class="Screen_MainInner">
         <div
           ref="svgWrapper"
-          :class="{'UISP-Screen--fit': isScreenFit, 'UISP-Screen--highlight': isHighlight}"
+          :class="{
+            'UISP-Screen--fit': isScreenFit,
+            'UISP-Screen--highlight': isHighlight,
+          }"
           class="UISP-Screen"
           v-html="svgCanvasHtml"
-        >
-        </div>
+        ></div>
       </div>
     </div>
   </div>

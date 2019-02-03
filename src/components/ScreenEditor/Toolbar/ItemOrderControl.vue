@@ -1,23 +1,15 @@
 <template>
   <div class="ItemOrderControl">
     <div class="ItemOrderControl_Item">
-      <a
-        @click="onChangeSelectedItemLabel(-1)"
-      >
+      <a @click="onChangeSelectedItemLabel(-1)">
         &lt;
       </a>
     </div>
     <div>
-      <input
-        class="ItemOrderControl_Input"
-        :value="selectedItemLabel"
-        type="text"
-      >
+      <input class="ItemOrderControl_Input" :value="selectedItemLabel" type="text" />
     </div>
     <div class="ItemOrderControl_Item">
-      <a
-        @click="onChangeSelectedItemLabel(1)"
-      >
+      <a @click="onChangeSelectedItemLabel(1)">
         &gt;
       </a>
     </div>

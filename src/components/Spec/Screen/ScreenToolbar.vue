@@ -2,52 +2,42 @@
   <ul class="ScreenToolbar">
     <li class="ScreenToolbar_Item">
       <button
-        :class="{_disabled: isScreenFit}"
+        :class="{ _disabled: isScreenFit }"
         class="ScreenToolbar_IconButton"
         @click="zoomOut()"
       >
-        <FontAwesomeIcon
-          icon="search-minus"
-          size="1x"
-        />
+        <FontAwesomeIcon icon="search-minus" size="1x" />
       </button>
-    </li><!--
-    --><li class="ScreenToolbar_Item">
-      <output
-        :class="{_disabled: isScreenFit}"
-        class="ScreenToolbar_Output"
-      >
+    </li>
+    <!--
+    -->
+    <li class="ScreenToolbar_Item">
+      <output :class="{ _disabled: isScreenFit }" class="ScreenToolbar_Output">
         {{ zoomValue }}
       </output>
-    </li><!--
-    --><li class="ScreenToolbar_Item">
+    </li>
+    <!--
+    -->
+    <li class="ScreenToolbar_Item">
       <button
-        :class="{_disabled: isScreenFit}"
+        :class="{ _disabled: isScreenFit }"
         class="ScreenToolbar_IconButton"
         @click="zoomIn()"
       >
-        <FontAwesomeIcon
-          icon="search-plus"
-          size="1x"
-        />
+        <FontAwesomeIcon icon="search-plus" size="1x" />
       </button>
-    </li><!--
-    --><li class="ScreenToolbar_Item">
-      <button
-        class="ScreenToolbar_IconButton"
-        @click="zoomFit()"
-      >
-        <FontAwesomeIcon
-          icon="expand-arrows-alt"
-          size="1x"
-        />
+    </li>
+    <!--
+    -->
+    <li class="ScreenToolbar_Item">
+      <button class="ScreenToolbar_IconButton" @click="zoomFit()">
+        <FontAwesomeIcon icon="expand-arrows-alt" size="1x" />
       </button>
-    </li><!--
-    --><li class="ScreenToolbar_Item">
-      <button
-        class="ScreenToolbar_IconButton ScreenToolbar_Highlight"
-        @click="toggleHighlight()"
-      >
+    </li>
+    <!--
+    -->
+    <li class="ScreenToolbar_Item">
+      <button class="ScreenToolbar_IconButton ScreenToolbar_Highlight" @click="toggleHighlight()">
         highlight
       </button>
     </li>

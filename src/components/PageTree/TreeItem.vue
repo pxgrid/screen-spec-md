@@ -1,25 +1,12 @@
 <template>
   <li>
-    <div
-      @click="toggle"
-    >
-      <span
-        v-if="isDir"
-      >
-        [{{ open ? '-' : '+' }}]
-      </span>
-      <a
-        class="TreeItem_PageTitle"
-        :class="{_match: !matchFilter}"
-        :href="treeData.rootPath"
-      >
+    <div @click="toggle">
+      <span v-if="isDir"> [{{ open ? '-' : '+' }}] </span>
+      <a class="TreeItem_PageTitle" :class="{ _match: !matchFilter }" :href="treeData.rootPath">
         {{ treeData.title }}
       </a>
     </div>
-    <ul
-      v-if="isDir"
-      v-show="open"
-    >
+    <ul v-if="isDir" v-show="open">
       <TreeItem
         class="item"
         v-for="(treeData, index) in treeData.children"

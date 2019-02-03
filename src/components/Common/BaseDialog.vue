@@ -1,38 +1,28 @@
 <template>
   <div class="BaseDialog">
     <div class="BaseDialog_HeaderBtn">
-      <button class="BaseDialog_CloseBtn"
+      <button
         v-if="!disableCloseButton"
-        @click="close"
+        class="BaseDialog_CloseBtn"
         data-test="closeBtn"
+        @click="close"
       >
-        <FontAwesomeIcon
-          icon="close"
-          size="2x"
-        />
+        <FontAwesomeIcon icon="close" size="2x" />
       </button>
     </div>
-    <div
-      class="BaseDialog_Wrapper"
-      ref="wrapper"
-    >
-      <div class="BaseDialog_Header"
-        data-test="headerSlot"
-        v-if="$slots.header"
-      >
+    <div ref="wrapper" class="BaseDialog_Wrapper">
+      <div v-if="$slots.header" class="BaseDialog_Header" data-test="headerSlot">
         <slot name="header"></slot>
       </div>
-      <div class="BaseDialog_Main"
-        :class="{_overflowScroll: overflowScroll}"
-        data-test="mainSlot"
+      <div
         v-if="$slots.main"
+        class="BaseDialog_Main"
+        :class="{ _overflowScroll: overflowScroll }"
+        data-test="mainSlot"
       >
         <slot name="main"></slot>
       </div>
-      <div class="BaseDialog_Footer"
-        data-test="footerSlot"
-        v-if="$slots.footer"
-      >
+      <div v-if="$slots.footer" class="BaseDialog_Footer" data-test="footerSlot">
         <slot name="footer"></slot>
       </div>
     </div>
@@ -43,6 +33,9 @@
 import FontAwesomeIcon from './FontAwesomeIcon.vue'
 export default {
   name: 'BaseDialog',
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
     overflowScroll: {
       type: Boolean,
@@ -70,9 +63,6 @@ export default {
       await this.$nextTick()
       el.style.height = ''
     },
-  },
-  components: {
-    FontAwesomeIcon,
   },
 }
 </script>

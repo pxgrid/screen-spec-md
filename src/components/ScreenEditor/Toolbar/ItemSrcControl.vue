@@ -8,13 +8,10 @@
         type="text"
         readonly="readonly"
         @click="onClickFilename()"
-      >
+      />
     </div>
     <div>
-      <button
-        class="ItemSrcControl_Button"
-        @click="onClickCopy"
-      >
+      <button class="ItemSrcControl_Button" @click="onClickCopy">
         copy
       </button>
     </div>

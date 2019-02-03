@@ -8,7 +8,7 @@
     @click="onClickSVG($event)"
   >
     <image
-      v-bind="{'xlink:href':editScreen.src}"
+      v-bind="{ 'xlink:href': editScreen.src }"
       :width="editScreen.width"
       :height="editScreen.height"
       class="EditorCanvas_Image"
@@ -18,7 +18,7 @@
       :key="index"
       :order="index"
       :coordinate="coordinate"
-      :selected="index===coordinate.selectedItem"
+      :selected="index === coordinate.selectedItem"
       :width="editScreen.width"
       :height="editScreen.height"
       :getCoordinateByXY="getCoordinateByXY"

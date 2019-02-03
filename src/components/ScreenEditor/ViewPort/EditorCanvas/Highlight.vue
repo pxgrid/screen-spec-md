@@ -1,28 +1,8 @@
 <template>
-  <g
-    :aria-selected="selected"
-    class="Highlight"
-  >
-    <rect
-      :x="x"
-      :y="y"
-      :width="w"
-      :height="h"
-      class="Highlight _fill"
-    />
-    <rect
-      :x="x - 2"
-      :y="y - 2"
-      :width="w + 4"
-      :height="h + 4"
-      class="Highlight _outline"
-    />
-    <text
-      :x="x + 2"
-      :y="y - 2"
-      :dy="h - 2"
-      class="Highlight _label"
-    >
+  <g :aria-selected="selected" class="Highlight">
+    <rect :x="x" :y="y" :width="w" :height="h" class="Highlight _fill" />
+    <rect :x="x - 2" :y="y - 2" :width="w + 4" :height="h + 4" class="Highlight _outline" />
+    <text :x="x + 2" :y="y - 2" :dy="h - 2" class="Highlight _label">
       {{ order + 1 }}
     </text>
     <rect

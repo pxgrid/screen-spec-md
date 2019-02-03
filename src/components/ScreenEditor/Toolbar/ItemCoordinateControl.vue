@@ -1,9 +1,7 @@
 <template>
   <div class="ItemCoordinateControl">
     <div class="ItemCoordinateControl_Label">
-      <a>
-        {{ coordinateKey }}:
-      </a>
+      <a> {{ coordinateKey }}: </a>
     </div>
     <div>
       <input
@@ -13,7 +11,7 @@
         min="0"
         max="10000"
         @change="onChange($event)"
-      >
+      />
     </div>
   </div>
 </template>

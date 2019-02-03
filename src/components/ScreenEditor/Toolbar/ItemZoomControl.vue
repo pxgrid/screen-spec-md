@@ -11,7 +11,7 @@
         min="0.5"
         max="1.5"
         @input="onInput"
-      >
+      />
     </div>
   </div>
 </template>

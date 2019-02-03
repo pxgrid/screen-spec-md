@@ -1,6 +1,7 @@
 <template>
   <transition name="fade">
-    <section class="OverlayScreen"
+    <section
+      class="OverlayScreen"
       @click.self="close"
       :class="{
         _transparent: transparent,

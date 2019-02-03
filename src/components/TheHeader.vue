@@ -1,43 +1,21 @@
 <template>
   <div class="TheHeader">
     <nav class="TheHeader_MainNav">
-      <button
-        class="TheHeader_IconButton"
-        @click="openTreeDialog"
-      >
-        <FontAwesomeIcon
-          icon="search"
-          size="lg"
-        />
+      <button class="TheHeader_IconButton" @click="openTreeDialog">
+        <FontAwesomeIcon icon="search" size="lg" />
       </button>
-      <a
-        class="TheHeader_IconLink"
-        href="/"
-      >
-        <FontAwesomeIcon
-          icon="home"
-          size="lg"
-        />
+      <a class="TheHeader_IconLink" href="/">
+        <FontAwesomeIcon icon="home" size="lg" />
       </a>
     </nav>
-    <span
-      class="TheHeader_PageTitle"
-    >
+    <span class="TheHeader_PageTitle">
       {{ title }}
     </span>
-    <div class="TheHeader_NavForDeveloper"
-      v-if="isDev"
-    >
-      <a
-        class="TheHeader_Link"
-        href="/spec"
-      >
+    <div class="TheHeader_NavForDeveloper" v-if="isDev">
+      <a class="TheHeader_Link" href="/spec">
         Spec
       </a>
-      <a
-        class="TheHeader_Link"
-        href="/list"
-      >
+      <a class="TheHeader_Link" href="/list">
         List
       </a>
     </div>

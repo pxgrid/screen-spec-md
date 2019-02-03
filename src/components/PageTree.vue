@@ -1,11 +1,7 @@
 <template>
   <div class="PageTree">
     <div>
-      <input
-        class="PageTree_FilterInput"
-        type="text"
-        @keyup="onKeyUpFilter"
-      />
+      <input class="PageTree_FilterInput" type="text" @keyup="onKeyUpFilter" />
     </div>
     <ul class="PageTree_List">
       <TreeItem

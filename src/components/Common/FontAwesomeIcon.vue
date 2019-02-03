@@ -1,10 +1,5 @@
 <template>
-  <FAIcon
-    :icon="faIcon"
-    :size="size"
-    :spin="spin"
-    :pulse="pulse"
-  />
+  <FAIcon :icon="faIcon" :size="size" :spin="spin" :pulse="pulse" />
 </template>
 
 <script>
@@ -20,6 +15,9 @@ import {
 
 export default {
   name: 'FontAwesomeIcon',
+  components: {
+    FAIcon,
+  },
   props: {
     icon: {
       type: String,
@@ -57,11 +55,10 @@ export default {
           return faSearchMinus
         case 'expand-arrows-alt':
           return faExpandArrowsAlt
+        default:
+          return ''
       }
     },
-  },
-  components: {
-    FAIcon,
   },
 }
 </script>

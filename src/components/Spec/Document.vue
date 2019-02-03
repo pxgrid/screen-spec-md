@@ -1,24 +1,11 @@
 <template>
-  <div
-    :style="{ width: width }"
-    class="Document"
-  >
+  <div :style="{ width: width }" class="Document">
     <ul class="Document_Info">
-      <li class="Document_InfoItem">
-        LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}
-      </li>
-      <li class="Document_InfoItem">
-        Created: {{ createdDate }} {{ createdAuthorName }}
-      </li>
+      <li class="Document_InfoItem">LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}</li>
+      <li class="Document_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
     </ul>
-    <div
-      class="Document_Inner"
-    >
-      <div
-        class="UISP-Md"
-        v-html="convertedHtml"
-      >
-      </div>
+    <div class="Document_Inner">
+      <div class="UISP-Md" v-html="convertedHtml"></div>
     </div>
   </div>
 </template>

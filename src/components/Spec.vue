@@ -1,30 +1,13 @@
 <template>
   <div>
-    <TheHeader
-      :is-dev="isDev"
-      @openTreeDialog="onOpenTreeDialog"
-    />
+    <TheHeader :is-dev="isDev" @openTreeDialog="onOpenTreeDialog" />
     <div class="Spec">
-      <Screen
-        :is-dev="isDev"
-        :width="screenWidth"
-      />
-      <Separator
-        @drag="onSeparatorDrag"
-      />
-      <Document
-        :is-dev="isDev"
-        :width="documentWidth"
-      />
+      <Screen :is-dev="isDev" :width="screenWidth" />
+      <Separator @drag="onSeparatorDrag" />
+      <Document :is-dev="isDev" :width="documentWidth" />
     </div>
-    <OverlayScreen
-      v-show="isShowTreeDialog"
-      @close="onCloseTreeDialog"
-    >
-      <BaseDialog
-        :overflowScroll="true"
-        @close="onCloseTreeDialog"
-      >
+    <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
+      <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
         <div slot="main">
           <PageTree />
         </div>
