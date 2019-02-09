@@ -84,4 +84,8 @@ export default {
     state.coordinates.splice(changedIndex, 0, selectedCoordinate)
     state.editScreen.selectedItem = changedIndex
   },
+
+  [types.SET_TREE_DATA](state, { treeData }) {
+    state.treeData = treeData
+  },
 }

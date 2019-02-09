@@ -15,22 +15,22 @@
 </template>
 
 <script>
-import dummyTreeData from './PageTree/dummies/tree.json'
 import TreeItem from './PageTree/TreeItem.vue'
 export default {
   name: 'PageTree',
   components: {
     TreeItem,
   },
+  props: {
+    treeData: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       filterWord: '',
     }
-  },
-  computed: {
-    treeData() {
-      return dummyTreeData //TODO: modeがdevelopment時のみdummyデータ
-    },
   },
   methods: {
     onKeyUpFilter(e) {

@@ -17,5 +17,6 @@ export default () => {
       startOffsetX: 0,
       startOffsetY: 0,
     },
+    treeData: {},
   }
 }

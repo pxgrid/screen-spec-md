@@ -9,7 +9,7 @@
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
         <div slot="main">
-          <PageTree />
+          <PageTree :tree-data="treeData" />
         </div>
       </BaseDialog>
     </OverlayScreen>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import TheHeader from './TheHeader.vue'
 import OverlayScreen from './Common/OverlayScreen.vue'
 import BaseDialog from './Common/BaseDialog.vue'
@@ -43,6 +44,11 @@ export default {
       screenWidth: '50%',
       documentWidth: '50%',
     }
+  },
+  computed: {
+    ...mapState({
+      treeData: 'treeData',
+    }),
   },
   methods: {
     onSeparatorDrag({ leftScreenRate }) {

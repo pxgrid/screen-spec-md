@@ -22,6 +22,7 @@ const convertBodyFunction = Handlebars.compile(bodySource)
 const svgCanvasSource = document.getElementById('svg-canvas-template').innerHTML
 const convertSvgCanvasFunction = Handlebars.compile(svgCanvasSource)
 window.SCREEN_SPEC_MD = {
+  treeData: null,
   convertedHtml: convertBodyFunction(),
   svgCanvasHtml: convertSvgCanvasFunction(),
   title: '{{ title }}',

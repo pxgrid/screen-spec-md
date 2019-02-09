@@ -9,6 +9,7 @@ export default {
   UNSHIFT_HIGHLIGHT: 'unshiftHighlight',
   CHANGE_SELECTED_ITEM_LABEL: 'changeSelectedItemLabel',
   ZOOM: 'zoom',
-
   SET_DRAGGING_ELEMENT: 'setDraggingElement',
+  FETCH_TREE_DATA: 'fetchTree',
+  SET_TREE_DATA: 'setTreeData',
 }
