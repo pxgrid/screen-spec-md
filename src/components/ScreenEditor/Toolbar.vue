@@ -16,10 +16,10 @@
     </div>
     <div class="Toolbar_HighlightControllers">
       <ItemOrderControl />
-      <ItemCoordinateControl :coordinate-key="'x'" />
-      <ItemCoordinateControl :coordinate-key="'y'" />
-      <ItemCoordinateControl :coordinate-key="'w'" />
-      <ItemCoordinateControl :coordinate-key="'h'" />
+      <ItemCoordinateControl :coordinateKey="'x'" />
+      <ItemCoordinateControl :coordinateKey="'y'" />
+      <ItemCoordinateControl :coordinateKey="'w'" />
+      <ItemCoordinateControl :coordinateKey="'h'" />
       <ItemZoomControl />
     </div>
   </div>

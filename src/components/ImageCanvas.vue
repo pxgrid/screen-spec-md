@@ -26,9 +26,6 @@ export default {
     Toolbar,
     ViewPort,
   },
-  mounted() {
-    this.initByQueries()
-  },
   computed: {
     ...mapState({
       editScreen: 'editScreen',
@@ -40,6 +37,9 @@ export default {
       viewbox: 'viewbox',
       filenameWithCoordinates: 'filenameWithCoordinates',
     }),
+  },
+  mounted() {
+    this.initByQueries()
   },
   methods: {
     ...mapMutations({

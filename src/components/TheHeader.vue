@@ -11,7 +11,7 @@
     <span class="TheHeader_PageTitle">
       {{ title }}
     </span>
-    <div class="TheHeader_NavForDeveloper" v-if="isDev">
+    <div v-if="isDev" class="TheHeader_NavForDeveloper">
       <a class="TheHeader_Link" href="/spec">
         Spec
       </a>
@@ -26,6 +26,9 @@
 import FontAwesomeIcon from './Common/FontAwesomeIcon.vue'
 export default {
   name: 'TheHeader',
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
     isDev: {
       type: Boolean,
@@ -42,9 +45,6 @@ export default {
     openTreeDialog() {
       this.$emit('openTreeDialog')
     },
-  },
-  components: {
-    FontAwesomeIcon,
   },
 }
 </script>

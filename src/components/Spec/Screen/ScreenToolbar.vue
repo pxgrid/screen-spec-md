@@ -49,6 +49,9 @@ import FontAwesomeIcon from '../../Common/FontAwesomeIcon.vue'
 
 export default {
   name: 'ScreenToolbar',
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
     zoomValue: {
       type: Number,
@@ -72,9 +75,6 @@ export default {
     toggleHighlight() {
       this.$emit('toggleHighlight')
     },
-  },
-  components: {
-    FontAwesomeIcon,
   },
 }
 </script>

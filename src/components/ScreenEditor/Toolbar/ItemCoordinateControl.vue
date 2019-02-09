@@ -24,6 +24,7 @@ export default {
   props: {
     coordinate: {
       type: Object,
+      required: true,
     },
     coordinateKey: {
       // 'x' or 'y' or 'w' or 'h'

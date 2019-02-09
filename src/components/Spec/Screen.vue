@@ -2,8 +2,8 @@
   <div :style="{ width: width }" class="Screen">
     <nav class="Screen_Tools">
       <ScreenToolbar
-        :is-screen-fit="isScreenFit"
-        :zoom-value="zoomValue"
+        :isScreenFit="isScreenFit"
+        :zoomValue="zoomValue"
         @zoomFit="onZoomFit()"
         @zoomIn="onZoomIn()"
         @zoomOut="onZoomOut()"
@@ -17,6 +17,7 @@
     </nav>
     <div class="Screen_Main">
       <div class="Screen_MainInner">
+        <!-- eslint-disable vue/no-v-html -->
         <div
           ref="svgWrapper"
           :class="{
@@ -26,6 +27,7 @@
           class="UISP-Screen"
           v-html="svgCanvasHtml"
         ></div>
+        <!-- eslint-enable vue/no-v-html -->
       </div>
     </div>
   </div>

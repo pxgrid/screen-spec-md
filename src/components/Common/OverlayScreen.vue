@@ -2,10 +2,10 @@
   <transition name="fade">
     <section
       class="OverlayScreen"
-      @click.self="close"
       :class="{
         _transparent: transparent,
       }"
+      @click.self="close"
     >
       <slot></slot>
     </section>

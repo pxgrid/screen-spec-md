@@ -5,7 +5,9 @@
       <li class="Document_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
     </ul>
     <div class="Document_Inner">
+      <!-- eslint-disable vue/no-v-html -->
       <div class="UISP-Md" v-html="convertedHtml"></div>
+      <!-- eslint-enable vue/no-v-html -->
     </div>
   </div>
 </template>

@@ -38,18 +38,23 @@ export default {
   props: {
     editScreen: {
       type: Object,
+      required: true,
     },
     coordinates: {
       type: Array,
+      required: true,
     },
     zoomedWidth: {
       type: Number,
+      required: true,
     },
     zoomedHeight: {
       type: Number,
+      required: true,
     },
     viewbox: {
       type: String,
+      required: true,
     },
   },
   created() {

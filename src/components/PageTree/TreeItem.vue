@@ -8,11 +8,11 @@
     </div>
     <ul v-if="isDir" v-show="open">
       <TreeItem
-        class="item"
-        v-for="(treeData, index) in treeData.children"
+        v-for="(treeDataChild, index) in treeDataChildren"
         :key="index"
+        class="item"
         :filterWord="filterWord"
-        :treeData="treeData"
+        :treeData="treeDataChild"
         @expand="onExpand"
       >
       </TreeItem>
@@ -37,15 +37,24 @@ export default {
       required: true,
     },
   },
-  mounted() {
-    if (this.opened) {
-      this.open = true
-    }
-  },
   data() {
     return {
       open: false,
     }
+  },
+  computed: {
+    isDir() {
+      return this.treeData.children && this.treeData.children.length
+    },
+    treeDataChildren() {
+      return this.treeData.children
+    },
+    matchFilter() {
+      const title = this.treeData.title
+      const regExp = new RegExp(this.filterWord)
+      if (this.filterWord === '' || !title) return true
+      return regExp.test(title)
+    },
   },
   watch: {
     filterWord(newWord) {
@@ -54,16 +63,10 @@ export default {
       }
     },
   },
-  computed: {
-    isDir() {
-      return this.treeData.children && this.treeData.children.length
-    },
-    matchFilter() {
-      const title = this.treeData.title
-      const regExp = new RegExp(this.filterWord)
-      if (this.filterWord === '' || !title) return true
-      return regExp.test(title)
-    },
+  mounted() {
+    if (this.opened) {
+      this.open = true
+    }
   },
   methods: {
     toggle() {

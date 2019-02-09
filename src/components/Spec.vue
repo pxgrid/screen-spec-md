@@ -1,15 +1,15 @@
 <template>
   <div>
-    <TheHeader :is-dev="isDev" @openTreeDialog="onOpenTreeDialog" />
+    <TheHeader :isDev="isDev" @openTreeDialog="onOpenTreeDialog" />
     <div class="Spec">
-      <Screen :is-dev="isDev" :width="screenWidth" />
+      <Screen :isDev="isDev" :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
-      <Document :is-dev="isDev" :width="documentWidth" />
+      <Document :isDev="isDev" :width="documentWidth" />
     </div>
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
         <div slot="main">
-          <PageTree :tree-data="treeData" />
+          <PageTree :treeData="treeData" />
         </div>
       </BaseDialog>
     </OverlayScreen>
