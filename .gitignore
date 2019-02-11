@@ -62,10 +62,4 @@ typings/
 
 # screen-spec-md
 dist/
-_template/
 _spec/
-
-## dummies
-public/dummies/*
-src/components/Spec/dummies/*
-src/components/PageTree/dummies/*

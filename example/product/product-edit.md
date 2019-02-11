@@ -1,6 +1,6 @@
 ---
 title: 商品編集画面
-screen: ./product-edit.png
+screen: ./product-edit.png?highlight=[[32,99,232,40],[32,141,232,48],[32,191,232,43],[32,236,232,86],[295,99,402,333],[16,40,160,34]]
 ---
 
 ```uiflows
