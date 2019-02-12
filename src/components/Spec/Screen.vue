@@ -74,7 +74,7 @@ export default {
     imageCanvasPath() {
       const path = '/__image-canvas.html'
       if (this.isDev) {
-        return `${path}?src=/img/dummy-svg-image.png&highlight=[[109,244,466,78],[107,334,467,82],[106,430,468,82],[106,524,332,172],[645,246,802,664],[83,127,316,69]]`
+        return `${path}?src=/img/dummy-svg-image.png&highlight=[[32,99,232,40],[32,141,232,48],[32,191,232,43],[32,236,232,86],[295,99,402,333],[16,40,160,34]]`
       }
       const convertedQuery = window.SCREEN_SPEC_MD.absolutesScreen.replace(
         '?highlight=',
