@@ -206,7 +206,7 @@ export default {
   display: block;
   width: 100%;
   max-height: calc(100vh - 48px - 30px); // 30pxはScreen_Toolsクラスの高さ
-  margin: 0;
+  margin: auto;
   padding: 0;
 }
 .UISP-Screen--highlight {
