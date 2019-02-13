@@ -1,43 +1,30 @@
 module.exports = {
   parserOptions: {
-    parser: "babel-eslint",
+    parser: 'babel-eslint',
     ecmaVersion: 2017,
-    sourceType: "module"
+    sourceType: 'module',
   },
   env: {
     browser: true,
     node: true,
-    es6: true
+    es6: true,
   },
-  extends: [
-    "plugin:vue/recommended",
-    "plugin:prettier/recommended",
-    "prettier",
-    "prettier/vue"
-  ],
-  plugins: ["vue", "prettier"],
+  extends: ['plugin:vue/recommended', 'plugin:prettier/recommended', 'prettier', 'prettier/vue'],
+  plugins: ['vue', 'prettier'],
   rules: {
-    "prettier/prettier": [
-      "error",
-      {
-        printWidth: 100,
-        singleQuote: true,
-        trailingComma: "all",
-        semi: false
-      }
-    ],
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-    "vue/attribute-hyphenation": ["error", "never"],
-    "vue/max-attributes-per-line": [
-      "error",
+    'prettier/prettier': 'error',
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'vue/attribute-hyphenation': ['error', 'never'],
+    'vue/max-attributes-per-line': [
+      'error',
       {
         singleline: 20,
         multiline: {
           max: 1,
-          allowFirstLine: false
-        }
-      }
-    ]
-  }
-};
+          allowFirstLine: false,
+        },
+      },
+    ],
+  },
+}
