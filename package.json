@@ -11,7 +11,8 @@
     "precommit": "pretty-quick --staged",
     "server": "http-server -p 8081 ./_spec",
     "server:dist": "http-server -p 8081 ./dist",
-    "generate": "rm -rf ./_spec && cp -rf ./example ./_spec && node ./index.js"
+    "generate": "rm -rf ./_spec && cp -rf ./example ./_spec && node ./index.js",
+    "build-generate": "npm run build && npm run generate"
   },
   "repository": {
     "type": "git",
