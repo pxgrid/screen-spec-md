@@ -2,7 +2,7 @@
   "name": "screen-spec-md",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bin/cli.js",
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.production.js",
