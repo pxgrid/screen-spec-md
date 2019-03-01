@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "bin/cli.js",
+  "bin": {
+    "screen-spec-md": "./bin/cli.js"
+  },
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.production.js",
