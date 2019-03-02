@@ -40,7 +40,7 @@ const run = async (mdDir, destDir) => {
       ])
     })
     // Vueで開発されたビルド済みのコアファイルをコピー
-    .then(() => copyCoreFiles())
+    .then(() => copyCoreFiles(rootDestDir))
 
     .then(() => {
       console.log('All done :D')
