@@ -3,10 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ title }}</title>
+  <script src="/_screen-spec-md/handlebars.js"></script>
 </head>
 <body>
-<div id="app">
-  <a href="./spec.html">spec.html</a>
-</div>
+<div id="app"></div>
+<script id="body-template" type="text/x-handlebars-template">
+  {{{ body }}}
+</script>
+<script>
+  const bodySource = document.getElementById('body-template').innerHTML
+  const convertBodyFunction = Handlebars.compile(bodySource)
+  window.SCREEN_SPEC_MD = {
+    treeData: null,
+    convertedHtml: convertBodyFunction(),
+    svgCanvasHtml: convertSvgCanvasFunction(),
+    title: '{{ title }}',
+    screen: '{{{ screen }}}',
+    absolutesScreen: '{{{ absolutesScreen }}}',
+    updatedDate: '{{ updatedDate }}',
+    updatedAuthorName: '{{ updatedAuthorName }}',
+    createdDate: '{{ createdDate }}',
+    createdAuthorName: '{{ createdAuthorName }}',
+  }
+</script>
 </body>
 </html>
