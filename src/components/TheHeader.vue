@@ -12,10 +12,10 @@
       {{ title }}
     </span>
     <div v-if="isDev" class="TheHeader_NavForDeveloper">
-      <a class="TheHeader_Link" href="/spec">
+      <a class="TheHeader_Link" href="/spec.html">
         Spec
       </a>
-      <a class="TheHeader_Link" href="/list">
+      <a class="TheHeader_Link" href="/list.html">
         List
       </a>
     </div>
