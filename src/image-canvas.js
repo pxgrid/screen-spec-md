@@ -1,3 +1,6 @@
+/**
+ * 画面画像のハイライトをCanvasで編集するページ
+ */
 import './assets/template.scss'
 import '@babel/polyfill'
 

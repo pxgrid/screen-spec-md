@@ -1,3 +1,6 @@
+/**
+ * 画面画像を持たないページ
+ */
 import './assets/template.scss'
 import '@babel/polyfill'
 
