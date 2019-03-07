@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheHeader :isDev="isDev" @openTreeDialog="onOpenTreeDialog" />
-    <div class="Index">
+    <div class="Doc">
       <Document :isDev="isDev" :width="'100%'" />
     </div>
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
@@ -23,7 +23,7 @@ import Document from './Spec/Document.vue'
 import PageTree from './PageTree.vue'
 
 export default {
-  name: 'Index',
+  name: 'Doc',
   components: {
     TheHeader,
     OverlayScreen,
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Index {
+.Doc {
   display: flex;
   max-height: calc(100vh - 48px);
   width: 100%;

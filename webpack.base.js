@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    index: './src/index.js',
+    doc: './src/doc.js',
     spec: './src/spec.js',
     'page-index': './src/page-index.js',
     'image-canvas': './src/image-canvas.js',
@@ -92,19 +92,19 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new HtmlWebpackPlugin({
-      filename: '../index.html',
-      template: './public/index.html',
+      filename: '../doc.html',
+      template: './public/doc.html',
       excludeChunks: ['image-canvas', 'spec', 'page-index'],
     }),
     new HtmlWebpackPlugin({
       filename: '../spec.html',
       template: './public/spec.html',
-      excludeChunks: ['image-canvas', 'index', 'page-index'],
+      excludeChunks: ['image-canvas', 'doc', 'page-index'],
     }),
     new HtmlWebpackPlugin({
       filename: '../__image-canvas.html',
       template: 'public/__image-canvas.html',
-      excludeChunks: ['index', 'page-index', 'spec'],
+      excludeChunks: ['doc', 'page-index', 'spec'],
     }),
   ],
 }
