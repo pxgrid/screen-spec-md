@@ -9,9 +9,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    doc: './src/doc.js',
     spec: './src/spec.js',
-    'page-index': './src/page-index.js',
+    index: './src/index.js',
+    doc: './src/doc.js',
     'image-canvas': './src/image-canvas.js',
   },
   output: {
@@ -94,17 +94,22 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: '../doc.html',
       template: './public/doc.html',
-      excludeChunks: ['image-canvas', 'spec', 'page-index'],
+      excludeChunks: ['image-canvas', 'spec', 'index'],
     }),
     new HtmlWebpackPlugin({
       filename: '../spec.html',
       template: './public/spec.html',
-      excludeChunks: ['image-canvas', 'doc', 'page-index'],
+      excludeChunks: ['image-canvas', 'doc', 'index'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: './public/index.html',
+      excludeChunks: ['image-canvas', 'spec', 'doc'],
     }),
     new HtmlWebpackPlugin({
       filename: '../__image-canvas.html',
       template: 'public/__image-canvas.html',
-      excludeChunks: ['doc', 'page-index', 'spec'],
+      excludeChunks: ['doc', 'index', 'spec'],
     }),
   ],
 }
