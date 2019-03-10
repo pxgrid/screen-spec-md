@@ -1,9 +1,18 @@
 <template>
   <div :style="{ width: width }" class="Document">
-    <ul class="Document_Info">
-      <li class="Document_InfoItem">LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}</li>
-      <li class="Document_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
-    </ul>
+    <nav class="Document_NavBar">
+      <ul class="Document_NavBarTools">
+        <li class="Document_NavBarToolItem">
+          <button class="Document_NavBarIconButton">
+            <FontAwesomeIcon icon="edit" size="1x" />
+          </button>
+        </li>
+      </ul>
+      <ul class="Document_Info">
+        <li class="Document_InfoItem">LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}</li>
+        <li class="Document_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
+      </ul>
+    </nav>
     <div class="Document_Inner">
       <!-- eslint-disable vue/no-v-html -->
       <div class="UISP-Md" v-html="convertedHtml"></div>
@@ -13,9 +22,13 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '../Common/FontAwesomeIcon.vue'
 import dummyBodyHtml from './dummies/dummyBody.html'
 export default {
   name: 'Document',
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
     isDev: {
       type: Boolean,
@@ -55,12 +68,39 @@ export default {
 .Document {
   width: 50%;
   overflow: hidden;
-  &_Info {
+  &_NavBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 30px;
     background-color: #eeeeee;
     font-size: 0.9rem;
+  }
+  &_NavBarTools {
+    margin: 0;
+    padding: 0;
+  }
+  &_NavBarToolItem {
+    line-height: 100%;
+    display: inline-block;
+  }
+  &_NavBarIconButton {
+    color: inherit;
+    text-align: center;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 0;
+    border: none;
+    background: none;
+    margin-right: 0;
+    &._disabled {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.4;
+    }
+  }
+  &_Info {
     margin: 0;
     padding: 0 10px 0 0;
-    height: 30px;
     text-align: right;
   }
   &_InfoItem {
