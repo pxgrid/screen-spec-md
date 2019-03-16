@@ -80,6 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../assets/variable.scss';
 .ScreenToolbar {
   margin: 0;
   padding: 0;
@@ -91,7 +92,7 @@ export default {
     color: inherit;
     text-align: center;
     min-width: 30px;
-    min-height: 30px;
+    min-height: $navBarsHeight;
     padding: 0;
     border: none;
     background: none;
@@ -107,8 +108,8 @@ export default {
     display: block;
     text-align: center;
     width: 60px;
-    height: 30px;
-    line-height: 30px;
+    height: $navBarsHeight;
+    line-height: $navBarsHeight;
     background: #d6d6d6;
   }
   &_Highlight {

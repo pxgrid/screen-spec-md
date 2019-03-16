@@ -54,9 +54,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/variable.scss';
 .Doc {
   display: flex;
-  max-height: calc(100vh - 48px);
+  max-height: calc(100vh - #{$theHeaderHeight});
   width: 100%;
 }
 </style>

@@ -3,7 +3,7 @@
     <nav class="Document_NavBar">
       <ul class="Document_NavBarTools">
         <li class="Document_NavBarToolItem">
-          <button class="Document_NavBarIconButton">
+          <button class="Document_NavBarIconButton" @click="toggleShowEditor">
             <FontAwesomeIcon icon="edit" size="1x" />
           </button>
         </li>
@@ -13,21 +13,26 @@
         <li class="Document_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
       </ul>
     </nav>
-    <div class="Document_Inner">
+    <div v-show="!showEditor" class="Document_Inner">
       <!-- eslint-disable vue/no-v-html -->
       <div class="UISP-Md" v-html="convertedHtml"></div>
       <!-- eslint-enable vue/no-v-html -->
+    </div>
+    <div v-show="showEditor" class="Document_Editor">
+      <DocumentEditor class="Document_DocumentEditor"></DocumentEditor>
     </div>
   </div>
 </template>
 
 <script>
 import FontAwesomeIcon from '../Common/FontAwesomeIcon.vue'
+import DocumentEditor from './DocumentEditor/DocumentEditor.vue'
 import dummyBodyHtml from './dummies/dummyBody.html'
 export default {
   name: 'Document',
   components: {
     FontAwesomeIcon,
+    DocumentEditor,
   },
   props: {
     isDev: {
@@ -38,6 +43,11 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      showEditor: false,
+    }
   },
   computed: {
     convertedHtml() {
@@ -61,17 +71,23 @@ export default {
       return window.SCREEN_SPEC_MD.createdAuthorName
     },
   },
+  methods: {
+    toggleShowEditor() {
+      this.showEditor = !this.showEditor
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/variable.scss';
 .Document {
   width: 50%;
   overflow: hidden;
   &_NavBar {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 30px;
+    grid-template-rows: $navBarsHeight;
     background-color: #eeeeee;
     font-size: 0.9rem;
   }
@@ -87,7 +103,7 @@ export default {
     color: inherit;
     text-align: center;
     min-width: 30px;
-    min-height: 30px;
+    min-height: $navBarsHeight;
     padding: 0;
     border: none;
     background: none;
@@ -104,17 +120,23 @@ export default {
     text-align: right;
   }
   &_InfoItem {
-    line-height: 30px;
+    line-height: $navBarsHeight;
     display: inline-block;
-    height: 30px;
+    height: $navBarsHeight;
     font-size: 12px;
     margin-left: 10px;
   }
   &_Inner {
     box-sizing: border-box;
     padding: 20px;
-    height: calc(100vh - 48px - 30px); // 30pxはScreen_Toolsクラスの高さ
+    height: calc(100vh - #{$theHeaderHeight} - #{$navBarsHeight});
     overflow: scroll;
+  }
+  &_Editor {
+    height: calc(100vh - #{$theHeaderHeight} - #{$navBarsHeight});
+  }
+  &_DocumentEditor {
+    height: 100%;
   }
   &_Footer {
     padding: 20px;
