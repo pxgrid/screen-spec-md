@@ -2,7 +2,7 @@
   <div class="DocumentEditor">
     <DocumentEditorTabBar />
     <div class="DocumentEditor_InputContainer">
-      <DocumentEditorMarkdown />
+      <DocumentEditorMarkdown :markdown="markdown" />
       <DocumentEditorPreview />
     </div>
     <div class="DocumentEditor_ActionBar">
@@ -22,6 +22,12 @@ export default {
     DocumentEditorTabBar,
     DocumentEditorMarkdown,
     DocumentEditorPreview,
+  },
+  props: {
+    markdown: {
+      type: String,
+      required: true,
+    },
   },
 }
 </script>

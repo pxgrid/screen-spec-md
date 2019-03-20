@@ -26,7 +26,7 @@
 
 <script>
 import FontAwesomeIcon from '../Common/FontAwesomeIcon.vue'
-import DocumentEditor from './DocumentEditor/DocumentEditor.vue'
+import DocumentEditor from './DocumentEditor/ConnectedDocumentEditor'
 import dummyBodyHtml from './dummies/dummyBody.html'
 export default {
   name: 'Document',

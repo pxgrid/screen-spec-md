@@ -21,4 +21,4 @@ app.get('/__markdown', (req, res) => {
   res.send(mdContent)
 })
 
-app.listen(3000, () => console.log('screen-spec-md: Writer mode: listening on port 3000!'))
+app.listen(3001, () => console.log('screen-spec-md: Writer mode: listening on port 3001!'))

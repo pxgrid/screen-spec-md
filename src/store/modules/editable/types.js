@@ -1,0 +1,4 @@
+export default {
+  FETCH_MARKDOWN: 'FETCH_MARKDOWN',
+  SET_MARKDOWN: 'SET_MARKDOWN',
+}

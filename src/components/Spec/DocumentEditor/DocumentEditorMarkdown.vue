@@ -1,12 +1,18 @@
 <template>
   <div class="DocumentEditorMarkdown">
-    <textarea class="DocumentEditorMarkdown_TextArea"></textarea>
+    <textarea v-model="markdown" class="DocumentEditorMarkdown_TextArea"></textarea>
   </div>
 </template>
 
 <script>
 export default {
   name: 'DocumentEditorMarkdown',
+  props: {
+    markdown: {
+      type: String,
+      required: true,
+    },
+  },
 }
 </script>
 
