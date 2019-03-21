@@ -10,7 +10,7 @@ export default {
   props: {
     markdown: {
       type: String,
-      required: true,
+      default: '',
     },
   },
 }
