@@ -4,7 +4,9 @@
     <div class="Spec">
       <Screen :isDev="isDev" :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
-      <Document :isDev="isDev" :width="documentWidth" />
+      <Document :isDev="isDev" :width="documentWidth">
+        <slot></slot>
+      </Document>
     </div>
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">

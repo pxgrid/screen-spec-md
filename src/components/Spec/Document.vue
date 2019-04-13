@@ -15,8 +15,9 @@
     </nav>
     <div v-show="!showEditor" class="Document_Inner">
       <!-- eslint-disable vue/no-v-html -->
-      <div class="UISP-Md" v-html="convertedHtml"></div>
+      <!-- <div class="UISP-Md" v-html="convertedHtml"></div> -->
       <!-- eslint-enable vue/no-v-html -->
+      <slot></slot>
     </div>
     <div v-show="showEditor" class="Document_Editor">
       <DocumentEditor class="Document_DocumentEditor"></DocumentEditor>
