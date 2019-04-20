@@ -2,11 +2,9 @@
   <div>
     <TheHeader :isDev="isDev" @openTreeDialog="onOpenTreeDialog" />
     <div class="Spec">
-      <Screen :isDev="isDev" :width="screenWidth" />
+      <Screen :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
-      <Document :isDev="isDev" :width="documentWidth">
-        <slot></slot>
-      </Document>
+      <Document :width="documentWidth" />
     </div>
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">

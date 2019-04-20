@@ -15,7 +15,7 @@
     </nav>
     <div v-show="!showEditor" class="Document_Inner">
       <!-- eslint-disable vue/no-v-html -->
-      <!-- <div class="UISP-Md" v-html="convertedHtml"></div> -->
+      <div class="UISP-Md" v-html="convertedHtml"></div>
       <!-- eslint-enable vue/no-v-html -->
       <slot></slot>
     </div>
@@ -28,7 +28,6 @@
 <script>
 import FontAwesomeIcon from '../Common/FontAwesomeIcon.vue'
 import DocumentEditor from './DocumentEditor/ConnectedDocumentEditor'
-import dummyBodyHtml from './dummies/dummyBody.html'
 export default {
   name: 'Document',
   components: {
@@ -36,10 +35,6 @@ export default {
     DocumentEditor,
   },
   props: {
-    isDev: {
-      type: Boolean,
-      required: true,
-    },
     width: {
       type: String,
       required: true,
@@ -52,23 +47,18 @@ export default {
   },
   computed: {
     convertedHtml() {
-      if (this.isDev) return dummyBodyHtml
       return window.SCREEN_SPEC_MD.convertedHtml
     },
     updatedDate() {
-      if (this.isDev) return '2018/12/31'
       return window.SCREEN_SPEC_MD.updatedDate
     },
     updatedAuthorName() {
-      if (this.isDev) return 'Pixel Gurio'
       return window.SCREEN_SPEC_MD.updatedAuthorName
     },
     createdDate() {
-      if (this.isDev) return '2018/01/01'
       return window.SCREEN_SPEC_MD.createdDate
     },
     createdAuthorName() {
-      if (this.isDev) return 'Pixel Gurio'
       return window.SCREEN_SPEC_MD.createdAuthorName
     },
   },
