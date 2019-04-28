@@ -9,7 +9,7 @@ const embedHtml = require('./lib/build-page/embed-html')
 
 const embedHtmlDummyPage = async (html, pageName, dummiesDirPath) => {
   const template = Handlebars.compile(html)
-  const mdPath = path.resolve(dummiesDirPath, './dummy.md')
+  const mdPath = path.resolve(dummiesDirPath, `./${pageName}.md`)
   const mdSource = fs.readFileSync(mdPath, 'utf-8')
   const gitLog = await parseGitLog(mdPath)
   const pageInfo = parsePageMd(mdSource, gitLog, dummiesDirPath, mdPath)
