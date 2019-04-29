@@ -17,10 +17,12 @@
       <!-- eslint-disable vue/no-v-html -->
       <div class="UISP-Md" v-html="convertedHtml"></div>
       <!-- eslint-enable vue/no-v-html -->
-      <slot></slot>
     </div>
     <div v-show="showEditor" class="Document_Editor">
-      <DocumentEditor class="Document_DocumentEditor"></DocumentEditor>
+      <DocumentEditor
+        class="Document_DocumentEditor"
+        @writeMarkdown="writeMarkdown"
+      ></DocumentEditor>
     </div>
   </div>
 </template>
@@ -66,6 +68,7 @@ export default {
     toggleShowEditor() {
       this.showEditor = !this.showEditor
     },
+    writeMarkdown() {},
   },
 }
 </script>

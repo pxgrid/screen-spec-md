@@ -1,6 +1,10 @@
 <template>
   <div class="DocumentEditorMarkdown">
-    <textarea v-model="markdown" class="DocumentEditorMarkdown_TextArea"></textarea>
+    <textarea
+      :value="markdown"
+      class="DocumentEditorMarkdown_TextArea"
+      @change="changeMarkdown($event)"
+    ></textarea>
   </div>
 </template>
 
@@ -11,6 +15,11 @@ export default {
     markdown: {
       type: String,
       default: '',
+    },
+  },
+  methods: {
+    changeMarkdown(e) {
+      this.$emit('updateMarkdown', e.target.value)
     },
   },
 }

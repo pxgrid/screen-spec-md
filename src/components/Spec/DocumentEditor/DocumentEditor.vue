@@ -2,12 +2,12 @@
   <div class="DocumentEditor">
     <DocumentEditorTabBar />
     <div class="DocumentEditor_InputContainer">
-      <DocumentEditorMarkdown :markdown="markdown" />
+      <DocumentEditorMarkdown :markdown="markdown" @updateMarkdown="updateMarkdown" />
       <DocumentEditorPreview />
     </div>
     <div class="DocumentEditor_ActionBar">
       <button>Cancel</button>
-      <button>Save</button>
+      <button @click="writeMarkdown()">Save</button>
     </div>
   </div>
 </template>
@@ -27,6 +27,25 @@ export default {
     markdown: {
       type: String,
       default: '',
+    },
+  },
+  data() {
+    return {
+      editingMarkdown: '',
+    }
+  },
+  watch: {
+    markdown: function(newVal, oldVal) {
+      // markdownの値は非同期で取得するためmounted時のpropsの値がnullになってしまうので、非同期後に取得できるようにwatchしている
+      this.editingMarkdown = newVal
+    },
+  },
+  methods: {
+    updateMarkdown(changedMarkdown) {
+      this.editingMarkdown = changedMarkdown
+    },
+    writeMarkdown() {
+      this.$emit('writeMarkdown', { markdown: this.editingMarkdown })
     },
   },
 }

@@ -4,6 +4,8 @@ const express = require('express')
 const multer = require('multer')
 
 const editable = app => {
+  app.use(express.json())
+
   // 閲覧
   // app.use(express.static('_spec')) //TODO: _specを外部から指定可能に
 
@@ -24,7 +26,13 @@ const editable = app => {
   })
 
   // マークダウンの編集（書き込み）
-  // TODO: dist
+  app.post('/__markdown', (req, res) => {
+    const mdSource = req.body.markdown
+    const mdPath = req.body.path.replace(/\.html$/, '.md')
+    const absoluteMdPath = path.resolve(process.cwd(), 'public/dummies', `.${mdPath}`) //TODO: public/dummiesを外部から指定可能に
+    fs.writeFileSync(absoluteMdPath, mdSource, { encoding: 'utf-8' })
+    res.send('OK')
+  })
 }
 
 module.exports = editable
