@@ -4,7 +4,13 @@
     <div class="Spec">
       <Screen :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
-      <Document :width="documentWidth" />
+      <Document
+        :width="documentWidth"
+        :convertedHtml="convertedHtml"
+        :updatedDate="updatedDate"
+        :createdDate="createdDate"
+        :createdAuthorName="createdAuthorName"
+      />
     </div>
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
@@ -48,6 +54,13 @@ export default {
   computed: {
     ...mapState({
       treeData: 'treeData',
+    }),
+    ...mapState('editable', {
+      convertedHtml: 'body',
+      updatedDate: 'updatedDate',
+      updatedAuthorName: 'updatedAuthorName',
+      createdDate: 'createdDate',
+      createdAuthorName: 'createdAuthorName',
     }),
   },
   methods: {

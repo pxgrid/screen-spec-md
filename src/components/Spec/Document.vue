@@ -19,10 +19,7 @@
       <!-- eslint-enable vue/no-v-html -->
     </div>
     <div v-show="showEditor" class="Document_Editor">
-      <DocumentEditor
-        class="Document_DocumentEditor"
-        @writeMarkdown="writeMarkdown"
-      ></DocumentEditor>
+      <DocumentEditor class="Document_DocumentEditor" @closeEditor="closeEditor"></DocumentEditor>
     </div>
   </div>
 </template>
@@ -41,34 +38,39 @@ export default {
       type: String,
       required: true,
     },
+    convertedHtml: {
+      type: String,
+      default: '',
+    },
+    updatedDate: {
+      type: String,
+      default: '',
+    },
+    updatedAuthorName: {
+      type: String,
+      default: '',
+    },
+    createdDate: {
+      type: String,
+      default: '',
+    },
+    createdAuthorName: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
       showEditor: false,
     }
   },
-  computed: {
-    convertedHtml() {
-      return window.SCREEN_SPEC_MD.convertedHtml
-    },
-    updatedDate() {
-      return window.SCREEN_SPEC_MD.updatedDate
-    },
-    updatedAuthorName() {
-      return window.SCREEN_SPEC_MD.updatedAuthorName
-    },
-    createdDate() {
-      return window.SCREEN_SPEC_MD.createdDate
-    },
-    createdAuthorName() {
-      return window.SCREEN_SPEC_MD.createdAuthorName
-    },
-  },
   methods: {
     toggleShowEditor() {
       this.showEditor = !this.showEditor
     },
-    writeMarkdown() {},
+    closeEditor() {
+      this.showEditor = false
+    },
   },
 }
 </script>

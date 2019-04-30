@@ -10,6 +10,6 @@ export default {
   CHANGE_SELECTED_ITEM_LABEL: 'changeSelectedItemLabel',
   ZOOM: 'zoom',
   SET_DRAGGING_ELEMENT: 'setDraggingElement',
-  FETCH_TREE_DATA: 'fetchTree',
+  FETCH_TREE_DATA: 'fetchTreeData',
   SET_TREE_DATA: 'setTreeData',
 }

@@ -3,6 +3,10 @@ const fs = require('fs')
 const express = require('express')
 const multer = require('multer')
 
+const parsePageMd = require('../lib/parse-page-md/index')
+const parseGitLog = require('../lib/utils/git-log')
+const makeTemplateContext = require('../lib/build-page/make-template-context')
+
 const editable = app => {
   app.use(express.json())
 
@@ -25,13 +29,24 @@ const editable = app => {
     res.send(mdContent)
   })
 
-  // マークダウンの編集（書き込み）
-  app.post('/__markdown', (req, res) => {
-    const mdSource = req.body.markdown
-    const mdPath = req.body.path.replace(/\.html$/, '.md')
-    const absoluteMdPath = path.resolve(process.cwd(), 'public/dummies', `.${mdPath}`) //TODO: public/dummiesを外部から指定可能に
-    fs.writeFileSync(absoluteMdPath, mdSource, { encoding: 'utf-8' })
-    res.send('OK')
+  // マークダウンの編集（書き込み）と変換したHTMLの出力
+  app.post('/__markdown', (req, res, next) => {
+    ;(async () => {
+      const htmlPath = req.body.path
+      const mdSource = req.body.markdown
+      const mdRootPath = path.resolve(process.cwd(), 'public/dummies') //TODO: public/dummiesを外部から指定可能に
+      const mdPath = htmlPath.replace(/\.html$/, '.md')
+      const absoluteMdPath = path.resolve(mdRootPath, `.${mdPath}`)
+
+      // マークダウンの更新
+      fs.writeFileSync(absoluteMdPath, mdSource, { encoding: 'utf-8' })
+
+      // ページを構成するための情報を返す
+      const gitLog = await parseGitLog(absoluteMdPath)
+      const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdPath)
+      const context = makeTemplateContext(pageInfo)
+      res.json({ context: context })
+    })().catch(next)
   })
 }
 

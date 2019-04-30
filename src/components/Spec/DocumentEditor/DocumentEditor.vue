@@ -2,11 +2,11 @@
   <div class="DocumentEditor">
     <DocumentEditorTabBar />
     <div class="DocumentEditor_InputContainer">
-      <DocumentEditorMarkdown :markdown="markdown" @updateMarkdown="updateMarkdown" />
+      <DocumentEditorMarkdown :markdown="editingMarkdown" @updateMarkdown="updateMarkdown" />
       <DocumentEditorPreview />
     </div>
     <div class="DocumentEditor_ActionBar">
-      <button>Cancel</button>
+      <button @click="cancelEditMarkdown()">Cancel</button>
       <button @click="writeMarkdown()">Save</button>
     </div>
   </div>
@@ -46,6 +46,11 @@ export default {
     },
     writeMarkdown() {
       this.$emit('writeMarkdown', { markdown: this.editingMarkdown })
+      this.$emit('closeEditor')
+    },
+    cancelEditMarkdown() {
+      this.editingMarkdown = this.markdown
+      this.$emit('closeEditor')
     },
   },
 }
