@@ -6,12 +6,13 @@ import '@babel/polyfill'
 
 import Vue from 'vue'
 import store from './store'
+import types from './store/types'
 import Doc from './components/Doc.vue'
 
 const storeInstance = store()
 Vue.config.productionTip = false
 
-storeInstance.dispatch('fetchTree').then(() => {
+storeInstance.dispatch(types.FETCH_TREE_DATA).then(() => {
   new Vue({
     el: '#app',
     store: storeInstance,
