@@ -19,6 +19,7 @@ const convertBodyFunction = Handlebars.compile(bodySource)
 const svgCanvasSource = document.getElementById('svg-canvas-template').innerHTML
 const convertSvgCanvasFunction = Handlebars.compile(svgCanvasSource)
 window.SCREEN_SPEC_MD = {
+  editable: '{{ editable }}' === 'true',
   treeData: null,
   convertedHtml: convertBodyFunction(),
   svgCanvasHtml: convertSvgCanvasFunction(),

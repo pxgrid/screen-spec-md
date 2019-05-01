@@ -7,7 +7,7 @@
     "screen-spec-md": "./bin/cli.js"
   },
   "scripts": {
-    "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "dev": "EDITABLE=true webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.production.js",
     "build:dev": "webpack --config webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",

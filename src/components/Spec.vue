@@ -5,6 +5,7 @@
       <Screen :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
       <Document
+        :editable="editable"
         :width="documentWidth"
         :convertedHtml="convertedHtml"
         :updatedDate="updatedDate"
@@ -56,6 +57,7 @@ export default {
       treeData: 'treeData',
     }),
     ...mapState('editable', {
+      editable: 'editable',
       convertedHtml: 'body',
       updatedDate: 'updatedDate',
       updatedAuthorName: 'updatedAuthorName',

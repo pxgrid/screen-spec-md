@@ -1,6 +1,7 @@
 export default {
   markdown: null,
   //page context
+  editable: null,
   toRoot: null,
   title: null,
   screen: null,

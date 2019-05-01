@@ -3,7 +3,7 @@
     <nav class="Document_NavBar">
       <ul class="Document_NavBarTools">
         <li class="Document_NavBarToolItem">
-          <button class="Document_NavBarIconButton" @click="toggleShowEditor">
+          <button v-if="editable" class="Document_NavBarIconButton" @click="toggleShowEditor">
             <FontAwesomeIcon icon="edit" size="1x" />
           </button>
         </li>
@@ -18,7 +18,7 @@
       <div class="UISP-Md" v-html="convertedHtml"></div>
       <!-- eslint-enable vue/no-v-html -->
     </div>
-    <div v-show="showEditor" class="Document_Editor">
+    <div v-if="editable" v-show="showEditor" class="Document_Editor">
       <DocumentEditor class="Document_DocumentEditor" @closeEditor="closeEditor"></DocumentEditor>
     </div>
   </div>
@@ -34,6 +34,10 @@ export default {
     DocumentEditor,
   },
   props: {
+    editable: {
+      type: Boolean,
+      required: true,
+    },
     width: {
       type: String,
       required: true,

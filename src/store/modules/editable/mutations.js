@@ -1,6 +1,7 @@
 import types from './types'
 export default {
   [types.INIT_PAGE](state) {
+    state.editable = window.SCREEN_SPEC_MD.editable
     state.body = window.SCREEN_SPEC_MD.convertedHtml
     state.updatedDate = window.SCREEN_SPEC_MD.updatedDate
     state.updatedAuthorName = window.SCREEN_SPEC_MD.updatedAuthorName
@@ -13,6 +14,7 @@ export default {
   [types.SET_PAGE_CONTEXT](
     state,
     {
+      editable,
       toRoot,
       title,
       screen,
@@ -25,6 +27,7 @@ export default {
       createdDate,
     },
   ) {
+    state.editable = editable
     state.toRoot = toRoot
     state.title = title
     state.screen = screen
