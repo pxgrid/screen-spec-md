@@ -1,7 +1,7 @@
 import types from './types'
 export default {
   [types.INIT_PAGE](state) {
-    state.editable = window.SCREEN_SPEC_MD.editable
+    state.editable = window.SCREEN_SPEC_MD.editable === 'true'
     state.body = window.SCREEN_SPEC_MD.convertedHtml
     state.updatedDate = window.SCREEN_SPEC_MD.updatedDate
     state.updatedAuthorName = window.SCREEN_SPEC_MD.updatedAuthorName
@@ -27,7 +27,7 @@ export default {
       createdDate,
     },
   ) {
-    state.editable = editable
+    state.editable = editable === 'true'
     state.toRoot = toRoot
     state.title = title
     state.screen = screen
