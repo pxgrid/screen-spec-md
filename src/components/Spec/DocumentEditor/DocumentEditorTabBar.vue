@@ -1,20 +1,39 @@
 <template>
   <div class="DocumentEditorTabBar">
-    <ul class="DocumentEditorTabBar_Tabs">
-      <li class="DocumentEditorTabBar_WriteTab" @click="onClickWriteTab">Write</li>
-      <li class="DocumentEditorTabBar_PreviewTab" @click="onClickPreviewTab">Preview</li>
-    </ul>
+    <nav class="DocumentEditorTabBar_Tabs">
+      <button
+        class="DocumentEditorTabBar_WriteTab"
+        :class="{ _active: isActiveWrite }"
+        @click="onClickWriteTab"
+      >
+        Write
+      </button>
+      <button
+        class="DocumentEditorTabBar_PreviewTab"
+        :class="{ _active: !isActiveWrite }"
+        @click="onClickPreviewTab"
+      >
+        Preview
+      </button>
+    </nav>
   </div>
 </template>
 
 <script>
 export default {
   name: 'DocumentEditorTabBar',
+  data() {
+    return {
+      isActiveWrite: true,
+    }
+  },
   methods: {
     onClickWriteTab() {
+      this.isActiveWrite = true
       this.$emit('clickWriteTab')
     },
     onClickPreviewTab() {
+      this.isActiveWrite = false
       this.$emit('clickPreviewTab')
     },
   },
@@ -26,21 +45,24 @@ export default {
   height: 40px;
   background-color: #dfdfdf;
   &_Tabs {
-    list-style: none;
-    margin: 0;
+    margin-bottom: -1px;
     padding: 8px 8px 0 8px;
   }
   &_WriteTab,
   &_PreviewTab {
     display: inline-block;
-    height: 26px;
+    height: 32px;
     width: 80px;
     text-align: center;
     padding-top: 6px;
     font-size: 12px;
-    background-color: #ffffff;
+    background-color: transparent;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    border-bottom: 0;
+    &._active {
+      background-color: #ffffff;
+    }
   }
 }
 </style>
