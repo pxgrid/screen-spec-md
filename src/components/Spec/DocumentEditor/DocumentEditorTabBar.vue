@@ -30,11 +30,11 @@ export default {
   methods: {
     onClickWriteTab() {
       this.isActiveWrite = true
-      this.$emit('clickWriteTab')
+      this.$emit('activeWrite')
     },
     onClickPreviewTab() {
       this.isActiveWrite = false
-      this.$emit('clickPreviewTab')
+      this.$emit('activePreview')
     },
   },
 }

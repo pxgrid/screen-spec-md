@@ -1,9 +1,13 @@
 <template>
   <div class="DocumentEditor">
-    <DocumentEditorTabBar />
+    <DocumentEditorTabBar @activeWrite="activeWrite" @activePreview="activePreview" />
     <div class="DocumentEditor_InputContainer">
-      <DocumentEditorMarkdown :markdown="editingMarkdown" @updateMarkdown="updateMarkdown" />
-      <DocumentEditorPreview />
+      <DocumentEditorMarkdown
+        v-show="isActiveWrite"
+        :markdown="editingMarkdown"
+        @updateMarkdown="updateMarkdown"
+      />
+      <DocumentEditorPreview v-show="!isActiveWrite" />
     </div>
     <div class="DocumentEditor_ActionBar">
       <button @click="cancelEditMarkdown()">Cancel</button>
@@ -31,6 +35,7 @@ export default {
   },
   data() {
     return {
+      isActiveWrite: true,
       editingMarkdown: '',
     }
   },
@@ -41,6 +46,12 @@ export default {
     },
   },
   methods: {
+    activeWrite() {
+      this.isActiveWrite = true
+    },
+    activePreview() {
+      this.isActiveWrite = false
+    },
     updateMarkdown(changedMarkdown) {
       this.editingMarkdown = changedMarkdown
     },
