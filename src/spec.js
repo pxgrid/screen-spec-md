@@ -1,4 +1,6 @@
+import './assets/common.scss'
 import './assets/template.scss'
+
 import '@babel/polyfill'
 
 import Vue from 'vue'

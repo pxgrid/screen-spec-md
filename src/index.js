@@ -2,6 +2,8 @@
  * 各ディレクトリ階層で目次となるページ
  * TODO: {directory}/index.mdがない場合に自動生成
  */
+import './assets/common.scss'
+
 import '@babel/polyfill'
 
 import Vue from 'vue'
