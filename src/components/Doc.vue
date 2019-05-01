@@ -2,7 +2,13 @@
   <div>
     <TheHeader :isDev="isDev" @openTreeDialog="onOpenTreeDialog" />
     <div class="Doc">
-      <Document :isDev="isDev" :width="'100%'" />
+      <Document
+        :width="'100%'"
+        :convertedHtml="convertedHtml"
+        :updatedDate="updatedDate"
+        :createdDate="createdDate"
+        :createdAuthorName="createdAuthorName"
+      />
     </div>
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
@@ -40,6 +46,13 @@ export default {
   computed: {
     ...mapState({
       treeData: 'treeData',
+    }),
+    ...mapState('editable', {
+      convertedHtml: 'body',
+      updatedDate: 'updatedDate',
+      updatedAuthorName: 'updatedAuthorName',
+      createdDate: 'createdDate',
+      createdAuthorName: 'createdAuthorName',
     }),
   },
   methods: {

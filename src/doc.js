@@ -6,13 +6,17 @@ import '@babel/polyfill'
 
 import Vue from 'vue'
 import store from './store'
-import types from './store/types'
+
 import Doc from './components/Doc.vue'
+import types from './store/types'
+import editableTypes from './store/modules/editable/types'
 
 const storeInstance = store()
 Vue.config.productionTip = false
 
 storeInstance.dispatch(types.FETCH_TREE_DATA).then(() => {
+  storeInstance.commit(`editable/${editableTypes.INIT_PAGE}`)
+
   new Vue({
     el: '#app',
     store: storeInstance,
