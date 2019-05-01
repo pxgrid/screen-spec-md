@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheHeader :isDev="isDev" @openTreeDialog="onOpenTreeDialog" />
+    <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="Doc">
       <Document
         :width="'100%'"
@@ -39,7 +39,6 @@ export default {
   },
   data() {
     return {
-      isDev: process.env.NODE_ENV === 'development',
       isShowTreeDialog: false,
     }
   },

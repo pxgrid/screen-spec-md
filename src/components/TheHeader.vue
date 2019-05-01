@@ -11,14 +11,6 @@
     <span class="TheHeader_PageTitle">
       {{ title }}
     </span>
-    <div v-if="isDev" class="TheHeader_NavForDeveloper">
-      <a class="TheHeader_Link" href="/spec.html">
-        Spec
-      </a>
-      <a class="TheHeader_Link" href="/list.html">
-        List
-      </a>
-    </div>
   </div>
 </template>
 
@@ -29,15 +21,8 @@ export default {
   components: {
     FontAwesomeIcon,
   },
-  props: {
-    isDev: {
-      type: Boolean,
-      required: true,
-    },
-  },
   computed: {
     title() {
-      if (this.isDev) return '画面仕様書'
       return window.SCREEN_SPEC_MD.title
     },
   },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheHeader :isDev="isDev" @openTreeDialog="onOpenTreeDialog" />
+    <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="Spec">
       <Screen :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
@@ -46,7 +46,6 @@ export default {
   },
   data() {
     return {
-      isDev: process.env.NODE_ENV === 'development',
       isShowTreeDialog: false,
       screenWidth: '50%',
       documentWidth: '50%',

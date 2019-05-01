@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheHeader :isDev="isDev" @openTreeDialog="onOpenTreeDialog" />
+    <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="Index">目次</div>
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
@@ -29,7 +29,6 @@ export default {
   },
   data() {
     return {
-      isDev: process.env.NODE_ENV === 'development',
       isShowTreeDialog: false,
     }
   },
