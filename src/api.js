@@ -53,6 +53,17 @@ class API {
       },
     })
   }
+
+  fetchConvertedHtml({ markdown }) {
+    const url = '/__html'
+    return this._request({
+      url,
+      method: 'POST',
+      data: {
+        markdown,
+      },
+    })
+  }
 }
 
 export default new API()

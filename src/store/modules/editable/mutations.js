@@ -39,4 +39,7 @@ export default {
     state.createdAuthorName = createdAuthorName
     state.createdDate = createdDate
   },
+  [types.SET_CONVERTED_HTML](state, { html }) {
+    state.convertedHtml = html
+  },
 }

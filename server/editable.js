@@ -3,6 +3,8 @@ const fs = require('fs')
 const express = require('express')
 const multer = require('multer')
 
+const regexpConstants = require('../lib/constants/regexp')
+const md2html = require('../lib/utils/md2html')
 const parsePageMd = require('../lib/parse-page-md/index')
 const parseGitLog = require('../lib/utils/git-log')
 const makeTemplateContext = require('../lib/build-page/make-template-context')
@@ -47,6 +49,13 @@ const editable = app => {
       const context = makeTemplateContext(pageInfo)
       res.json({ context: context })
     })().catch(next)
+  })
+
+  app.post('/__html', (req, res) => {
+    const mdSource = req.body.markdown
+    const mdSourceWithoutMeta = mdSource.replace(regexpConstants.markdownMeatArea, '')
+    const html = md2html(mdSourceWithoutMeta)
+    res.json({ html: html })
   })
 }
 

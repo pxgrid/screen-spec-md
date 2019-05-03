@@ -6,11 +6,13 @@ export default connect({
   stateToProps: {
     ...stateToProps('editable', {
       markdown: 'markdown',
+      previewedHtml: 'convertedHtml',
     }),
   },
   actionsToEvents: {
     ...actionsToEvents('editable', {
       writeMarkdown: editableTypes.WRITE_MARKDOWN,
+      fetchConvertedHtml: editableTypes.FETCH_CONVERTED_HTML,
     }),
   },
   lifecycle: {

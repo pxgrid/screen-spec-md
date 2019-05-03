@@ -7,7 +7,11 @@
         :markdown="editingMarkdown"
         @updateMarkdown="updateMarkdown"
       />
-      <DocumentEditorPreview v-show="!isActiveWrite" />
+      <DocumentEditorPreview
+        v-show="!isActiveWrite"
+        class="DocumentEditor_Preview"
+        :previewedHtml="previewedHtml"
+      />
     </div>
     <div class="DocumentEditor_ActionBar">
       <button @click="cancelEditMarkdown()">Cancel</button>
@@ -32,6 +36,10 @@ export default {
       type: String,
       default: '',
     },
+    previewedHtml: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -50,6 +58,7 @@ export default {
       this.isActiveWrite = true
     },
     activePreview() {
+      this.$emit('fetchConvertedHtml', { markdown: this.editingMarkdown })
       this.isActiveWrite = false
     },
     updateMarkdown(changedMarkdown) {
@@ -68,6 +77,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../assets/variable.scss';
 .DocumentEditor {
   display: grid;
   grid-template-rows: 40px auto 50px;
@@ -76,6 +86,12 @@ export default {
     height: 100%;
     border: 1px solid #e5e5e5;
     border-top-style: none;
+  }
+  &_Preview {
+    box-sizing: border-box;
+    padding: 20px;
+    height: calc(100vh - #{$documentEditorTabBarHeight} - #{$theHeaderHeight} - #{$navBarsHeight});
+    overflow: scroll;
   }
 }
 </style>
