@@ -11,16 +11,25 @@ const makeTemplateContext = require('../lib/build-page/make-template-context')
 
 const editable = app => {
   app.use(express.json())
+  const uploads = multer({ dest: path.join(__dirname, '__uploads/') })
 
   // 閲覧
   // app.use(express.static('_spec')) //TODO: _specを外部から指定可能に
 
   // 画像のアップロード
-  const uploads = multer({ dest: path.join(__dirname, '__uploads/') })
-  app.post('/__image', uploads.single('image'), function(req, res) {
-    console.log('uploaded filename： ' + req.file.originalname)
-    console.log('saved path：' + req.file.path)
-    console.log('saved filename： ' + req.file.filename)
+  app.post('/__uploadImage', uploads.single('image'), (req, res) => {
+    // TODO: ファイルタイプのチェック req.file.mimetype => "image/png"
+    const uploadedPath = req.file.path
+    const pathToMove = path.resolve(process.cwd(), 'public/dummies', req.body.path) //TODO: public/dummiesを外部から指定可能に
+
+    // TODO: ディレクトリトラバーサルチェック
+    const regexp = new RegExp(`^${process.cwd()}`)
+    console.log('regexp', regexp.test(pathToMove))
+
+    // TODO: ディレクトリが無ければ作成する
+
+    fs.renameSync(uploadedPath, pathToMove)
+    res.json({})
   })
 
   // マークダウンの編集（読み込み）

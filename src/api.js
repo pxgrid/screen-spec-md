@@ -64,6 +64,15 @@ class API {
       },
     })
   }
+
+  uploadImage({ formData }) {
+    const url = '/__uploadImage'
+    return this._request({
+      url,
+      method: 'POST',
+      data: formData,
+    })
+  }
 }
 
 export default new API()
