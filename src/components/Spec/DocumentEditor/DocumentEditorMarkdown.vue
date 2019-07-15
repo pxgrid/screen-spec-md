@@ -26,7 +26,10 @@ export default {
     },
     handlePaste(e) {
       if (!this._isSingleFileType(e.clipboardData)) return true
-      const imagePath = prompt('Please enter the image file path.', './img/undefined.png')
+      const imagePath = prompt(
+        'Please enter the image file path. If the width is specified, specify as \'! [./img/foo.png] (./img/foo.png "=100x")\'.',
+        './img/undefined.png',
+      )
       if (imagePath === '') {
         return false
       }
