@@ -14,6 +14,7 @@
   const bodySource = document.getElementById('body-template').innerHTML
   const convertBodyFunction = Handlebars.compile(bodySource)
   window.SCREEN_SPEC_MD = {
+    editable: '{{ editable }}',
     treeData: null,
     convertedHtml: convertBodyFunction(),
     title: '{{ title }}',

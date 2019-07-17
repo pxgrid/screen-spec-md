@@ -1,8 +1,14 @@
 <template>
   <div>
-    <TheHeader :isDev="isDev" @openTreeDialog="onOpenTreeDialog" />
+    <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="Doc">
-      <Document :isDev="isDev" :width="'100%'" />
+      <Document
+        :width="'100%'"
+        :convertedHtml="convertedHtml"
+        :updatedDate="updatedDate"
+        :createdDate="createdDate"
+        :createdAuthorName="createdAuthorName"
+      />
     </div>
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
@@ -33,13 +39,19 @@ export default {
   },
   data() {
     return {
-      isDev: process.env.NODE_ENV === 'development',
       isShowTreeDialog: false,
     }
   },
   computed: {
     ...mapState({
       treeData: 'treeData',
+    }),
+    ...mapState('editable', {
+      convertedHtml: 'body',
+      updatedDate: 'updatedDate',
+      updatedAuthorName: 'updatedAuthorName',
+      createdDate: 'createdDate',
+      createdAuthorName: 'createdAuthorName',
     }),
   },
   methods: {
@@ -54,9 +66,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/variable.scss';
 .Doc {
   display: flex;
-  max-height: calc(100vh - 48px);
+  max-height: calc(100vh - #{$theHeaderHeight});
   width: 100%;
 }
 </style>

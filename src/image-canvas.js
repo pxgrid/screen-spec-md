@@ -1,7 +1,9 @@
 /**
  * 画面画像のハイライトをCanvasで編集するページ
  */
+import './assets/common.scss'
 import './assets/template.scss'
+
 import '@babel/polyfill'
 
 import Vue from 'vue'

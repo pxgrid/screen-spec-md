@@ -6,6 +6,7 @@
 import { FontAwesomeIcon as FAIcon } from '@fortawesome/vue-fontawesome'
 import {
   faHome,
+  faEdit,
   faSearch,
   faSearchPlus,
   faSearchMinus,
@@ -47,6 +48,8 @@ export default {
           return faTimes
         case 'home':
           return faHome
+        case 'edit':
+          return faEdit
         case 'search':
           return faSearch
         case 'search-plus':

@@ -35,7 +35,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import dummySvgCanvasHtml from './dummies/dummySvgCanvas.html'
 import ScreenToolbar from './Screen/ScreenToolbar.vue'
 
 const ZOOM_MAX = 200
@@ -47,10 +46,6 @@ export default {
     ScreenToolbar: ScreenToolbar,
   },
   props: {
-    isDev: {
-      type: Boolean,
-      required: true,
-    },
     width: {
       type: String,
       required: true,
@@ -68,14 +63,10 @@ export default {
       filenameWithCoordinates: 'filenameWithCoordinates',
     }),
     svgCanvasHtml() {
-      if (this.isDev) return dummySvgCanvasHtml
       return window.SCREEN_SPEC_MD.svgCanvasHtml
     },
     imageCanvasPath() {
       const path = '/__image-canvas.html'
-      if (this.isDev) {
-        return `${path}?src=/img/dummy-svg-image.png&highlight=[[32,99,232,40],[32,141,232,48],[32,191,232,43],[32,236,232,86],[295,99,402,333],[16,40,160,34]]`
-      }
       const convertedQuery = window.SCREEN_SPEC_MD.absolutesScreen.replace(
         '?highlight=',
         '&highlight=',

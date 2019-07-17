@@ -11,14 +11,6 @@
     <span class="TheHeader_PageTitle">
       {{ title }}
     </span>
-    <div v-if="isDev" class="TheHeader_NavForDeveloper">
-      <a class="TheHeader_Link" href="/spec.html">
-        Spec
-      </a>
-      <a class="TheHeader_Link" href="/list.html">
-        List
-      </a>
-    </div>
   </div>
 </template>
 
@@ -29,15 +21,8 @@ export default {
   components: {
     FontAwesomeIcon,
   },
-  props: {
-    isDev: {
-      type: Boolean,
-      required: true,
-    },
-  },
   computed: {
     title() {
-      if (this.isDev) return '画面仕様書'
       return window.SCREEN_SPEC_MD.title
     },
   },
@@ -50,16 +35,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/variable.scss';
 .TheHeader {
   display: grid;
-  grid-template-rows: 48px;
+  grid-template-rows: $theHeaderHeight;
   grid-template-columns: 100px 1fr auto;
   position: relative;
-  height: 48px;
+  height: $theHeaderHeight;
   background-color: #2f6fad;
   &_MainNav {
     display: grid;
-    grid-template-rows: 48px;
+    grid-template-rows: $theHeaderHeight;
     grid-template-columns: 50px 50px;
     grid-column: 1 / 2;
     align-items: center;
@@ -75,7 +61,7 @@ export default {
     font-size: 12px;
     text-align: center;
     min-width: 50px;
-    min-height: 50px;
+    min-height: $theHeaderHeight;
     padding: 0;
     border: none;
     background: none;
@@ -85,13 +71,13 @@ export default {
     display: block;
     color: #ffffff;
     font-size: 18px;
-    line-height: 48px;
+    line-height: $theHeaderHeight;
     padding: 0 0 0 20px;
     grid-column: 2 / 3;
   }
   &_NavForDeveloper {
     display: grid;
-    grid-template-rows: 48px;
+    grid-template-rows: $theHeaderHeight;
     grid-template-columns: 50px 50px;
     grid-column: 3 / 4;
     align-items: center;

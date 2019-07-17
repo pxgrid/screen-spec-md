@@ -63,3 +63,5 @@ typings/
 # screen-spec-md
 dist/
 _spec/
+server/__uploads/*
+!server/__uploads/.gitkeep

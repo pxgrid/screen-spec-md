@@ -1,23 +1,40 @@
 <template>
   <div :style="{ width: width }" class="Document">
-    <ul class="Document_Info">
-      <li class="Document_InfoItem">LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}</li>
-      <li class="Document_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
-    </ul>
-    <div class="Document_Inner">
+    <nav class="Document_NavBar">
+      <ul class="Document_NavBarTools">
+        <li class="Document_NavBarToolItem">
+          <button v-if="editable" class="Document_NavBarIconButton" @click="toggleShowEditor">
+            <FontAwesomeIcon icon="edit" size="1x" />
+          </button>
+        </li>
+      </ul>
+      <ul class="Document_Info">
+        <li class="Document_InfoItem">LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}</li>
+        <li class="Document_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
+      </ul>
+    </nav>
+    <div v-show="!showEditor" class="Document_Inner">
       <!-- eslint-disable vue/no-v-html -->
       <div class="UISP-Md" v-html="convertedHtml"></div>
       <!-- eslint-enable vue/no-v-html -->
+    </div>
+    <div v-if="editable" v-show="showEditor" class="Document_Editor">
+      <DocumentEditor class="Document_DocumentEditor" @closeEditor="closeEditor"></DocumentEditor>
     </div>
   </div>
 </template>
 
 <script>
-import dummyBodyHtml from './dummies/dummyBody.html'
+import FontAwesomeIcon from '../Common/FontAwesomeIcon.vue'
+import DocumentEditor from './DocumentEditor/ConnectedDocumentEditor'
 export default {
   name: 'Document',
+  components: {
+    FontAwesomeIcon,
+    DocumentEditor,
+  },
   props: {
-    isDev: {
+    editable: {
       type: Boolean,
       required: true,
     },
@@ -25,56 +42,101 @@ export default {
       type: String,
       required: true,
     },
+    convertedHtml: {
+      type: String,
+      default: '',
+    },
+    updatedDate: {
+      type: String,
+      default: '',
+    },
+    updatedAuthorName: {
+      type: String,
+      default: '',
+    },
+    createdDate: {
+      type: String,
+      default: '',
+    },
+    createdAuthorName: {
+      type: String,
+      default: '',
+    },
   },
-  computed: {
-    convertedHtml() {
-      if (this.isDev) return dummyBodyHtml
-      return window.SCREEN_SPEC_MD.convertedHtml
+  data() {
+    return {
+      showEditor: false,
+    }
+  },
+  methods: {
+    toggleShowEditor() {
+      this.showEditor = !this.showEditor
     },
-    updatedDate() {
-      if (this.isDev) return '2018/12/31'
-      return window.SCREEN_SPEC_MD.updatedDate
-    },
-    updatedAuthorName() {
-      if (this.isDev) return 'Pixel Gurio'
-      return window.SCREEN_SPEC_MD.updatedAuthorName
-    },
-    createdDate() {
-      if (this.isDev) return '2018/01/01'
-      return window.SCREEN_SPEC_MD.createdDate
-    },
-    createdAuthorName() {
-      if (this.isDev) return 'Pixel Gurio'
-      return window.SCREEN_SPEC_MD.createdAuthorName
+    closeEditor() {
+      this.showEditor = false
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/variable.scss';
 .Document {
   width: 50%;
   overflow: hidden;
-  &_Info {
+  &_NavBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: $navBarsHeight;
     background-color: #eeeeee;
     font-size: 0.9rem;
+  }
+  &_NavBarTools {
+    margin: 0;
+    padding: 0;
+  }
+  &_NavBarToolItem {
+    line-height: 100%;
+    display: inline-block;
+  }
+  &_NavBarIconButton {
+    color: inherit;
+    text-align: center;
+    min-width: 30px;
+    min-height: $navBarsHeight;
+    padding: 0;
+    border: none;
+    background: none;
+    margin-right: 0;
+    &._disabled {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.4;
+    }
+  }
+  &_Info {
     margin: 0;
     padding: 0 10px 0 0;
-    height: 30px;
     text-align: right;
   }
   &_InfoItem {
-    line-height: 30px;
+    line-height: $navBarsHeight;
     display: inline-block;
-    height: 30px;
+    height: $navBarsHeight;
     font-size: 12px;
     margin-left: 10px;
   }
   &_Inner {
     box-sizing: border-box;
     padding: 20px;
-    height: calc(100vh - 48px - 30px); // 30pxはScreen_Toolsクラスの高さ
+    height: calc(100vh - #{$theHeaderHeight} - #{$navBarsHeight});
     overflow: scroll;
+  }
+  &_Editor {
+    height: calc(100vh - #{$theHeaderHeight} - #{$navBarsHeight});
+  }
+  &_DocumentEditor {
+    height: 100%;
   }
   &_Footer {
     padding: 20px;
