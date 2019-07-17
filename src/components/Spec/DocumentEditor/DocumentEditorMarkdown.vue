@@ -30,7 +30,7 @@ export default {
         'Please enter the image file path. If the width is specified, specify as \'! [./img/foo.png] (./img/foo.png "=100x")\'.',
         './img/undefined.png',
       )
-      if (imagePath === '') {
+      if (imagePath === null) {
         return false
       }
       const imageFile = e.clipboardData.items[0].getAsFile()
