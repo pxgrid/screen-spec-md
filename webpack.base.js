@@ -9,10 +9,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    spec: './src/spec.js',
-    index: './src/index.js',
-    doc: './src/doc.js',
-    'image-canvas': './src/image-canvas.js',
+    spec: './src/pages/spec.js',
+    index: './src/pages/index.js',
+    doc: './src/pages/doc.js',
+    'image-canvas': './src/pages/image-canvas.js',
   },
   output: {
     filename: '[name].bundle.js',
