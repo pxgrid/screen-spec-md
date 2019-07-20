@@ -70,6 +70,7 @@ export default {
 .PlainSpec {
   display: flex;
   max-height: calc(100vh - #{$theHeaderHeight});
-  width: 100%;
+  width: 50%;
+  margin: 0 auto;
 }
 </style>
