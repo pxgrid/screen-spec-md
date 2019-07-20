@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../assets/variable.scss';
+@import '../../../../assets/variable.scss';
 .DocumentEditor {
   display: grid;
   grid-template-rows: 40px auto 50px;

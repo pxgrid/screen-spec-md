@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import FontAwesomeIcon from '../Common/FontAwesomeIcon.vue'
+import FontAwesomeIcon from '../../Common/FontAwesomeIcon.vue'
 import DocumentEditor from './DocumentEditor/ConnectedDocumentEditor'
 export default {
   name: 'Document',
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/variable.scss';
+@import '../../../assets/variable.scss';
 .Document {
   width: 50%;
   overflow: hidden;

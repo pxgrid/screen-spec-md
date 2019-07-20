@@ -25,8 +25,8 @@ import { mapState } from 'vuex'
 import TheHeader from '../TheHeader.vue'
 import OverlayScreen from '../Common/OverlayScreen.vue'
 import BaseDialog from '../Common/BaseDialog.vue'
-import Document from '../Spec/Document.vue'
 import Tree from '../Common/Tree.vue'
+import Document from './Spec/Document.vue'
 
 export default {
   name: 'Doc',

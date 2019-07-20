@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../assets/variable.scss';
+@import '../../../../assets/variable.scss';
 .DocumentEditorTabBar {
   height: $documentEditorTabBarHeight;
   background-color: #dfdfdf;
