@@ -9,8 +9,10 @@
         </li>
       </ul>
       <ul class="Doc_Info">
-        <li class="Doc_InfoItem">LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}</li>
-        <li class="Doc_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
+        <li class="Doc_InfoItem">
+          LastUpdate: {{ dateFormat(updatedDate) }} {{ updatedAuthorName }}
+        </li>
+        <li class="Doc_InfoItem">Created: {{ dateFormat(createdDate) }} {{ createdAuthorName }}</li>
       </ul>
     </nav>
     <div v-show="!showEditor" class="Doc_Inner">
@@ -69,6 +71,17 @@ export default {
     }
   },
   methods: {
+    dateFormat(date) {
+      const options = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+      }
+      if (!date) return '--'
+      return new Intl.DateTimeFormat('default', options).format(new Date(date))
+    },
     toggleShowEditor() {
       this.showEditor = !this.showEditor
     },
