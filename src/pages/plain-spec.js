@@ -9,7 +9,7 @@ import '@babel/polyfill'
 import Vue from 'vue'
 import store from '../store'
 
-import Doc from '../components/Doc.vue'
+import PlainSpec from '../components/Pages/PlainSpec.vue'
 import types from '../store/types'
 import editableTypes from '../store/modules/editable/types'
 
@@ -22,6 +22,6 @@ storeInstance.dispatch(types.FETCH_TREE_DATA).then(() => {
   new Vue({
     el: '#app',
     store: storeInstance,
-    render: h => h(Doc),
+    render: h => h(PlainSpec),
   })
 })

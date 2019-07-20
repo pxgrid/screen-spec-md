@@ -1,9 +1,12 @@
 <template>
   <div>
     <TheHeader @openTreeDialog="onOpenTreeDialog" />
-    <div class="Doc">
+    <div class="Spec">
+      <Screen :width="screenWidth" />
+      <Separator @drag="onSeparatorDrag" />
       <Document
-        :width="'100%'"
+        :editable="editable"
+        :width="documentWidth"
         :convertedHtml="convertedHtml"
         :updatedDate="updatedDate"
         :createdDate="createdDate"
@@ -22,24 +25,30 @@
 
 <script>
 import { mapState } from 'vuex'
-import TheHeader from './TheHeader.vue'
-import OverlayScreen from './Common/OverlayScreen.vue'
-import BaseDialog from './Common/BaseDialog.vue'
-import Document from './Spec/Document.vue'
-import PageTree from './PageTree.vue'
+import TheHeader from '../TheHeader.vue'
+import OverlayScreen from '../Common/OverlayScreen.vue'
+import BaseDialog from '../Common/BaseDialog.vue'
+import Screen from '../Spec/Screen.vue'
+import Separator from '../Spec/Separator.vue'
+import Document from '../Spec/Document.vue'
+import PageTree from '../PageTree.vue'
 
 export default {
-  name: 'Doc',
+  name: 'Spec',
   components: {
     TheHeader,
     OverlayScreen,
     BaseDialog,
+    Screen,
+    Separator,
     Document,
     PageTree,
   },
   data() {
     return {
       isShowTreeDialog: false,
+      screenWidth: '50%',
+      documentWidth: '50%',
     }
   },
   computed: {
@@ -47,6 +56,7 @@ export default {
       treeData: 'treeData',
     }),
     ...mapState('editable', {
+      editable: 'editable',
       convertedHtml: 'body',
       updatedDate: 'updatedDate',
       updatedAuthorName: 'updatedAuthorName',
@@ -55,6 +65,10 @@ export default {
     }),
   },
   methods: {
+    onSeparatorDrag({ leftScreenRate }) {
+      this.screenWidth = `${leftScreenRate * 100}%`
+      this.documentWidth = `${(1 - leftScreenRate) * 100}%`
+    },
     onOpenTreeDialog() {
       this.isShowTreeDialog = true
     },
@@ -66,8 +80,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/variable.scss';
-.Doc {
+@import '../../assets/variable.scss';
+.Spec {
   display: flex;
   max-height: calc(100vh - #{$theHeaderHeight});
   width: 100%;
