@@ -10,7 +10,7 @@
         {{ treeData.title }}
       </a>
     </div>
-    <ul class="TreeItem_List" v-if="isDir" v-show="open">
+    <ul v-if="isDir" v-show="open" class="TreeItem_List">
       <TreeItem
         v-for="(treeDataChild, index) in treeDataChildren"
         :key="index"
