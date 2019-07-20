@@ -1,19 +1,19 @@
 <template>
-  <div class="DocumentEditor">
-    <DocumentEditorTabBar @activeWrite="activeWrite" @activePreview="activePreview" />
-    <div class="DocumentEditor_InputContainer">
-      <DocumentEditorMarkdown
+  <div class="DocEditor">
+    <DocEditorTabBar @activeWrite="activeWrite" @activePreview="activePreview" />
+    <div class="DocEditor_InputContainer">
+      <DocEditorMarkdown
         v-show="isActiveWrite"
         :markdown="editingMarkdown"
         @updateMarkdown="updateMarkdown"
       />
-      <DocumentEditorPreview
+      <DocEditorPreview
         v-show="!isActiveWrite"
-        class="DocumentEditor_Preview"
+        class="DocEditor_Preview"
         :previewedHtml="previewedHtml"
       />
     </div>
-    <div class="DocumentEditor_ActionBar">
+    <div class="DocEditor_ActionBar">
       <button @click="cancelEditMarkdown()">Cancel</button>
       <button @click="writeMarkdown()">Save</button>
     </div>
@@ -21,15 +21,15 @@
 </template>
 
 <script>
-import DocumentEditorTabBar from './DocumentEditorTabBar.vue'
-import DocumentEditorMarkdown from './DocumentEditorMarkdown.vue'
-import DocumentEditorPreview from './DocumentEditorPreview.vue'
+import DocEditorTabBar from './DocEditorTabBar.vue'
+import DocEditorMarkdown from './DocEditorMarkdown.vue'
+import DocEditorPreview from './DocEditorPreview.vue'
 export default {
-  name: 'DocumentEditor',
+  name: 'DocEditor',
   components: {
-    DocumentEditorTabBar,
-    DocumentEditorMarkdown,
-    DocumentEditorPreview,
+    DocEditorTabBar,
+    DocEditorMarkdown,
+    DocEditorPreview,
   },
   props: {
     markdown: {
@@ -78,7 +78,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../../assets/variable.scss';
-.DocumentEditor {
+.DocEditor {
   display: grid;
   grid-template-rows: 40px auto 50px;
   grid-template-columns: auto;

@@ -1,15 +1,15 @@
 <template>
-  <div class="DocumentEditorTabBar">
-    <nav class="DocumentEditorTabBar_Tabs">
+  <div class="DocEditorTabBar">
+    <nav class="DocEditorTabBar_Tabs">
       <button
-        class="DocumentEditorTabBar_WriteTab"
+        class="DocEditorTabBar_WriteTab"
         :class="{ _active: isActiveWrite }"
         @click="onClickWriteTab"
       >
         Write
       </button>
       <button
-        class="DocumentEditorTabBar_PreviewTab"
+        class="DocEditorTabBar_PreviewTab"
         :class="{ _active: !isActiveWrite }"
         @click="onClickPreviewTab"
       >
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'DocumentEditorTabBar',
+  name: 'DocEditorTabBar',
   data() {
     return {
       isActiveWrite: true,
@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../../assets/variable.scss';
-.DocumentEditorTabBar {
+.DocEditorTabBar {
   height: $documentEditorTabBarHeight;
   background-color: #dfdfdf;
   &_Tabs {

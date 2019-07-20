@@ -4,7 +4,7 @@
     <div class="Spec">
       <Screen :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
-      <Document
+      <Doc
         :editable="editable"
         :width="documentWidth"
         :convertedHtml="convertedHtml"
@@ -31,7 +31,7 @@ import BaseDialog from '../Common/BaseDialog.vue'
 import Tree from '../Common/Tree.vue'
 import Screen from './Spec/Screen.vue'
 import Separator from './Spec/Separator.vue'
-import Document from './Spec/Document.vue'
+import Doc from './Spec/Doc.vue'
 
 export default {
   name: 'Spec',
@@ -41,7 +41,7 @@ export default {
     BaseDialog,
     Screen,
     Separator,
-    Document,
+    Doc,
     Tree,
   },
   data() {

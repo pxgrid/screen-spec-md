@@ -1,5 +1,5 @@
 import { connect } from 'vuex-connect'
-import DocumentEditor from './DocumentEditor.vue'
+import DocEditor from './DocEditor.vue'
 import editableTypes from '../../../../store/modules/editable/types'
 import { stateToProps, actionsToEvents } from 'vuex-connect-namespace-helper'
 export default connect({
@@ -20,4 +20,4 @@ export default connect({
       await store.dispatch(`editable/${editableTypes.FETCH_MARKDOWN}`)
     },
   },
-})(DocumentEditor)
+})(DocEditor)

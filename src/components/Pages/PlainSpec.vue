@@ -2,7 +2,7 @@
   <div>
     <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="Doc">
-      <Document
+      <Doc
         :width="'100%'"
         :convertedHtml="convertedHtml"
         :updatedDate="updatedDate"
@@ -26,7 +26,7 @@ import TheHeader from '../TheHeader.vue'
 import OverlayScreen from '../Common/OverlayScreen.vue'
 import BaseDialog from '../Common/BaseDialog.vue'
 import Tree from '../Common/Tree.vue'
-import Document from './Spec/Document.vue'
+import Doc from './Spec/Doc.vue'
 
 export default {
   name: 'Doc',
@@ -34,7 +34,7 @@ export default {
     TheHeader,
     OverlayScreen,
     BaseDialog,
-    Document,
+    Doc,
     Tree,
   },
   data() {
