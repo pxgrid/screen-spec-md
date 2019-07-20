@@ -34,7 +34,7 @@ import Separator from './Spec/Separator.vue'
 import Doc from './Spec/Doc.vue'
 
 export default {
-  name: 'Spec',
+  name: 'ScreenSpec',
   components: {
     TheHeader,
     OverlayScreen,

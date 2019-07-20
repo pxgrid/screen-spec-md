@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheHeader @openTreeDialog="onOpenTreeDialog" />
-    <div class="Doc">
+    <div class="PlainSpec">
       <Doc
         :width="'100%'"
         :convertedHtml="convertedHtml"
@@ -29,7 +29,7 @@ import Tree from '../Common/Tree.vue'
 import Doc from './Spec/Doc.vue'
 
 export default {
-  name: 'Doc',
+  name: 'PlainSpec',
   components: {
     TheHeader,
     OverlayScreen,
@@ -67,7 +67,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/variable.scss';
-.Doc {
+.PlainSpec {
   display: flex;
   max-height: calc(100vh - #{$theHeaderHeight});
   width: 100%;
