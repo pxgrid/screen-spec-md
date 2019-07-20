@@ -3,6 +3,7 @@
     <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="PlainSpec">
       <Doc
+        :editable="editable"
         :width="'100%'"
         :convertedHtml="convertedHtml"
         :updatedDate="updatedDate"
@@ -47,6 +48,7 @@ export default {
       treeData: 'treeData',
     }),
     ...mapState('editable', {
+      editable: 'editable',
       convertedHtml: 'body',
       updatedDate: 'updatedDate',
       updatedAuthorName: 'updatedAuthorName',
