@@ -21,7 +21,7 @@ module.exports = merge(base, {
     new CopyWebpackPlugin([{ from: './public/dummies', to: '../' }]),
     new DevPlugin('./public/dummies'),
     // NOTE: 開発中にmdファイル変更をwatchさせてHTML出力をトリガするための苦肉の策
-    new HtmlWebpackPlugin({ template: 'public/dummies/spec.md' }),
+    new HtmlWebpackPlugin({ template: 'public/dummies/screen-spec.md' }),
     new HtmlWebpackPlugin({ template: 'public/dummies/doc.md' }),
   ],
 })

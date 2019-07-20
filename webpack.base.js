@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    spec: './src/pages/spec.js',
+    'screen-spec': './src/pages/screen-spec.js',
     index: './src/pages/index.js',
     doc: './src/pages/doc.js',
     'image-canvas': './src/pages/image-canvas.js',
@@ -94,22 +94,22 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: '../doc.html',
       template: './public/doc.html',
-      excludeChunks: ['image-canvas', 'spec', 'index'],
+      excludeChunks: ['image-canvas', 'screen-spec', 'index'],
     }),
     new HtmlWebpackPlugin({
-      filename: '../spec.html',
-      template: './public/spec.html',
+      filename: '../screen-spec.html',
+      template: './public/screen-spec.html',
       excludeChunks: ['image-canvas', 'doc', 'index'],
     }),
     new HtmlWebpackPlugin({
       filename: '../index.html',
       template: './public/index.html',
-      excludeChunks: ['image-canvas', 'spec', 'doc'],
+      excludeChunks: ['image-canvas', 'screen-spec', 'doc'],
     }),
     new HtmlWebpackPlugin({
       filename: '../__image-canvas.html',
       template: 'public/__image-canvas.html',
-      excludeChunks: ['doc', 'index', 'spec'],
+      excludeChunks: ['doc', 'index', 'screen-spec'],
     }),
   ],
 }
