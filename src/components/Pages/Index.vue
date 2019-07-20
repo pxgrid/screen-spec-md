@@ -17,7 +17,7 @@ import { mapState } from 'vuex'
 import TheHeader from '../TheHeader.vue'
 import OverlayScreen from '../Common/OverlayScreen.vue'
 import BaseDialog from '../Common/BaseDialog.vue'
-import PageTree from '../PageTree.vue'
+import PageTree from '../Common/PageTree.vue'
 
 export default {
   name: 'Index',

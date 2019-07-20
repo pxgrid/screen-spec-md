@@ -31,7 +31,7 @@ import BaseDialog from '../Common/BaseDialog.vue'
 import Screen from '../Spec/Screen.vue'
 import Separator from '../Spec/Separator.vue'
 import Document from '../Spec/Document.vue'
-import PageTree from '../PageTree.vue'
+import PageTree from '../Common/PageTree.vue'
 
 export default {
   name: 'Spec',
