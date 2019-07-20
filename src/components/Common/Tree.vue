@@ -1,23 +1,18 @@
 <template>
-  <div class="PageTree">
+  <div class="Tree">
     <div>
-      <input class="PageTree_FilterInput" type="text" @keyup="onKeyUpFilter" />
+      <input class="Tree_FilterInput" type="text" @keyup="onKeyUpFilter" />
     </div>
-    <ul class="PageTree_List">
-      <TreeItem
-        class="PageTree_Item"
-        :opened="true"
-        :filterWord="filterWord"
-        :treeData="treeData"
-      />
+    <ul class="Tree_List">
+      <TreeItem class="Tree_Item" :opened="true" :filterWord="filterWord" :treeData="treeData" />
     </ul>
   </div>
 </template>
 
 <script>
-import TreeItem from './PageTree/TreeItem.vue'
+import TreeItem from './Tree/TreeItem.vue'
 export default {
-  name: 'PageTree',
+  name: 'Tree',
   components: {
     TreeItem,
   },
@@ -41,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.PageTree {
+.Tree {
   &_FilterInput {
     padding: 5px;
     width: 300px;

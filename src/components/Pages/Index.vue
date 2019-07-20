@@ -5,7 +5,7 @@
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
         <div slot="main">
-          <PageTree :treeData="treeData" />
+          <Tree :treeData="treeData" />
         </div>
       </BaseDialog>
     </OverlayScreen>
@@ -17,7 +17,7 @@ import { mapState } from 'vuex'
 import TheHeader from '../TheHeader.vue'
 import OverlayScreen from '../Common/OverlayScreen.vue'
 import BaseDialog from '../Common/BaseDialog.vue'
-import PageTree from '../Common/PageTree.vue'
+import Tree from '../Common/Tree.vue'
 
 export default {
   name: 'Index',
@@ -25,7 +25,7 @@ export default {
     TheHeader,
     OverlayScreen,
     BaseDialog,
-    PageTree,
+    Tree,
   },
   data() {
     return {

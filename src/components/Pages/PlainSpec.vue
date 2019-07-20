@@ -13,7 +13,7 @@
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
         <div slot="main">
-          <PageTree :treeData="treeData" />
+          <Tree :treeData="treeData" />
         </div>
       </BaseDialog>
     </OverlayScreen>
@@ -26,7 +26,7 @@ import TheHeader from '../TheHeader.vue'
 import OverlayScreen from '../Common/OverlayScreen.vue'
 import BaseDialog from '../Common/BaseDialog.vue'
 import Document from '../Spec/Document.vue'
-import PageTree from '../Common/PageTree.vue'
+import Tree from '../Common/Tree.vue'
 
 export default {
   name: 'Doc',
@@ -35,7 +35,7 @@ export default {
     OverlayScreen,
     BaseDialog,
     Document,
-    PageTree,
+    Tree,
   },
   data() {
     return {
