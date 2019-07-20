@@ -1,37 +1,37 @@
 <template>
-  <div :style="{ width: width }" class="Document">
-    <nav class="Document_NavBar">
-      <ul class="Document_NavBarTools">
-        <li class="Document_NavBarToolItem">
-          <button v-if="editable" class="Document_NavBarIconButton" @click="toggleShowEditor">
+  <div :style="{ width: width }" class="Doc">
+    <nav class="Doc_NavBar">
+      <ul class="Doc_NavBarTools">
+        <li class="Doc_NavBarToolItem">
+          <button v-if="editable" class="Doc_NavBarIconButton" @click="toggleShowEditor">
             <FontAwesomeIcon icon="edit" size="1x" />
           </button>
         </li>
       </ul>
-      <ul class="Document_Info">
-        <li class="Document_InfoItem">LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}</li>
-        <li class="Document_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
+      <ul class="Doc_Info">
+        <li class="Doc_InfoItem">LastUpdate: {{ updatedDate }} {{ updatedAuthorName }}</li>
+        <li class="Doc_InfoItem">Created: {{ createdDate }} {{ createdAuthorName }}</li>
       </ul>
     </nav>
-    <div v-show="!showEditor" class="Document_Inner">
+    <div v-show="!showEditor" class="Doc_Inner">
       <!-- eslint-disable vue/no-v-html -->
       <div class="UISP-Md" v-html="convertedHtml"></div>
       <!-- eslint-enable vue/no-v-html -->
     </div>
-    <div v-if="editable" v-show="showEditor" class="Document_Editor">
-      <DocumentEditor class="Document_DocumentEditor" @closeEditor="closeEditor"></DocumentEditor>
+    <div v-if="editable" v-show="showEditor" class="Doc_Editor">
+      <DocEditor class="Doc_DocEditor" @closeEditor="closeEditor"></DocEditor>
     </div>
   </div>
 </template>
 
 <script>
-import FontAwesomeIcon from '../Common/FontAwesomeIcon.vue'
-import DocumentEditor from './DocumentEditor/ConnectedDocumentEditor'
+import FontAwesomeIcon from '../../Common/FontAwesomeIcon.vue'
+import DocEditor from './DocEditor/ConnectedDocEditor'
 export default {
-  name: 'Document',
+  name: 'Doc',
   components: {
     FontAwesomeIcon,
-    DocumentEditor,
+    DocEditor,
   },
   props: {
     editable: {
@@ -80,8 +80,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/variable.scss';
-.Document {
+@import '../../../assets/variable.scss';
+.Doc {
   width: 50%;
   overflow: hidden;
   &_NavBar {
@@ -135,7 +135,7 @@ export default {
   &_Editor {
     height: calc(100vh - #{$theHeaderHeight} - #{$navBarsHeight});
   }
-  &_DocumentEditor {
+  &_DocEditor {
     height: 100%;
   }
   &_Footer {

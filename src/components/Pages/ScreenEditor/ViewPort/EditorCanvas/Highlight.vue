@@ -87,7 +87,7 @@
 
 <script>
 import { mapState, mapMutations, mapGetters } from 'vuex'
-import rootTypes from '../../../../store/types'
+import rootTypes from '../../../../../store/types'
 export default {
   name: 'Highlight',
   props: {

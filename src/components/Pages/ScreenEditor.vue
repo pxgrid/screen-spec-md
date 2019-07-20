@@ -17,9 +17,9 @@
 
 <script>
 import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
-import rootTypes from '../store/types'
-import Toolbar from '../components/ScreenEditor/Toolbar.vue'
-import ViewPort from '../components/ScreenEditor/ViewPort.vue'
+import rootTypes from '../../store/types'
+import Toolbar from './ScreenEditor/Toolbar.vue'
+import ViewPort from './ScreenEditor/ViewPort.vue'
 export default {
   name: 'ScreenEditor',
   components: {

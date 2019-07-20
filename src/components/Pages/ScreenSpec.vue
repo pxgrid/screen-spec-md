@@ -4,7 +4,7 @@
     <div class="Spec">
       <Screen :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
-      <Document
+      <Doc
         :editable="editable"
         :width="documentWidth"
         :convertedHtml="convertedHtml"
@@ -16,7 +16,7 @@
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
         <div slot="main">
-          <PageTree :treeData="treeData" />
+          <Tree :treeData="treeData" />
         </div>
       </BaseDialog>
     </OverlayScreen>
@@ -25,24 +25,24 @@
 
 <script>
 import { mapState } from 'vuex'
-import TheHeader from './TheHeader.vue'
-import OverlayScreen from './Common/OverlayScreen.vue'
-import BaseDialog from './Common/BaseDialog.vue'
+import TheHeader from '../TheHeader.vue'
+import OverlayScreen from '../Common/OverlayScreen.vue'
+import BaseDialog from '../Common/BaseDialog.vue'
+import Tree from '../Common/Tree.vue'
 import Screen from './Spec/Screen.vue'
 import Separator from './Spec/Separator.vue'
-import Document from './Spec/Document.vue'
-import PageTree from './PageTree.vue'
+import Doc from './Spec/Doc.vue'
 
 export default {
-  name: 'Spec',
+  name: 'ScreenSpec',
   components: {
     TheHeader,
     OverlayScreen,
     BaseDialog,
     Screen,
     Separator,
-    Document,
-    PageTree,
+    Doc,
+    Tree,
   },
   data() {
     return {
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/variable.scss';
+@import '../../assets/variable.scss';
 .Spec {
   display: flex;
   max-height: calc(100vh - #{$theHeaderHeight});

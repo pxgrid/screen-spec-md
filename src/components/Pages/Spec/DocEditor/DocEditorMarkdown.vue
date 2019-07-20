@@ -1,8 +1,8 @@
 <template>
-  <div class="DocumentEditorMarkdown">
+  <div class="DocEditorMarkdown">
     <textarea
       :value="markdown"
-      class="DocumentEditorMarkdown_TextArea"
+      class="DocEditorMarkdown_TextArea"
       @change="changeMarkdown"
       @paste="handlePaste"
     ></textarea>
@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import api from '../../../api'
+import api from '../../../../api'
 
 export default {
-  name: 'DocumentEditorMarkdown',
+  name: 'DocEditorMarkdown',
   props: {
     markdown: {
       type: String,
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.DocumentEditorMarkdown {
+.DocEditorMarkdown {
   box-sizing: border-box;
   padding: 8px;
   height: 100%;

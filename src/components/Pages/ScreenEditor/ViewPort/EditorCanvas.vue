@@ -28,7 +28,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import rootTypes from '../../../store/types'
+import rootTypes from '../../../../store/types'
 import Highlight from './EditorCanvas/Highlight.vue'
 export default {
   name: 'EditorCanvas',

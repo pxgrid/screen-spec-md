@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'EditorPreviewPanel',
+  name: 'DocEditorPreview',
   props: {
     previewedHtml: {
       type: String,

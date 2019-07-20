@@ -1,14 +1,14 @@
-import './assets/common.scss'
-import './assets/template.scss'
+import '../assets/common.scss'
+import '../assets/template.scss'
 
 import '@babel/polyfill'
 
 import Vue from 'vue'
-import store from './store'
+import store from '../store'
 
-import Spec from './components/Spec.vue'
-import types from './store/types'
-import editableTypes from './store/modules/editable/types'
+import ScreenSpec from '../components/Pages/ScreenSpec.vue'
+import types from '../store/types'
+import editableTypes from '../store/modules/editable/types'
 
 const storeInstance = store()
 Vue.config.productionTip = false
@@ -18,6 +18,6 @@ storeInstance.dispatch(types.FETCH_TREE_DATA).then(() => {
   new Vue({
     el: '#app',
     store: storeInstance,
-    render: h => h(Spec),
+    render: h => h(ScreenSpec),
   })
 })

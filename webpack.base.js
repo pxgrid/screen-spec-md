@@ -9,10 +9,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    spec: './src/spec.js',
-    index: './src/index.js',
-    doc: './src/doc.js',
-    'image-canvas': './src/image-canvas.js',
+    'screen-spec': './src/pages/screen-spec.js',
+    index: './src/pages/index.js',
+    'plain-spec': './src/pages/plain-spec.js',
+    'screen-editor': './src/pages/screen-editor.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -92,24 +92,24 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new HtmlWebpackPlugin({
-      filename: '../doc.html',
-      template: './public/doc.html',
-      excludeChunks: ['image-canvas', 'spec', 'index'],
+      filename: '../plain-spec.html',
+      template: './public/plain-spec.html',
+      excludeChunks: ['screen-editor', 'screen-spec', 'index'],
     }),
     new HtmlWebpackPlugin({
-      filename: '../spec.html',
-      template: './public/spec.html',
-      excludeChunks: ['image-canvas', 'doc', 'index'],
+      filename: '../screen-spec.html',
+      template: './public/screen-spec.html',
+      excludeChunks: ['screen-editor', 'plain-spec', 'index'],
     }),
     new HtmlWebpackPlugin({
       filename: '../index.html',
       template: './public/index.html',
-      excludeChunks: ['image-canvas', 'spec', 'doc'],
+      excludeChunks: ['screen-editor', 'screen-spec', 'plain-spec'],
     }),
     new HtmlWebpackPlugin({
-      filename: '../__image-canvas.html',
-      template: 'public/__image-canvas.html',
-      excludeChunks: ['doc', 'index', 'spec'],
+      filename: '../__screen-editor.html',
+      template: 'public/__screen-editor.html',
+      excludeChunks: ['plain-spec', 'index', 'screen-spec'],
     }),
   ],
 }

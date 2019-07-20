@@ -1,19 +1,11 @@
 <template>
   <div>
     <TheHeader @openTreeDialog="onOpenTreeDialog" />
-    <div class="Doc">
-      <Document
-        :width="'100%'"
-        :convertedHtml="convertedHtml"
-        :updatedDate="updatedDate"
-        :createdDate="createdDate"
-        :createdAuthorName="createdAuthorName"
-      />
-    </div>
+    <div class="Index">目次</div>
     <OverlayScreen v-show="isShowTreeDialog" @close="onCloseTreeDialog">
       <BaseDialog :overflowScroll="true" @close="onCloseTreeDialog">
         <div slot="main">
-          <PageTree :treeData="treeData" />
+          <Tree :treeData="treeData" />
         </div>
       </BaseDialog>
     </OverlayScreen>
@@ -22,20 +14,18 @@
 
 <script>
 import { mapState } from 'vuex'
-import TheHeader from './TheHeader.vue'
-import OverlayScreen from './Common/OverlayScreen.vue'
-import BaseDialog from './Common/BaseDialog.vue'
-import Document from './Spec/Document.vue'
-import PageTree from './PageTree.vue'
+import TheHeader from '../TheHeader.vue'
+import OverlayScreen from '../Common/OverlayScreen.vue'
+import BaseDialog from '../Common/BaseDialog.vue'
+import Tree from '../Common/Tree.vue'
 
 export default {
-  name: 'Doc',
+  name: 'Index',
   components: {
     TheHeader,
     OverlayScreen,
     BaseDialog,
-    Document,
-    PageTree,
+    Tree,
   },
   data() {
     return {
@@ -45,13 +35,6 @@ export default {
   computed: {
     ...mapState({
       treeData: 'treeData',
-    }),
-    ...mapState('editable', {
-      convertedHtml: 'body',
-      updatedDate: 'updatedDate',
-      updatedAuthorName: 'updatedAuthorName',
-      createdDate: 'createdDate',
-      createdAuthorName: 'createdAuthorName',
     }),
   },
   methods: {
@@ -66,8 +49,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/variable.scss';
-.Doc {
+@import '../../assets/variable.scss';
+.Index {
   display: flex;
   max-height: calc(100vh - #{$theHeaderHeight});
   width: 100%;
