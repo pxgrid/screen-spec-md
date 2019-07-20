@@ -11,7 +11,7 @@ module.exports = {
   entry: {
     'screen-spec': './src/pages/screen-spec.js',
     index: './src/pages/index.js',
-    doc: './src/pages/doc.js',
+    'plain-spec': './src/pages/plain-spec.js',
     'image-canvas': './src/pages/image-canvas.js',
   },
   output: {
@@ -92,24 +92,24 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new HtmlWebpackPlugin({
-      filename: '../doc.html',
-      template: './public/doc.html',
+      filename: '../plain-spec.html',
+      template: './public/plain-spec.html',
       excludeChunks: ['image-canvas', 'screen-spec', 'index'],
     }),
     new HtmlWebpackPlugin({
       filename: '../screen-spec.html',
       template: './public/screen-spec.html',
-      excludeChunks: ['image-canvas', 'doc', 'index'],
+      excludeChunks: ['image-canvas', 'plain-spec', 'index'],
     }),
     new HtmlWebpackPlugin({
       filename: '../index.html',
       template: './public/index.html',
-      excludeChunks: ['image-canvas', 'screen-spec', 'doc'],
+      excludeChunks: ['image-canvas', 'screen-spec', 'plain-spec'],
     }),
     new HtmlWebpackPlugin({
       filename: '../__image-canvas.html',
       template: 'public/__image-canvas.html',
-      excludeChunks: ['doc', 'index', 'screen-spec'],
+      excludeChunks: ['plain-spec', 'index', 'screen-spec'],
     }),
   ],
 }
