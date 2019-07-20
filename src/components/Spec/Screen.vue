@@ -66,7 +66,7 @@ export default {
       return window.SCREEN_SPEC_MD.svgCanvasHtml
     },
     imageCanvasPath() {
-      const path = '/__image-canvas.html'
+      const path = '/__screen-editor.html'
       const convertedQuery = window.SCREEN_SPEC_MD.absolutesScreen.replace(
         '?highlight=',
         '&highlight=',
