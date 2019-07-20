@@ -7,7 +7,7 @@
         data-test="closeBtn"
         @click="close"
       >
-        <FontAwesomeIcon icon="close" size="2x" />
+        <FontAwesomeIcon icon="close" size="1x" />
       </button>
     </div>
     <div ref="wrapper" class="BaseDialog_Wrapper">

@@ -1,12 +1,16 @@
 <template>
-  <li>
-    <div @click="toggle">
-      <span v-if="isDir"> [{{ open ? '-' : '+' }}] </span>
-      <a class="TreeItem_PageTitle" :class="{ _match: !matchFilter }" :href="treeData.rootPath">
+  <li class="TreeItem">
+    <div class="TreeItem_Toggle" @click="toggle">
+      <span v-if="isDir" class="TreeItem_DirIcon">
+        <FontAwesomeIcon v-show="!open" icon="plus-square" size="1x" />
+        <FontAwesomeIcon v-show="open" icon="minus-square" size="1x" />
+      </span>
+      <span v-else class="TreeItem_NodeIcon">└</span>
+      <a class="TreeItem_Title" :class="{ _match: !matchFilter }" :href="treeData.rootPath">
         {{ treeData.title }}
       </a>
     </div>
-    <ul v-if="isDir" v-show="open">
+    <ul class="TreeItem_List" v-if="isDir" v-show="open">
       <TreeItem
         v-for="(treeDataChild, index) in treeDataChildren"
         :key="index"
@@ -21,8 +25,12 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '../FontAwesomeIcon.vue'
 export default {
   name: 'TreeItem',
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
     opened: {
       type: Boolean,
@@ -84,10 +92,26 @@ export default {
 
 <style lang="scss" scoped>
 .TreeItem {
-  &_PageTitle {
+  &_Toggle {
+    cursor: pointer;
+  }
+  &_DirIcon {
+    color: #666666;
+  }
+  &_NodeIcon {
+    color: #999999;
+  }
+  &_Title {
+    &:hover {
+      color: #555555;
+    }
     &._match {
       color: #bbbbbb;
     }
+  }
+  &_List {
+    list-style: none;
+    padding-left: 20px;
   }
 }
 </style>

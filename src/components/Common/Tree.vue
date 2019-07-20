@@ -48,6 +48,8 @@ export default {
     overflow: scroll;
     height: 80vh;
     width: 600px;
+    padding-left: 0;
+    list-style: none;
   }
 }
 </style>

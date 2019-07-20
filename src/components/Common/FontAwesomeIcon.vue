@@ -10,6 +10,8 @@ import {
   faSearch,
   faSearchPlus,
   faSearchMinus,
+  faPlusSquare,
+  faMinusSquare,
   faTimes,
   faExpandArrowsAlt,
 } from '@fortawesome/free-solid-svg-icons'
@@ -56,6 +58,10 @@ export default {
           return faSearchPlus
         case 'search-minus':
           return faSearchMinus
+        case 'plus-square':
+          return faPlusSquare
+        case 'minus-square':
+          return faMinusSquare
         case 'expand-arrows-alt':
           return faExpandArrowsAlt
         default:
