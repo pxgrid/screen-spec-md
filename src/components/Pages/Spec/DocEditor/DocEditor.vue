@@ -14,19 +14,25 @@
       />
     </div>
     <div class="DocEditor_ActionBar">
-      <button @click="cancelEditMarkdown()">Cancel</button>
-      <button @click="writeMarkdown()">Save</button>
+      <ActionButton :sub="true">
+        <span @click="cancelEditMarkdown()">Cancel</span>
+      </ActionButton>
+      <ActionButton>
+        <span @click="writeMarkdown()">Save</span>
+      </ActionButton>
     </div>
   </div>
 </template>
 
 <script>
+import ActionButton from '../../../Common/Buttons/ActionButton.vue'
 import DocEditorTabBar from './DocEditorTabBar.vue'
 import DocEditorMarkdown from './DocEditorMarkdown.vue'
 import DocEditorPreview from './DocEditorPreview.vue'
 export default {
   name: 'DocEditor',
   components: {
+    ActionButton,
     DocEditorTabBar,
     DocEditorMarkdown,
     DocEditorPreview,
@@ -92,6 +98,9 @@ export default {
     padding: 20px;
     height: calc(100vh - #{$documentEditorTabBarHeight} - #{$theHeaderHeight} - #{$navBarsHeight});
     overflow: scroll;
+  }
+  &_ActionBar {
+    padding: 10px;
   }
 }
 </style>
