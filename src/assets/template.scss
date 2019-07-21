@@ -1428,6 +1428,36 @@ a:hover .UISP-MenuContent__itemImage:before {
   margin-top: 1em;
   margin-bottom: 16px;
 }
+.UISP-Md h1 a,
+.UISP-Md h2 a,
+.UISP-Md h3 a,
+.UISP-Md h4 a,
+.UISP-Md h5 a,
+.UISP-Md h6 a {
+  font-size: .6em;
+  width: 20px;
+  height: 20px;
+  margin-left: -20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.UISP-Md h1 a i,
+.UISP-Md h2 a i,
+.UISP-Md h3 a i,
+.UISP-Md h4 a i,
+.UISP-Md h5 a i,
+.UISP-Md h6 a i {
+  visibility: hidden;
+  color: #bbb;
+}
+.UISP-Md h1:hover a i,
+.UISP-Md h2:hover a i,
+.UISP-Md h3:hover a i,
+.UISP-Md h4:hover a i,
+.UISP-Md h5:hover a i,
+.UISP-Md h6:hover a i {
+  visibility: visible;
+}
 .UISP-Md p {
   margin: 1em 0;
 }

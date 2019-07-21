@@ -141,7 +141,7 @@ export default {
   }
   &_Inner {
     box-sizing: border-box;
-    padding: 20px;
+    padding: 20px 30px;
     height: calc(100vh - #{$theHeaderHeight} - #{$navBarsHeight});
     overflow: scroll;
   }
