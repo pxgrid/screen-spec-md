@@ -81,7 +81,7 @@ module.exports = {
     },
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['./dist', `./${require('./constants/dir-names').BUILT_IN_TEMPLATE}`]),
     new CopyWebpackPlugin([{ from: './node_modules/handlebars/dist/handlebars.js', to: './' }]),
     new CopyWebpackPlugin([{ from: './public/dummies/tree.json', to: '../' }]),
     new WriteFilePlugin(), // This is necessary for CopyWebpackPlugin used with webpack-dev-server

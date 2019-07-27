@@ -2,6 +2,7 @@ const path = require('path')
 const cpx = require('cpx')
 const globby = require('globby')
 
+const BUILT_IN_TEMPLATE = require('../../constants/dir-names').BUILT_IN_TEMPLATE
 const makeDir = require('../../lib/utils/make-dir')
 const loadTmpl = require('../../lib/load-tmpl')
 const buildPage = require('../../lib/build-page')
@@ -43,7 +44,7 @@ exports.handler = async argv => {
 
   const rootMdFilesPath = path.resolve(rootMdDir, './**/*.md')
   const relativeMdFilesPath = path.relative(process.cwd(), rootMdFilesPath)
-  const rootTemplateFilesPath = path.resolve(__dirname, '../../dist/**/*.html') //TODO: distの名前をdefault-template等に変えるべきかもしれない
+  const rootTemplateFilesPath = path.resolve(__dirname, `../../${BUILT_IN_TEMPLATE}/**/*.html`) //TODO: templateをユーザーが任意に選択できるようにする
 
   // templateのタイプをキーに、HandlebarsのTemplate関数を持つ
   const tmplMap = new Map()

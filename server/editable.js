@@ -9,18 +9,15 @@ const parsePageMd = require('../lib/parse-page-md/index')
 const parseGitLog = require('../lib/utils/git-log')
 const makeTemplateContext = require('../lib/build-page/make-template-context')
 
-const editable = app => {
+const editable = (app, mdDir) => {
   app.use(express.json())
   const uploads = multer({ dest: path.join(__dirname, '__uploads/') })
-
-  // 閲覧
-  // app.use(express.static('_spec')) //TODO: _specを外部から指定可能に
 
   // 画像のアップロード
   app.post('/__uploadImage', uploads.single('image'), (req, res) => {
     // TODO: ファイルタイプのチェック req.file.mimetype => "image/png"
     const uploadedPath = req.file.path
-    const pathToMove = path.resolve(process.cwd(), 'public/dummies', req.body.path) //TODO: public/dummiesを外部から指定可能に
+    const pathToMove = path.resolve(process.cwd(), mdDir, req.body.path)
 
     // TODO: ディレクトリトラバーサルチェック
     const regexp = new RegExp(`^${process.cwd()}`)
@@ -35,7 +32,7 @@ const editable = app => {
   // マークダウンの編集（読み込み）
   app.get('/__markdown', (req, res) => {
     const mdPath = req.query.path.replace(/\.html$/, '.md')
-    const absoluteMdPath = path.resolve(process.cwd(), 'public/dummies', `.${mdPath}`) //TODO: public/dummiesを外部から指定可能に
+    const absoluteMdPath = path.resolve(process.cwd(), mdDir, `.${mdPath}`)
     const mdContent = fs.readFileSync(absoluteMdPath, { encoding: 'utf-8' })
     res.send(mdContent)
   })
@@ -45,7 +42,7 @@ const editable = app => {
     ;(async () => {
       const htmlPath = req.body.path
       const mdSource = req.body.markdown
-      const mdRootPath = path.resolve(process.cwd(), 'public/dummies') //TODO: public/dummiesを外部から指定可能に
+      const mdRootPath = path.resolve(process.cwd(), mdDir)
       const mdPath = htmlPath.replace(/\.html$/, '.md')
       const absoluteMdPath = path.resolve(mdRootPath, `.${mdPath}`)
 
@@ -68,4 +65,18 @@ const editable = app => {
   })
 }
 
-module.exports = editable
+const devEditable = app => {
+  editable(app, 'public/dummies')
+}
+
+const productionEditable = (app, mdDir, destDir, port) => {
+  app.use(express.static(destDir))
+  //TODO: mdDirをwatchして、webpack.plugin.dev.js と同様にembedHtmlDummyPageを実行する
+  editable(app, mdDir)
+  app.listen(port, () => console.log(`edit-server: http://localhost:${port}`))
+}
+
+module.exports = {
+  devEditable,
+  productionEditable,
+}
