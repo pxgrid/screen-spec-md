@@ -62,6 +62,7 @@ typings/
 
 # screen-spec-md
 dist/
+built-in-template
 _spec/
 server/__uploads/*
 !server/__uploads/.gitkeep

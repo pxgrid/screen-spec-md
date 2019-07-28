@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const base = require('./webpack.base.js')
-const editable = require('./server/editable')
+const { devEditable } = require('./server/editable')
 const DevPlugin = require('./webpack.plugin.dev')
 
 module.exports = merge(base, {
@@ -14,7 +14,7 @@ module.exports = merge(base, {
     hot: true,
     host: '0.0.0.0',
     disableHostCheck: true,
-    after: editable,
+    after: devEditable,
   },
   devtool: 'eval-source-map',
   plugins: [

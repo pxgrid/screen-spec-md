@@ -39,6 +39,7 @@
     "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
+    "chokidar": "^3.0.2",
     "clean-webpack-plugin": "^0.1.19",
     "commander": "^2.19.0",
     "copy-webpack-plugin": "^4.5.4",
@@ -79,7 +80,8 @@
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.1.4",
-    "write-file-webpack-plugin": "^4.4.1"
+    "write-file-webpack-plugin": "^4.4.1",
+    "yargs": "^13.3.0"
   },
   "devDependencies": {
     "husky": "^1.1.1",
