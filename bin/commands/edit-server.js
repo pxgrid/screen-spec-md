@@ -1,8 +1,4 @@
-const express = require('express')
-
-const { productionEditable } = require('../../server/editable')
-
-const app = express()
+const startEditServer = require('../../server/edit-server')
 
 exports.command = 'edit-server [options]'
 
@@ -35,5 +31,5 @@ exports.builder = yargs => {
 }
 
 exports.handler = argv => {
-  productionEditable(app, argv.mdDir, argv.destDir, argv.port)
+  startEditServer(argv.mdDir, argv.destDir, argv.port)
 }

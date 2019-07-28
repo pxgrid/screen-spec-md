@@ -69,11 +69,8 @@ const devEditable = app => {
   editable(app, 'public/dummies')
 }
 
-const productionEditable = (app, mdDir, destDir, port) => {
-  app.use(express.static(destDir))
-  //TODO: mdDirをwatchして、webpack.plugin.dev.js と同様にembedHtmlDummyPageを実行する
+const productionEditable = (app, mdDir) => {
   editable(app, mdDir)
-  app.listen(port, () => console.log(`edit-server: http://localhost:${port}`))
 }
 
 module.exports = {
