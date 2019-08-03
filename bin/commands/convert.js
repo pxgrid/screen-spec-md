@@ -57,7 +57,11 @@ exports.handler = async argv => {
     .then(() => globby(relativeMdFilesPath))
     .then(paths => {
       return Promise.all([
-        buildPage(paths, { rootDir: rootMdDir, destDir: rootDestDir, tmplMap }),
+        buildPage(
+          paths,
+          { rootDir: rootMdDir, destDir: rootDestDir, tmplMap },
+          { isEditable: false }, // TODO: edit-serverではtrueにする
+        ),
         buildTreeJson(paths, { rootDir: rootMdDir, destDir: rootDestDir }),
       ])
     })

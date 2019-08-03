@@ -14,7 +14,7 @@ const embedHtmlDummyPage = async (html, pageName, dummiesDirPath) => {
     const mdSource = fs.readFileSync(mdPath, 'utf-8')
     const gitLog = await parseGitLog(mdPath)
     const pageInfo = parsePageMd(mdSource, gitLog, dummiesDirPath, mdPath)
-    const embeddedHtml = embedHtml(template, pageInfo, true)
+    const embeddedHtml = embedHtml(template, pageInfo, { isEditable: true })
     return Promise.resolve(embeddedHtml)
   } catch (e) {
     console.error(e)
