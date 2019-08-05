@@ -1,6 +1,7 @@
 const express = require('express')
 const chokidar = require('chokidar')
 
+const generateSpec = require('../lib/generate-spec')
 const { productionEditable } = require('../server/editable')
 
 const createServer = serveDir => {
@@ -41,7 +42,8 @@ function restart(mdDir, serveDir, port) {
   })
 }
 
-const startEditServer = (mdDir, serveDir, port) => {
+const startEditServer = async (mdDir, serveDir, port) => {
+  await generateSpec(mdDir, serveDir, { isEditable: true })
   start(mdDir, serveDir, port)
 
   const watcher = chokidar.watch(mdDir, {

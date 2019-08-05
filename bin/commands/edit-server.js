@@ -30,6 +30,6 @@ exports.builder = yargs => {
   })
 }
 
-exports.handler = argv => {
-  startEditServer(argv.mdDir, argv.destDir, argv.port)
+exports.handler = async argv => {
+  await startEditServer(argv.mdDir, argv.destDir, argv.port)
 }
