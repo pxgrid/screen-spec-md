@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const chokidar = require('chokidar')
 
@@ -51,16 +52,22 @@ const startEditServer = async (mdDir, serveDir, port) => {
     persistent: true,
   })
   watcher
-    .on('add', path => {
-      console.log(`File ${path} has been added`)
+    .on('add', async absoluteMdPath => {
+      const targetMdPath = path.relative(mdDir, absoluteMdPath)
+      console.log(`File ${targetMdPath} has been added`)
+      await generateSpec(mdDir, serveDir, { isEditable: true, targetMdPath: targetMdPath })
       restart(mdDir, serveDir, port)
     })
-    .on('change', path => {
-      console.log(`File ${path} has been changed`)
+    .on('change', async absoluteMdPath => {
+      const targetMdPath = path.relative(mdDir, absoluteMdPath)
+      console.log(`File ${targetMdPath} has been changed`)
+      await generateSpec(mdDir, serveDir, { isEditable: true, targetMdPath: targetMdPath })
       restart(mdDir, serveDir, port)
     })
-    .on('unlink', path => {
-      console.log(`File ${path} has been removed`)
+    .on('unlink', async absoluteMdPath => {
+      const targetMdPath = path.relative(mdDir, absoluteMdPath)
+      console.log(`File ${targetMdPath} has been removed`)
+      await generateSpec(mdDir, serveDir, { isEditable: true, targetMdPath: targetMdPath })
       restart(mdDir, serveDir, port)
     })
 }
