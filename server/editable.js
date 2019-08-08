@@ -32,7 +32,7 @@ const editable = (app, mdDir) => {
   // マークダウンの編集（読み込み）
   app.get('/__markdown', (req, res) => {
     const mdPath = req.query.path.replace(/\.html$/, '.md')
-    const absoluteMdPath = path.resolve(process.cwd(), mdDir, `.${mdPath}`)
+    const absoluteMdPath = path.resolve(process.cwd(), mdDir + '/' + mdPath)
     const mdContent = fs.readFileSync(absoluteMdPath, { encoding: 'utf-8' })
     res.send(mdContent)
   })
@@ -44,14 +44,14 @@ const editable = (app, mdDir) => {
       const mdSource = req.body.markdown
       const mdRootPath = path.resolve(process.cwd(), mdDir)
       const mdPath = htmlPath.replace(/\.html$/, '.md')
-      const absoluteMdPath = path.resolve(mdRootPath, `.${mdPath}`)
+      const absoluteMdPath = path.resolve(mdRootPath, mdPath)
 
       // マークダウンの更新
       fs.writeFileSync(absoluteMdPath, mdSource, { encoding: 'utf-8' })
 
       // ページを構成するための情報を返す
       const gitLog = await parseGitLog(absoluteMdPath)
-      const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdPath)
+      const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdDir + '/' + mdPath)
       const context = makeTemplateContext(pageInfo, { isEditable: true })
       res.json({ context: context })
     })().catch(next)

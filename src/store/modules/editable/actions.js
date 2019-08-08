@@ -10,7 +10,7 @@ export default {
   },
 
   async [types.WRITE_MARKDOWN]({ commit }, { markdown }) {
-    const path = location.pathname
+    const path = location.pathname.replace(/^\//, '')
     const res = await api.writeMarkdown({ path, markdown })
     commit(types.SET_PAGE_CONTEXT, res.data.context)
     commit(types.SET_MARKDOWN, { markdown })
