@@ -2,7 +2,9 @@ const path = require('path')
 const express = require('express')
 const chokidar = require('chokidar')
 
-const generateSpec = require('../lib/generate-spec')
+const generateSpecAndTree = require('../lib/generate-spec-and-tree')
+const writeSpec = require('../lib/write-spec')
+const generateTree = require('../lib/generate-tree')
 const { productionEditable } = require('../server/editable')
 
 const createServer = serveDir => {
@@ -44,7 +46,7 @@ function restart(mdDir, serveDir, port) {
 }
 
 const startEditServer = async (mdDir, serveDir, port) => {
-  await generateSpec(mdDir, serveDir, { isEditable: true })
+  await generateSpecAndTree(mdDir, serveDir, { isEditable: true })
   start(mdDir, serveDir, port)
 
   const watcher = chokidar.watch(mdDir, {
@@ -55,19 +57,20 @@ const startEditServer = async (mdDir, serveDir, port) => {
     .on('add', async absoluteMdPath => {
       const targetMdPath = path.relative(mdDir, absoluteMdPath)
       console.log(`File ${targetMdPath} has been added`)
-      await generateSpec(mdDir, serveDir, { isEditable: true, targetMdPath: targetMdPath })
+      await writeSpec(mdDir, serveDir, targetMdPath)
+      await generateTree(mdDir, serveDir)
       restart(mdDir, serveDir, port)
     })
     .on('change', async absoluteMdPath => {
       const targetMdPath = path.relative(mdDir, absoluteMdPath)
       console.log(`File ${targetMdPath} has been changed`)
-      await generateSpec(mdDir, serveDir, { isEditable: true, targetMdPath: targetMdPath })
+      await writeSpec(mdDir, serveDir, targetMdPath)
       restart(mdDir, serveDir, port)
     })
     .on('unlink', async absoluteMdPath => {
       const targetMdPath = path.relative(mdDir, absoluteMdPath)
       console.log(`File ${targetMdPath} has been removed`)
-      await generateSpec(mdDir, serveDir, { isEditable: true, targetMdPath: targetMdPath })
+      await generateTree(mdDir, serveDir)
       restart(mdDir, serveDir, port)
     })
 }

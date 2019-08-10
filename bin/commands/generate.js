@@ -1,4 +1,4 @@
-const generateSpec = require('../../lib/generate-spec')
+const generateSpecAndTree = require('../../lib/generate-spec-and-tree')
 
 exports.command = ['* [options]', 'generate']
 
@@ -24,5 +24,5 @@ exports.builder = yargs => {
 }
 
 exports.handler = async argv => {
-  await generateSpec(argv.mdDir, argv.destDir, { isEditable: false })
+  await generateSpecAndTree(argv.mdDir, argv.destDir, { isEditable: false })
 }
