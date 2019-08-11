@@ -31,7 +31,10 @@ const editable = (app, mdDir) => {
 
   // マークダウンの編集（読み込み）
   app.get('/__markdown', (req, res) => {
-    const mdPath = req.query.path.replace(/\.html$/, '.md')
+    const queryPath = req.query.path
+    const mdPath = /\.html$/.test(queryPath)
+      ? queryPath.replace(/\.html$/, '.md') // ex. /path/to/index.html => /path/to/index.md
+      : path.resolve(queryPath, 'index.md') // ex. /path/to/ => /path/to/index.md
     const absoluteMdPath = path.resolve(process.cwd(), mdDir + '/' + mdPath)
     const mdContent = fs.readFileSync(absoluteMdPath, { encoding: 'utf-8' })
     res.send(mdContent)

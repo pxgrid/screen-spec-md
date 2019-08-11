@@ -32,7 +32,6 @@ class API {
   }
 
   fetchMarkdown({ path }) {
-    console.log('path', path)
     const url = '/__markdown'
     return this._request({
       url,
