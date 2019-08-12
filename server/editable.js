@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs')
+const mkdirp = require('mkdirp')
 const express = require('express')
 const multer = require('multer')
 
@@ -25,7 +26,10 @@ const editable = (app, mdDir) => {
     const regexp = new RegExp(`^${process.cwd()}`)
     console.log('regexp', regexp.test(pathToMove))
 
-    // TODO: ディレクトリが無ければ作成する
+    // make directory if not exists
+    if (fs.existsSync(path.dirname(pathToMove)) === false) {
+      mkdirp(path.dirname(pathToMove))
+    }
 
     fs.renameSync(uploadedPath, pathToMove)
     res.json({})
