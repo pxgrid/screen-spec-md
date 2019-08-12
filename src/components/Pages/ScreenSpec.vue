@@ -2,7 +2,7 @@
   <div class="ScreenSpec">
     <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="Spec">
-      <Screen :width="screenWidth" />
+      <Screen :editable="editable" :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
       <Doc
         :editable="editable"

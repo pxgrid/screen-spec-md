@@ -34,10 +34,18 @@
     </div>
 
     <portal to="portal">
-      <OverlayScreen v-if="isShowScreenEditor" @close="onCloseScreenEditor">
-        <BaseDialog :overflowScroll="true" @close="onCloseScreenEditor">
-          <div slot="main">
-            <ScreenEditor :absolutesScreen="absolutesScreen" />
+      <OverlayScreen v-show="isShowScreenEditor" @close="onCloseScreenEditor">
+        <BaseDialog class="Screen_EditorDialog" :overflowScroll="true" @close="onCloseScreenEditor">
+          <div slot="main" style="height:100%">
+            <ScreenEditor :screenPath="screenPath" :highlight="highlight" />
+          </div>
+          <div v-if="editable" slot="footer" class="Screen_EditorDialogActionBar">
+            <ActionButton :sub="true">
+              <span @click="onCloseScreenEditor()">Cancel</span>
+            </ActionButton>
+            <ActionButton>
+              <span @click="onWriteScreenMetadata()">Save</span>
+            </ActionButton>
           </div>
         </BaseDialog>
       </OverlayScreen>
@@ -46,9 +54,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import editableTypes from '../../../store/modules/editable/types'
+import getParamsValue from '../../../modules/getParamsValue'
 import OverlayScreen from '../../Common/OverlayScreen.vue'
 import BaseDialog from '../../Common/BaseDialog.vue'
+import ActionButton from '../../Common/Buttons/ActionButton.vue'
 import ScreenEditor from '../../Pages/ScreenEditor.vue'
 import ScreenToolbar from './Screen/ScreenToolbar.vue'
 
@@ -62,8 +73,13 @@ export default {
     BaseDialog: BaseDialog,
     ScreenToolbar: ScreenToolbar,
     ScreenEditor: ScreenEditor,
+    ActionButton: ActionButton,
   },
   props: {
+    editable: {
+      type: Boolean,
+      required: true,
+    },
     width: {
       type: String,
       required: true,
@@ -71,6 +87,7 @@ export default {
   },
   data() {
     return {
+      svgCanvasHtml: window.SCREEN_SPEC_MD.svgCanvasHtml,
       isShowScreenEditor: false,
       isScreenFit: true,
       isHighlight: true,
@@ -81,18 +98,21 @@ export default {
     ...mapGetters({
       filenameWithCoordinates: 'filenameWithCoordinates',
     }),
-    svgCanvasHtml() {
-      return window.SCREEN_SPEC_MD.svgCanvasHtml
+    screen() {
+      return window.SCREEN_SPEC_MD.screen
     },
-    absolutesScreen() {
-      const convertedQuery = window.SCREEN_SPEC_MD.absolutesScreen.replace(
-        '?highlight=',
-        '&highlight=',
-      )
-      return `?src=${convertedQuery}`
+    screenPath() {
+      // ex. /path/to/index.html?src=index.png&highlight=[[1,2,3,4]] => /path/to/index.html
+      return window.SCREEN_SPEC_MD.screen.replace(/\?.+/, '')
+    },
+    highlight() {
+      return getParamsValue(window.SCREEN_SPEC_MD.screen, 'highlight')
     },
   },
   methods: {
+    ...mapActions('editable', {
+      writeScreenMetadata: editableTypes.WRITE_SCREEN_METADATA,
+    }),
     onZoomFit() {
       const svgRoot = this._getSVGRootRef()
       svgRoot.removeAttribute('style')
@@ -116,6 +136,12 @@ export default {
     },
     onCloseScreenEditor() {
       this.isShowScreenEditor = false
+    },
+    onWriteScreenMetadata() {
+      this.writeScreenMetadata({ screenMetadata: this.filenameWithCoordinates }).then(context => {
+        this.svgCanvasHtml = context.svgCanvas
+      })
+      this.onCloseScreenEditor()
     },
     _removeZoomClass() {},
     _getSVGRootRef() {
@@ -190,15 +216,16 @@ export default {
       padding: 0;
     }
   }
+  &_EditorDialog {
+    width: 90vw;
+    height: 95vh;
+  }
+  &_EditorDialogActionBar {
+    padding: 10px;
+  }
 }
 </style>
 <style lang="scss">
-/* ==========================================================================
-   Section comment block
-   ========================================================================== */
-/* Sub-section comment block
-   ========================================================================== */
-/* Basic comment */
 .UISP-Screen {
   display: inline-block;
   padding: 20px;

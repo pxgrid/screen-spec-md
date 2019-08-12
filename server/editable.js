@@ -9,6 +9,7 @@ const md2html = require('../lib/utils/md2html')
 const parsePageMd = require('../lib/parse-page-md/index')
 const parseGitLog = require('../lib/utils/git-log')
 const makeTemplateContext = require('../lib/build-page/make-template-context')
+const patchMetadataToMd = require('../lib/metadata/patch-metadata-to-md')
 
 const editable = (app, mdDir) => {
   app.use(express.json())
@@ -57,6 +58,29 @@ const editable = (app, mdDir) => {
 
       // マークダウンの更新
       fs.writeFileSync(absoluteMdPath, mdSource, { encoding: 'utf-8' })
+
+      // ページを構成するための情報を返す
+      const gitLog = await parseGitLog(absoluteMdPath)
+      const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdDir + '/' + mdPath)
+      const context = makeTemplateContext(pageInfo, { isEditable: true })
+      res.json({ context: context })
+    })().catch(next)
+  })
+
+  // メタデータscreenの値の編集（書き込み）と変換したHTMLの出力
+  app.post('/__screenMetadata', (req, res, next) => {
+    ;(async () => {
+      const htmlPath = req.body.path
+      const screenMetadata = req.body.screenMetadata
+      const mdRootPath = path.resolve(process.cwd(), mdDir)
+      const mdPath = htmlPath.replace(/\.html$/, '.md')
+      const absoluteMdPath = path.resolve(mdRootPath, mdPath)
+
+      // マークダウンの読み込み
+      const md = fs.readFileSync(absoluteMdPath, 'utf8')
+      const mdSource = patchMetadataToMd({ screen: screenMetadata }, md)
+      // screen情報の更新
+      fs.writeFileSync(absoluteMdPath, mdSource, { encoding: 'utf8' })
 
       // ページを構成するための情報を返す
       const gitLog = await parseGitLog(absoluteMdPath)
