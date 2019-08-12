@@ -26,6 +26,12 @@ export default {
     Toolbar,
     ViewPort,
   },
+  props: {
+    absolutesScreen: {
+      type: String,
+      required: true,
+    },
+  },
   computed: {
     ...mapState({
       editScreen: 'editScreen',
@@ -57,7 +63,7 @@ export default {
       this.setImage({ src, filename })
     },
     initByQueries() {
-      const queries = window.location.search
+      const queries = this.absolutesScreen
       const queriesList = queries.slice(1).split('&')
       let src = ''
       let highlight = ''
@@ -83,8 +89,8 @@ export default {
 .ScreenEditor {
   table-layout: fixed;
   display: table;
-  width: 100%;
-  min-height: 100%;
+  width: 90vw;
+  height: 90vh;
   &_Container {
     height: 100%;
     display: table-row;

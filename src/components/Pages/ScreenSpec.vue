@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ScreenSpec">
     <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="Spec">
       <Screen :width="screenWidth" />
@@ -20,6 +20,7 @@
         </div>
       </BaseDialog>
     </OverlayScreen>
+    <portal-target name="portal" class="ScreenSpec" />
   </div>
 </template>
 

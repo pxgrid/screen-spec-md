@@ -9,11 +9,13 @@
         @zoomOut="onZoomOut()"
         @toggleHighlight="onToggleHighlight()"
       />
-      <div class="Screen_ToolLinks">
-        <a class="Screen_ImageCanvasLink" :href="imageCanvasPath" target="EDT-Editor">
-          edit
-        </a>
-      </div>
+      <ul class="Screen_RightTools">
+        <li class="Screen_RightToolsItem">
+          <button class="Screen_ImageCanvasLink" @click="onOpenScreenEditor">
+            edit
+          </button>
+        </li>
+      </ul>
     </nav>
     <div class="Screen_Main">
       <div class="Screen_MainInner">
@@ -30,11 +32,24 @@
         <!-- eslint-enable vue/no-v-html -->
       </div>
     </div>
+
+    <portal to="portal">
+      <OverlayScreen v-if="isShowScreenEditor" @close="onCloseScreenEditor">
+        <BaseDialog :overflowScroll="true" @close="onCloseScreenEditor">
+          <div slot="main">
+            <ScreenEditor :absolutesScreen="absolutesScreen" />
+          </div>
+        </BaseDialog>
+      </OverlayScreen>
+    </portal>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import OverlayScreen from '../../Common/OverlayScreen.vue'
+import BaseDialog from '../../Common/BaseDialog.vue'
+import ScreenEditor from '../../Pages/ScreenEditor.vue'
 import ScreenToolbar from './Screen/ScreenToolbar.vue'
 
 const ZOOM_MAX = 200
@@ -43,7 +58,10 @@ const ZOOM_MIN = 25
 export default {
   name: 'Screen',
   components: {
+    OverlayScreen: OverlayScreen,
+    BaseDialog: BaseDialog,
     ScreenToolbar: ScreenToolbar,
+    ScreenEditor: ScreenEditor,
   },
   props: {
     width: {
@@ -53,6 +71,7 @@ export default {
   },
   data() {
     return {
+      isShowScreenEditor: false,
       isScreenFit: true,
       isHighlight: true,
       zoomValue: 100,
@@ -65,13 +84,12 @@ export default {
     svgCanvasHtml() {
       return window.SCREEN_SPEC_MD.svgCanvasHtml
     },
-    imageCanvasPath() {
-      const path = '/__screen-editor.html'
+    absolutesScreen() {
       const convertedQuery = window.SCREEN_SPEC_MD.absolutesScreen.replace(
         '?highlight=',
         '&highlight=',
       )
-      return `${path}?src=${convertedQuery}`
+      return `?src=${convertedQuery}`
     },
   },
   methods: {
@@ -92,6 +110,12 @@ export default {
     },
     onToggleHighlight() {
       this.isHighlight = !this.isHighlight
+    },
+    onOpenScreenEditor() {
+      this.isShowScreenEditor = true
+    },
+    onCloseScreenEditor() {
+      this.isShowScreenEditor = false
     },
     _removeZoomClass() {},
     _getSVGRootRef() {
@@ -121,7 +145,12 @@ export default {
     background-color: #eeeeee;
     font-size: 0.9rem;
   }
-  &_ToolLinks {
+  &_RightTools {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &_RightToolsItem {
     text-align: right;
   }
   &_ImageCanvasLink {
@@ -129,6 +158,8 @@ export default {
     display: inline-block;
     line-height: 100%;
     padding: 10px;
+    border: none;
+    background-color: transparent;
   }
   &_Magnification {
     background-color: #dddddd;
