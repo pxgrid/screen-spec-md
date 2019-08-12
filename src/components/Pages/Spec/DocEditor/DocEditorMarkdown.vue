@@ -56,7 +56,8 @@ export default {
     },
     _uploadImage(imagePath, imageFile) {
       const formData = new FormData()
-      formData.append('path', imagePath)
+      formData.append('imagePath', imagePath)
+      formData.append('filePath', location.pathname)
       formData.append('image', imageFile)
       return api.uploadImage({ formData })
     },

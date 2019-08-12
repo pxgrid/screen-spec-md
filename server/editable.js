@@ -17,7 +17,9 @@ const editable = (app, mdDir) => {
   app.post('/__uploadImage', uploads.single('image'), (req, res) => {
     // TODO: ファイルタイプのチェック req.file.mimetype => "image/png"
     const uploadedPath = req.file.path
-    const pathToMove = path.resolve(process.cwd(), mdDir, req.body.path)
+    const { filePath, imagePath } = req.body
+    const dirPath = path.dirname(filePath).replace(/^\//, '') //ex. /path/to/index.html => path/to/
+    const pathToMove = path.resolve(process.cwd(), mdDir, dirPath, imagePath)
 
     // TODO: ディレクトリトラバーサルチェック
     const regexp = new RegExp(`^${process.cwd()}`)
