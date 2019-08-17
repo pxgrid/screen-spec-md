@@ -53,6 +53,18 @@ class API {
     })
   }
 
+  writeMetadataScreen({ path, screenMetadata }) {
+    const url = '/__screenMetadata'
+    return this._request({
+      url,
+      method: 'POST',
+      data: {
+        path,
+        screenMetadata,
+      },
+    })
+  }
+
   fetchConvertedHtml({ markdown }) {
     const url = '/__html'
     return this._request({

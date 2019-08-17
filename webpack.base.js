@@ -12,7 +12,6 @@ module.exports = {
     'screen-spec': './src/pages/screen-spec.js',
     index: './src/pages/index.js',
     'plain-spec': './src/pages/plain-spec.js',
-    'screen-editor': './src/pages/screen-editor.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -94,22 +93,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: '../plain-spec.html',
       template: './public/plain-spec.html',
-      excludeChunks: ['screen-editor', 'screen-spec', 'index'],
+      excludeChunks: ['screen-spec', 'index'],
     }),
     new HtmlWebpackPlugin({
       filename: '../screen-spec.html',
       template: './public/screen-spec.html',
-      excludeChunks: ['screen-editor', 'plain-spec', 'index'],
+      excludeChunks: ['plain-spec', 'index'],
     }),
     new HtmlWebpackPlugin({
       filename: '../index.html',
       template: './public/index.html',
-      excludeChunks: ['screen-editor', 'screen-spec', 'plain-spec'],
-    }),
-    new HtmlWebpackPlugin({
-      filename: '../__screen-editor.html',
-      template: 'public/__screen-editor.html',
-      excludeChunks: ['plain-spec', 'index', 'screen-spec'],
+      excludeChunks: ['screen-spec', 'plain-spec'],
     }),
   ],
 }

@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="ScreenSpec">
     <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="Spec">
-      <Screen :width="screenWidth" />
+      <Screen :editable="editable" :width="screenWidth" />
       <Separator @drag="onSeparatorDrag" />
       <Doc
         :editable="editable"
@@ -20,6 +20,7 @@
         </div>
       </BaseDialog>
     </OverlayScreen>
+    <portal-target name="portal" class="ScreenSpec" />
   </div>
 </template>
 

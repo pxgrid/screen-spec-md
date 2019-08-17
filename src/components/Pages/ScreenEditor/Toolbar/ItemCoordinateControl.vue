@@ -22,10 +22,6 @@ const LOOKUP = { x: 0, y: 1, w: 2, h: 3 }
 export default {
   name: 'ItemCoordinateControl',
   props: {
-    coordinate: {
-      type: Object,
-      required: true,
-    },
     coordinateKey: {
       // 'x' or 'y' or 'w' or 'h'
       type: String,

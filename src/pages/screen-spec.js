@@ -5,6 +5,8 @@ import '@babel/polyfill'
 
 import Vue from 'vue'
 import store from '../store'
+import PortalVue from 'portal-vue'
+Vue.use(PortalVue)
 
 import ScreenSpec from '../components/Pages/ScreenSpec.vue'
 import types from '../store/types'

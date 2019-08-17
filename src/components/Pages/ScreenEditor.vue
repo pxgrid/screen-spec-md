@@ -26,6 +26,16 @@ export default {
     Toolbar,
     ViewPort,
   },
+  props: {
+    screenPath: {
+      type: String,
+      required: true,
+    },
+    highlight: {
+      type: String,
+      required: true,
+    },
+  },
   computed: {
     ...mapState({
       editScreen: 'editScreen',
@@ -57,23 +67,10 @@ export default {
       this.setImage({ src, filename })
     },
     initByQueries() {
-      const queries = window.location.search
-      const queriesList = queries.slice(1).split('&')
-      let src = ''
-      let highlight = ''
-      queriesList.forEach(query => {
-        const [key, val] = query.split('=')
-        if (key === 'src') {
-          src = val
-        }
-        if (key === 'highlight') {
-          highlight = val
-        }
-      })
-      const filename = src.split('/').pop()
-      this.setImage({ src, filename })
+      // TODO: この辺りが旧アプリ(ui-spec)からの移行の影響で実装が雑なので、store含めてリファクタリングする
+      this.setImage({ src: this.screenPath, filename: this.screenPath })
       this.selectHighlight(0)
-      this.initCoordinates({ coordinateArrayList: JSON.parse(highlight) })
+      this.initCoordinates({ coordinateArrayList: JSON.parse(this.highlight) })
     },
   },
 }
@@ -84,7 +81,7 @@ export default {
   table-layout: fixed;
   display: table;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   &_Container {
     height: 100%;
     display: table-row;
