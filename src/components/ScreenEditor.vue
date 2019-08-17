@@ -6,6 +6,7 @@
       :selectedItemLabel="selectedItemLabel"
       :filenameWithCoordinates="filenameWithCoordinates"
       @changeSelectedItemLabel="onChangeSelectedItemLabel"
+      @zoom="onZoom"
     />
     <div class="ScreenEditor_Container">
       <ViewPort
@@ -64,6 +65,7 @@ export default {
       initCoordinates: rootTypes.INIT_COORDINATES,
       selectHighlight: rootTypes.SELECT_HIGHLIGHT,
       changeSelectedItemLabel: rootTypes.CHANGE_SELECTED_ITEM_LABEL,
+      zoom: rootTypes.ZOOM,
     }),
     ...mapActions({
       setImage: rootTypes.SET_IMAGE,
@@ -82,6 +84,9 @@ export default {
     },
     onChangeSelectedItemLabel({ relativeValue }) {
       this.changeSelectedItemLabel({ relativeValue })
+    },
+    onZoom(zoomValue) {
+      this.zoom(zoomValue)
     },
   },
 }

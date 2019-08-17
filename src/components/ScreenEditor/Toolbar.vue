@@ -39,7 +39,7 @@
         :editScreen="editScreen"
         :coordinates="coordinates"
       />
-      <ItemZoomControl />
+      <ItemZoomControl @zoom="onZoom" />
     </div>
   </div>
 </template>
@@ -78,6 +78,9 @@ export default {
   methods: {
     onChangeSelectedItemLabel({ relativeValue }) {
       this.$emit('changeSelectedItemLabel', { relativeValue })
+    },
+    onZoom(zoomValue) {
+      this.$emit('zoom', zoomValue)
     },
   },
 }
