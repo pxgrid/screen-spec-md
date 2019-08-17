@@ -18,6 +18,7 @@
         :draggingElement="draggingElement"
         @addHighlight="onAddHighlight"
         @setImage="onSetImage"
+        @setDraggingElement="onSetDraggingElement"
       />
     </div>
   </div>
@@ -67,6 +68,7 @@ export default {
       initCoordinates: rootTypes.INIT_COORDINATES,
       selectHighlight: rootTypes.SELECT_HIGHLIGHT,
       changeSelectedItemLabel: rootTypes.CHANGE_SELECTED_ITEM_LABEL,
+      setDraggingElement: rootTypes.SET_DRAGGING_ELEMENT,
       zoom: rootTypes.ZOOM,
     }),
     ...mapActions({
@@ -77,6 +79,9 @@ export default {
     },
     onSetImage({ src, filename }) {
       this.setImage({ src, filename })
+    },
+    onSetDraggingElement({ refCode, startOffsetX, startOffsetY }) {
+      this.setDraggingElement({ refCode, startOffsetX, startOffsetY })
     },
     initByQueries() {
       // TODO: この辺りが旧アプリ(ui-spec)からの移行の影響で実装が雑なので、store含めてリファクタリングする

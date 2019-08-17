@@ -10,6 +10,7 @@
         :viewbox="viewbox"
         :draggingElement="draggingElement"
         @addHighlight="onAddHighlight"
+        @setDraggingElement="onSetDraggingElement"
       />
       <EditorDrop v-else @setImage="onSetImage" />
     </div>
@@ -57,6 +58,9 @@ export default {
     },
     onSetImage({ src, filename }) {
       this.$emit('setImage', { src, filename })
+    },
+    onSetDraggingElement({ refCode, startOffsetX, startOffsetY }) {
+      this.$emit('setDraggingElement', { refCode, startOffsetX, startOffsetY })
     },
   },
 }

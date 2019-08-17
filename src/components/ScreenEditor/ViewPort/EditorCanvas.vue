@@ -23,6 +23,7 @@
       :height="editScreen.height"
       :getCoordinateByXY="getCoordinateByXY"
       :draggingElement="draggingElement"
+      @setDraggingElement="onSetDraggingElement"
     />
   </svg>
 </template>
@@ -76,6 +77,9 @@ export default {
     ...mapMutations({
       removeHighlight: rootTypes.REMOVE_HIGHLIGHT,
     }),
+    onSetDraggingElement({ refCode, startOffsetX, startOffsetY }) {
+      this.$emit('setDraggingElement', { refCode, startOffsetX, startOffsetY })
+    },
     _handleKeyDown(e) {
       if (e.keyCode === 8) {
         e.preventDefault()
