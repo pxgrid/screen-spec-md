@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import rootTypes from '../../../../store/types'
+import rootTypes from '../../../store/types'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'ItemOrderControl',

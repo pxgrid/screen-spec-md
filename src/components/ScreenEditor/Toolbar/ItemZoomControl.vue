@@ -18,7 +18,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import rootTypes from '../../../../store/types'
+import rootTypes from '../../../store/types'
 export default {
   name: 'ItemZoomControl',
   methods: {

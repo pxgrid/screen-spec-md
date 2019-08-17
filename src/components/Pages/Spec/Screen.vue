@@ -61,7 +61,7 @@ import FontAwesomeIcon from '../../Common/FontAwesomeIcon.vue'
 import OverlayScreen from '../../Common/OverlayScreen.vue'
 import BaseDialog from '../../Common/BaseDialog.vue'
 import ActionButton from '../../Common/Buttons/ActionButton.vue'
-import ScreenEditor from '../../Pages/ScreenEditor.vue'
+import ScreenEditor from '../../ScreenEditor.vue'
 import ScreenToolbar from './Screen/ScreenToolbar.vue'
 
 const ZOOM_MAX = 200
