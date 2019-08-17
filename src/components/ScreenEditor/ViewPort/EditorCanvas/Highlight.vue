@@ -86,8 +86,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import rootTypes from '../../../../store/types'
 export default {
   name: 'Highlight',
   props: {
@@ -147,9 +145,6 @@ export default {
     document.addEventListener('mouseup', this._dragEnd)
   },
   methods: {
-    ...mapMutations({
-      setCoordinates: rootTypes.SET_COORDINATES,
-    }),
     dragStart(refCode, e) {
       e.stopPropagation()
       const svgCoordinate = this.getCoordinateByXY(e)
@@ -169,6 +164,9 @@ export default {
     },
     selectHighlight(order) {
       this.$emit('selectHighlight', order)
+    },
+    setCoordinates({ order, coordinateArray }) {
+      this.$emit('setCoordinates', { order, coordinateArray })
     },
     _dragEnd() {
       this.setDraggingElement({

@@ -25,6 +25,7 @@
       :draggingElement="draggingElement"
       @setDraggingElement="onSetDraggingElement"
       @selectHighlight="onSelectHighlight"
+      @setCoordinates="onSetCoordinates"
     />
   </svg>
 </template>
@@ -83,6 +84,9 @@ export default {
     },
     onSelectHighlight(order) {
       this.$emit('selectHighlight', order)
+    },
+    onSetCoordinates({ order, coordinateArray }) {
+      this.$emit('setCoordinates', { order, coordinateArray })
     },
     _handleKeyDown(e) {
       if (e.keyCode === 8) {

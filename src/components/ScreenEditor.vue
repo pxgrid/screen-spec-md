@@ -20,6 +20,7 @@
         @setImage="onSetImage"
         @setDraggingElement="onSetDraggingElement"
         @selectHighlight="onSelectHighlight"
+        @setCoordinates="onSetCoordinates"
       />
     </div>
   </div>
@@ -70,6 +71,7 @@ export default {
       selectHighlight: rootTypes.SELECT_HIGHLIGHT,
       changeSelectedItemLabel: rootTypes.CHANGE_SELECTED_ITEM_LABEL,
       setDraggingElement: rootTypes.SET_DRAGGING_ELEMENT,
+      setCoordinates: rootTypes.SET_COORDINATES,
       zoom: rootTypes.ZOOM,
     }),
     ...mapActions({
@@ -86,6 +88,9 @@ export default {
     },
     onSelectHighlight(order) {
       this.selectHighlight(order)
+    },
+    onSetCoordinates({ order, coordinateArray }) {
+      this.setCoordinates({ order, coordinateArray })
     },
     initByQueries() {
       // TODO: この辺りが旧アプリ(ui-spec)からの移行の影響で実装が雑なので、store含めてリファクタリングする
