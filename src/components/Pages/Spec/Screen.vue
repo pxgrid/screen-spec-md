@@ -11,8 +11,8 @@
       />
       <ul class="Screen_RightTools">
         <li class="Screen_RightToolsItem">
-          <button class="Screen_ImageCanvasLink" @click="onOpenScreenEditor">
-            edit
+          <button class="Screen_NavBarIconButton" @click="onOpenScreenEditor">
+            <FontAwesomeIcon icon="image" size="1x" />
           </button>
         </li>
       </ul>
@@ -57,6 +57,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import editableTypes from '../../../store/modules/editable/types'
 import getParamsValue from '../../../modules/getParamsValue'
+import FontAwesomeIcon from '../../Common/FontAwesomeIcon.vue'
 import OverlayScreen from '../../Common/OverlayScreen.vue'
 import BaseDialog from '../../Common/BaseDialog.vue'
 import ActionButton from '../../Common/Buttons/ActionButton.vue'
@@ -69,6 +70,7 @@ const ZOOM_MIN = 25
 export default {
   name: 'Screen',
   components: {
+    FontAwesomeIcon: FontAwesomeIcon,
     OverlayScreen: OverlayScreen,
     BaseDialog: BaseDialog,
     ScreenToolbar: ScreenToolbar,
@@ -161,6 +163,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../assets/variable.scss';
 .Screen {
   flex-direction: column;
   width: 50%;
@@ -179,13 +182,20 @@ export default {
   &_RightToolsItem {
     text-align: right;
   }
-  &_ImageCanvasLink {
-    font-size: 12px;
-    display: inline-block;
-    line-height: 100%;
-    padding: 10px;
+  &_NavBarIconButton {
+    color: inherit;
+    text-align: center;
+    min-width: 30px;
+    min-height: $navBarsHeight;
+    padding: 0;
     border: none;
-    background-color: transparent;
+    background: none;
+    margin-right: 0;
+    &._disabled {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.4;
+    }
   }
   &_Magnification {
     background-color: #dddddd;
