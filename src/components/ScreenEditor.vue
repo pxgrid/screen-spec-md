@@ -19,6 +19,7 @@
         @addHighlight="onAddHighlight"
         @setImage="onSetImage"
         @setDraggingElement="onSetDraggingElement"
+        @selectHighlight="onSelectHighlight"
       />
     </div>
   </div>
@@ -82,6 +83,9 @@ export default {
     },
     onSetDraggingElement({ refCode, startOffsetX, startOffsetY }) {
       this.setDraggingElement({ refCode, startOffsetX, startOffsetY })
+    },
+    onSelectHighlight(order) {
+      this.selectHighlight(order)
     },
     initByQueries() {
       // TODO: この辺りが旧アプリ(ui-spec)からの移行の影響で実装が雑なので、store含めてリファクタリングする

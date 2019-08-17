@@ -11,6 +11,7 @@
         :draggingElement="draggingElement"
         @addHighlight="onAddHighlight"
         @setDraggingElement="onSetDraggingElement"
+        @selectHighlight="onSelectHighlight"
       />
       <EditorDrop v-else @setImage="onSetImage" />
     </div>
@@ -61,6 +62,9 @@ export default {
     },
     onSetDraggingElement({ refCode, startOffsetX, startOffsetY }) {
       this.$emit('setDraggingElement', { refCode, startOffsetX, startOffsetY })
+    },
+    onSelectHighlight(order) {
+      this.$emit('selectHighlight', order)
     },
   },
 }

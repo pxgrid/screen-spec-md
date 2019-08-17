@@ -148,7 +148,6 @@ export default {
   },
   methods: {
     ...mapMutations({
-      selectHighlight: rootTypes.SELECT_HIGHLIGHT,
       setCoordinates: rootTypes.SET_COORDINATES,
     }),
     dragStart(refCode, e) {
@@ -167,6 +166,9 @@ export default {
     },
     setDraggingElement({ refCode, startOffsetX, startOffsetY }) {
       this.$emit('setDraggingElement', { refCode, startOffsetX, startOffsetY })
+    },
+    selectHighlight(order) {
+      this.$emit('selectHighlight', order)
     },
     _dragEnd() {
       this.setDraggingElement({
