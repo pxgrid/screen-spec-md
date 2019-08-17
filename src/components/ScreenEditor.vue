@@ -15,6 +15,7 @@
         :zoomedWidth="zoomedWidth"
         :zoomedHeight="zoomedHeight"
         :viewbox="viewbox"
+        :draggingElement="draggingElement"
         @addHighlight="onAddHighlight"
         @setImage="onSetImage"
       />
@@ -47,6 +48,7 @@ export default {
     ...mapState({
       editScreen: 'editScreen',
       coordinates: 'coordinates',
+      draggingElement: 'draggingElement',
     }),
     ...mapGetters({
       zoomedWidth: 'zoomedWidth',

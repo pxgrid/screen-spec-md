@@ -86,11 +86,15 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 import rootTypes from '../../../../store/types'
 export default {
   name: 'Highlight',
   props: {
+    draggingElement: {
+      type: Object,
+      required: true,
+    },
     order: {
       type: Number,
       default: 0,
@@ -119,11 +123,6 @@ export default {
     },
   },
   computed: {
-    ...mapState({
-      editScreen: 'editScreen',
-      draggingElement: 'draggingElement',
-    }),
-    ...mapGetters({}),
     x() {
       return this.coordinate[0]
     },

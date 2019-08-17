@@ -22,6 +22,7 @@
       :width="editScreen.width"
       :height="editScreen.height"
       :getCoordinateByXY="getCoordinateByXY"
+      :draggingElement="draggingElement"
     />
   </svg>
 </template>
@@ -54,6 +55,10 @@ export default {
     },
     viewbox: {
       type: String,
+      required: true,
+    },
+    draggingElement: {
+      type: Object,
       required: true,
     },
   },

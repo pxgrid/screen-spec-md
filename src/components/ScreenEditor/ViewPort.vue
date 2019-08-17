@@ -8,6 +8,7 @@
         :zoomedWidth="zoomedWidth"
         :zoomedHeight="zoomedHeight"
         :viewbox="viewbox"
+        :draggingElement="draggingElement"
         @addHighlight="onAddHighlight"
       />
       <EditorDrop v-else @setImage="onSetImage" />
@@ -43,6 +44,10 @@ export default {
     },
     viewbox: {
       type: String,
+      required: true,
+    },
+    draggingElement: {
+      type: Object,
       required: true,
     },
   },
