@@ -15,7 +15,10 @@
       </label>
     </div>
     <div class="Toolbar_HighlightControllers">
-      <ItemOrderControl :selectedItemLabel="selectedItemLabel" />
+      <ItemOrderControl
+        :selectedItemLabel="selectedItemLabel"
+        @changeSelectedItemLabel="onChangeSelectedItemLabel"
+      />
       <ItemCoordinateControl
         :coordinateKey="'x'"
         :editScreen="editScreen"
@@ -70,6 +73,11 @@ export default {
     filenameWithCoordinates: {
       type: String,
       required: true,
+    },
+  },
+  methods: {
+    onChangeSelectedItemLabel({ relativeValue }) {
+      this.$emit('changeSelectedItemLabel', { relativeValue })
     },
   },
 }

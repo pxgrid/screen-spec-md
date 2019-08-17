@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import rootTypes from '../../../store/types'
-import { mapMutations } from 'vuex'
 export default {
   name: 'ItemOrderControl',
   props: {
@@ -28,11 +26,8 @@ export default {
     },
   },
   methods: {
-    ...mapMutations({
-      changeSelectedItemLabel: rootTypes.CHANGE_SELECTED_ITEM_LABEL,
-    }),
     onChangeSelectedItemLabel(relativeValue) {
-      this.changeSelectedItemLabel({ relativeValue })
+      this.$emit('changeSelectedItemLabel', { relativeValue })
     },
   },
 }

@@ -5,6 +5,7 @@
       :coordinates="coordinates"
       :selectedItemLabel="selectedItemLabel"
       :filenameWithCoordinates="filenameWithCoordinates"
+      @changeSelectedItemLabel="onChangeSelectedItemLabel"
     />
     <div class="ScreenEditor_Container">
       <ViewPort
@@ -62,6 +63,7 @@ export default {
       addHighlight: rootTypes.ADD_HIGHLIGHT,
       initCoordinates: rootTypes.INIT_COORDINATES,
       selectHighlight: rootTypes.SELECT_HIGHLIGHT,
+      changeSelectedItemLabel: rootTypes.CHANGE_SELECTED_ITEM_LABEL,
     }),
     ...mapActions({
       setImage: rootTypes.SET_IMAGE,
@@ -77,6 +79,9 @@ export default {
       this.setImage({ src: this.screenPath, filename: this.screenPath })
       this.selectHighlight(0)
       this.initCoordinates({ coordinateArrayList: JSON.parse(this.highlight) })
+    },
+    onChangeSelectedItemLabel({ relativeValue }) {
+      this.changeSelectedItemLabel({ relativeValue })
     },
   },
 }
