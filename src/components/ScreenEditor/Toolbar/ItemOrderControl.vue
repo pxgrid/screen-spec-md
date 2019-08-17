@@ -18,13 +18,14 @@
 
 <script>
 import rootTypes from '../../../store/types'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 export default {
   name: 'ItemOrderControl',
-  computed: {
-    ...mapGetters({
-      selectedItemLabel: 'selectedItemLabel',
-    }),
+  props: {
+    selectedItemLabel: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
     ...mapMutations({

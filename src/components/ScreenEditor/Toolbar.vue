@@ -15,7 +15,7 @@
       </label>
     </div>
     <div class="Toolbar_HighlightControllers">
-      <ItemOrderControl />
+      <ItemOrderControl :selectedItemLabel="selectedItemLabel" />
       <ItemCoordinateControl
         :coordinateKey="'x'"
         :editScreen="editScreen"
@@ -61,6 +61,10 @@ export default {
     },
     coordinates: {
       type: Array,
+      required: true,
+    },
+    selectedItemLabel: {
+      type: Number,
       required: true,
     },
     filenameWithCoordinates: {

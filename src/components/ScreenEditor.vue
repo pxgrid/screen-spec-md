@@ -3,6 +3,7 @@
     <Toolbar
       :editScreen="editScreen"
       :coordinates="coordinates"
+      :selectedItemLabel="selectedItemLabel"
       :filenameWithCoordinates="filenameWithCoordinates"
     />
     <div class="ScreenEditor_Container">
@@ -49,6 +50,7 @@ export default {
       zoomedWidth: 'zoomedWidth',
       zoomedHeight: 'zoomedHeight',
       viewbox: 'viewbox',
+      selectedItemLabel: 'selectedItemLabel',
       filenameWithCoordinates: 'filenameWithCoordinates',
     }),
   },
