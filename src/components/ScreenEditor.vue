@@ -1,6 +1,6 @@
 <template>
   <div class="ScreenEditor">
-    <Toolbar />
+    <Toolbar :filenameWithCoordinates="filenameWithCoordinates" />
     <div class="ScreenEditor_Container">
       <ViewPort
         :editScreen="editScreen"

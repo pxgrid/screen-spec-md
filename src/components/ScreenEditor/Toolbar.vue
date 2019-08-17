@@ -6,7 +6,7 @@
       </label>
     </div>
     <div>
-      <ItemSrcControl />
+      <ItemSrcControl :filenameWithCoordinates="filenameWithCoordinates" />
     </div>
 
     <div>
@@ -37,6 +37,12 @@ export default {
     ItemCoordinateControl,
     ItemZoomControl,
     ItemOrderControl,
+  },
+  props: {
+    filenameWithCoordinates: {
+      type: String,
+      required: true,
+    },
   },
 }
 </script>
