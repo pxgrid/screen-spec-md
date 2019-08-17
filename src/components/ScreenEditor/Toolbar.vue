@@ -16,10 +16,26 @@
     </div>
     <div class="Toolbar_HighlightControllers">
       <ItemOrderControl />
-      <ItemCoordinateControl :coordinateKey="'x'" />
-      <ItemCoordinateControl :coordinateKey="'y'" />
-      <ItemCoordinateControl :coordinateKey="'w'" />
-      <ItemCoordinateControl :coordinateKey="'h'" />
+      <ItemCoordinateControl
+        :coordinateKey="'x'"
+        :editScreen="editScreen"
+        :coordinates="coordinates"
+      />
+      <ItemCoordinateControl
+        :coordinateKey="'y'"
+        :editScreen="editScreen"
+        :coordinates="coordinates"
+      />
+      <ItemCoordinateControl
+        :coordinateKey="'w'"
+        :editScreen="editScreen"
+        :coordinates="coordinates"
+      />
+      <ItemCoordinateControl
+        :coordinateKey="'h'"
+        :editScreen="editScreen"
+        :coordinates="coordinates"
+      />
       <ItemZoomControl />
     </div>
   </div>
@@ -39,6 +55,14 @@ export default {
     ItemOrderControl,
   },
   props: {
+    editScreen: {
+      type: Object,
+      required: true,
+    },
+    coordinates: {
+      type: Array,
+      required: true,
+    },
     filenameWithCoordinates: {
       type: String,
       required: true,
