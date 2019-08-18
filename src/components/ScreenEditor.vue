@@ -73,17 +73,8 @@ export default {
     this.manager.init({ screen: this.screen })
   },
   methods: {
-    onAddHighlight(svgCoordinate) {
-      this.manager.addHighlight = svgCoordinate
-    },
-    onSetImage({ src, filename }) {
-      this.manager.setImage = { src, filename }
-    },
     onSelectHighlight(order) {
       this.manager.selectHighlight = order
-    },
-    onSetCoordinates({ order, coordinateArray }) {
-      this.manager.setCoordinates = { order, coordinateArray }
     },
     onChangeSelectedItemLabel({ relativeValue }) {
       this.manager.changeSelectedItemLabel = { relativeValue }
@@ -91,8 +82,27 @@ export default {
     onZoom(zoomValue) {
       this.manager.zoom = zoomValue
     },
+    // onUpdateFilenameWithCoordinates
+    onAddHighlight(svgCoordinate) {
+      this.manager.addHighlight = svgCoordinate
+      this.onUpdateFilenameWithCoordinates()
+    },
+    onSetImage({ src, filename }) {
+      this.manager.setImage = { src, filename }
+      this.onUpdateFilenameWithCoordinates()
+    },
+    onSetCoordinates({ order, coordinateArray }) {
+      this.manager.setCoordinates = { order, coordinateArray }
+      this.onUpdateFilenameWithCoordinates()
+    },
     onRemoveHighlight() {
       this.manager.removeHighlight()
+      this.onUpdateFilenameWithCoordinates()
+    },
+    onUpdateFilenameWithCoordinates() {
+      this.$emit('updateFilenameWithCoordinates', {
+        filenameWithCoordinates: this.manager.filenameWithCoordinates,
+      })
     },
   },
 }
