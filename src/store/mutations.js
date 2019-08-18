@@ -67,10 +67,6 @@ export default {
     state.editScreen.zoom = inputZoom
   },
 
-  [types.SET_DRAGGING_ELEMENT](state, { refCode, startOffsetX, startOffsetY }) {
-    state.draggingElement = { refCode, startOffsetX, startOffsetY }
-  },
-
   [types.CHANGE_SELECTED_ITEM_LABEL](state, { relativeValue }) {
     const editScreen = state.editScreen
     const selectedIndex = editScreen.selectedItem

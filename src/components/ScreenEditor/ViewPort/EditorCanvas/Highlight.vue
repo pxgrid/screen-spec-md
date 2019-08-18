@@ -89,10 +89,6 @@
 export default {
   name: 'Highlight',
   props: {
-    draggingElement: {
-      type: Object,
-      required: true,
-    },
     order: {
       type: Number,
       default: 0,
@@ -119,6 +115,15 @@ export default {
       type: Function,
       default: null,
     },
+  },
+  data() {
+    return {
+      draggingElement: {
+        refCode: null,
+        startOffsetX: 0,
+        startOffsetY: 0,
+      },
+    }
   },
   computed: {
     x() {
@@ -160,7 +165,7 @@ export default {
       this.selectHighlight(this.order)
     },
     setDraggingElement({ refCode, startOffsetX, startOffsetY }) {
-      this.$emit('setDraggingElement', { refCode, startOffsetX, startOffsetY })
+      this.draggingElement = { refCode, startOffsetX, startOffsetY }
     },
     selectHighlight(order) {
       this.$emit('selectHighlight', order)

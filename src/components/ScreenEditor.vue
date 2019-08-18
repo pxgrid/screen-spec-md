@@ -15,10 +15,8 @@
         :zoomedWidth="zoomedWidth"
         :zoomedHeight="zoomedHeight"
         :viewbox="viewbox"
-        :draggingElement="draggingElement"
         @addHighlight="onAddHighlight"
         @setImage="onSetImage"
-        @setDraggingElement="onSetDraggingElement"
         @selectHighlight="onSelectHighlight"
         @setCoordinates="onSetCoordinates"
       />
@@ -51,7 +49,6 @@ export default {
     ...mapState({
       editScreen: 'editScreen',
       coordinates: 'coordinates',
-      draggingElement: 'draggingElement',
     }),
     ...mapGetters({
       zoomedWidth: 'zoomedWidth',
@@ -70,7 +67,6 @@ export default {
       initCoordinates: rootTypes.INIT_COORDINATES,
       selectHighlight: rootTypes.SELECT_HIGHLIGHT,
       changeSelectedItemLabel: rootTypes.CHANGE_SELECTED_ITEM_LABEL,
-      setDraggingElement: rootTypes.SET_DRAGGING_ELEMENT,
       setCoordinates: rootTypes.SET_COORDINATES,
       zoom: rootTypes.ZOOM,
     }),
@@ -82,9 +78,6 @@ export default {
     },
     onSetImage({ src, filename }) {
       this.setImage({ src, filename })
-    },
-    onSetDraggingElement({ refCode, startOffsetX, startOffsetY }) {
-      this.setDraggingElement({ refCode, startOffsetX, startOffsetY })
     },
     onSelectHighlight(order) {
       this.selectHighlight(order)

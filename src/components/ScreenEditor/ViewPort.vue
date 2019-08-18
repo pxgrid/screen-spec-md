@@ -8,9 +8,7 @@
         :zoomedWidth="zoomedWidth"
         :zoomedHeight="zoomedHeight"
         :viewbox="viewbox"
-        :draggingElement="draggingElement"
         @addHighlight="onAddHighlight"
-        @setDraggingElement="onSetDraggingElement"
         @selectHighlight="onSelectHighlight"
         @setCoordinates="onSetCoordinates"
       />
@@ -49,10 +47,6 @@ export default {
       type: String,
       required: true,
     },
-    draggingElement: {
-      type: Object,
-      required: true,
-    },
   },
   methods: {
     onAddHighlight(svgCoordinate) {
@@ -60,9 +54,6 @@ export default {
     },
     onSetImage({ src, filename }) {
       this.$emit('setImage', { src, filename })
-    },
-    onSetDraggingElement({ refCode, startOffsetX, startOffsetY }) {
-      this.$emit('setDraggingElement', { refCode, startOffsetX, startOffsetY })
     },
     onSelectHighlight(order) {
       this.$emit('selectHighlight', order)

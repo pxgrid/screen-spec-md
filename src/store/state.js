@@ -11,12 +11,6 @@ export default () => {
     },
     // 複数のハイライトの座標、幅、高さ情報 [[x, y, w, h], [x, y, w, h],...]
     coordinates: [],
-    // ドラッグ中のハイライトの情報
-    draggingElement: {
-      refCode: null,
-      startOffsetX: 0,
-      startOffsetY: 0,
-    },
     treeData: {},
   }
 }

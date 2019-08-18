@@ -22,8 +22,6 @@
       :width="editScreen.width"
       :height="editScreen.height"
       :getCoordinateByXY="getCoordinateByXY"
-      :draggingElement="draggingElement"
-      @setDraggingElement="onSetDraggingElement"
       @selectHighlight="onSelectHighlight"
       @setCoordinates="onSetCoordinates"
     />
@@ -60,10 +58,6 @@ export default {
       type: String,
       required: true,
     },
-    draggingElement: {
-      type: Object,
-      required: true,
-    },
   },
   created() {
     this._handleKeyDown = this._handleKeyDown.bind(this)
@@ -79,9 +73,6 @@ export default {
     ...mapMutations({
       removeHighlight: rootTypes.REMOVE_HIGHLIGHT,
     }),
-    onSetDraggingElement({ refCode, startOffsetX, startOffsetY }) {
-      this.$emit('setDraggingElement', { refCode, startOffsetX, startOffsetY })
-    },
     onSelectHighlight(order) {
       this.$emit('selectHighlight', order)
     },
