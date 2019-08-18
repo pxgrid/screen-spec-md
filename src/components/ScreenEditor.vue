@@ -19,17 +19,16 @@
         @setImage="onSetImage"
         @selectHighlight="onSelectHighlight"
         @setCoordinates="onSetCoordinates"
-        @removeHighlight="removeHighlight"
+        @removeHighlight="onRemoveHighlight"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
-import rootTypes from '../store/types'
 import Toolbar from './ScreenEditor/Toolbar.vue'
 import ViewPort from './ScreenEditor/ViewPort.vue'
+import ScreenEditorManager from '../class/ScreenEditorManager'
 export default {
   name: 'ScreenEditor',
   components: {
@@ -37,67 +36,63 @@ export default {
     ViewPort,
   },
   props: {
-    screenPath: {
+    screen: {
       type: String,
       required: true,
     },
-    highlight: {
-      type: String,
-      required: true,
-    },
+  },
+  data() {
+    return {
+      manager: new ScreenEditorManager(),
+    }
   },
   computed: {
-    ...mapState({
-      editScreen: 'editScreen',
-      coordinates: 'coordinates',
-    }),
-    ...mapGetters({
-      zoomedWidth: 'zoomedWidth',
-      zoomedHeight: 'zoomedHeight',
-      viewbox: 'viewbox',
-      selectedItemLabel: 'selectedItemLabel',
-      filenameWithCoordinates: 'filenameWithCoordinates',
-    }),
+    editScreen() {
+      return this.manager.editScreen
+    },
+    coordinates() {
+      return this.manager.coordinates
+    },
+    zoomedWidth() {
+      return this.manager.zoomedWidth
+    },
+    zoomedHeight() {
+      return this.manager.zoomedHeight
+    },
+    viewbox() {
+      return this.manager.viewbox
+    },
+    selectedItemLabel() {
+      return this.manager.selectedItemLabel
+    },
+    filenameWithCoordinates() {
+      return this.manager.filenameWithCoordinates
+    },
   },
   mounted() {
-    this.initByQueries()
+    this.manager.init({ screen: this.screen })
   },
   methods: {
-    ...mapMutations({
-      addHighlight: rootTypes.ADD_HIGHLIGHT,
-      initCoordinates: rootTypes.INIT_COORDINATES,
-      selectHighlight: rootTypes.SELECT_HIGHLIGHT,
-      changeSelectedItemLabel: rootTypes.CHANGE_SELECTED_ITEM_LABEL,
-      setCoordinates: rootTypes.SET_COORDINATES,
-      removeHighlight: rootTypes.REMOVE_HIGHLIGHT,
-      zoom: rootTypes.ZOOM,
-    }),
-    ...mapActions({
-      setImage: rootTypes.SET_IMAGE,
-    }),
     onAddHighlight(svgCoordinate) {
-      this.addHighlight(svgCoordinate)
+      this.manager.addHighlight = svgCoordinate
     },
     onSetImage({ src, filename }) {
-      this.setImage({ src, filename })
+      this.manager.setImage = { src, filename }
     },
     onSelectHighlight(order) {
-      this.selectHighlight(order)
+      this.manager.selectHighlight = order
     },
     onSetCoordinates({ order, coordinateArray }) {
-      this.setCoordinates({ order, coordinateArray })
-    },
-    initByQueries() {
-      // TODO: この辺りが旧アプリ(ui-spec)からの移行の影響で実装が雑なので、store含めてリファクタリングする
-      this.setImage({ src: this.screenPath, filename: this.screenPath })
-      this.selectHighlight(0)
-      this.initCoordinates({ coordinateArrayList: JSON.parse(this.highlight) })
+      this.manager.setCoordinates = { order, coordinateArray }
     },
     onChangeSelectedItemLabel({ relativeValue }) {
-      this.changeSelectedItemLabel({ relativeValue })
+      this.manager.changeSelectedItemLabel = { relativeValue }
     },
     onZoom(zoomValue) {
-      this.zoom(zoomValue)
+      this.manager.zoom = zoomValue
+    },
+    onRemoveHighlight() {
+      this.manager.removeHighlight()
     },
   },
 }

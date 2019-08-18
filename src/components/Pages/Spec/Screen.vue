@@ -34,10 +34,10 @@
     </div>
 
     <portal to="portal">
-      <OverlayScreen v-show="isShowScreenEditor" @close="onCloseScreenEditor">
+      <OverlayScreen v-if="isShowScreenEditor" @close="onCloseScreenEditor">
         <BaseDialog class="Screen_EditorDialog" :overflowScroll="true" @close="onCloseScreenEditor">
           <div slot="main" style="height:100%">
-            <ScreenEditor :screenPath="screenPath" :highlight="highlight" />
+            <ScreenEditor :screen="screen" />
           </div>
           <div v-if="editable" slot="footer" class="Screen_EditorDialogActionBar">
             <ActionButton :sub="true">
@@ -56,7 +56,6 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import editableTypes from '../../../store/modules/editable/types'
-import getParamsValue from '../../../modules/getParamsValue'
 import FontAwesomeIcon from '../../Common/FontAwesomeIcon.vue'
 import OverlayScreen from '../../Common/OverlayScreen.vue'
 import BaseDialog from '../../Common/BaseDialog.vue'
@@ -102,13 +101,6 @@ export default {
     }),
     screen() {
       return window.SCREEN_SPEC_MD.screen
-    },
-    screenPath() {
-      // ex. /path/to/index.html?src=index.png&highlight=[[1,2,3,4]] => /path/to/index.html
-      return window.SCREEN_SPEC_MD.screen.replace(/\?.+/, '')
-    },
-    highlight() {
-      return getParamsValue(window.SCREEN_SPEC_MD.screen, 'highlight')
     },
   },
   methods: {
