@@ -10,7 +10,7 @@
         type="number"
         min="0"
         max="10000"
-        @change="onChange($event)"
+        readonly="readonly"
       />
     </div>
   </div>
@@ -43,33 +43,7 @@ export default {
         return ''
       }
       const coordinateIndex = LOOKUP[this.coordinateKey]
-      // console.log(
-      //   'coordinates',
-      //   this.coordinates,
-      //   'selectedItem',
-      //   selectedItem,
-      //   'coordinateIndex',
-      //   coordinateIndex,
-      // )
-      // return ''
       return this.coordinates[selectedItem][coordinateIndex]
-    },
-  },
-  methods: {
-    onChange(e) {
-      console.log('this.coordinate', this.coordinate)
-      const { key, selectedItem, coords, coordsAction } = this.coordinate
-      if (selectedItem === null) {
-        e.preventDefault()
-        return
-      }
-      const val = e.target.value | 0
-      let coordsClone = coords[selectedItem].concat()
-
-      coordsClone[LOOKUP[target]] = val
-
-      coordsAction(selectedItem, coordsClone)
-      this.setState({ val: val })
     },
   },
 }
