@@ -76,15 +76,22 @@ export default {
     onSelectHighlight(order) {
       this.manager.selectHighlight = order
     },
-    onChangeSelectedItemLabel({ relativeValue }) {
-      this.manager.changeSelectedItemLabel = { relativeValue }
-    },
     onZoom(zoomValue) {
       this.manager.zoom = zoomValue
     },
-    // onUpdateFilenameWithCoordinates
-    onAddHighlight(svgCoordinate) {
-      this.manager.addHighlight = svgCoordinate
+    onUpdateFilenameWithCoordinates() {
+      this.$emit('updateFilenameWithCoordinates', {
+        filenameWithCoordinates: this.manager.filenameWithCoordinates,
+      })
+    },
+
+    // need trigger onUpdateFilenameWithCoordinates
+    onAddHighlight({ x, y }) {
+      this.manager.addHighlight = { x, y }
+      this.onUpdateFilenameWithCoordinates()
+    },
+    onChangeSelectedItemLabel({ relativeValue }) {
+      this.manager.changeSelectedItemLabel = { relativeValue }
       this.onUpdateFilenameWithCoordinates()
     },
     onSetImage({ src, filename }) {
@@ -98,11 +105,6 @@ export default {
     onRemoveHighlight() {
       this.manager.removeHighlight()
       this.onUpdateFilenameWithCoordinates()
-    },
-    onUpdateFilenameWithCoordinates() {
-      this.$emit('updateFilenameWithCoordinates', {
-        filenameWithCoordinates: this.manager.filenameWithCoordinates,
-      })
     },
   },
 }

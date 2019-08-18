@@ -89,18 +89,22 @@ export default {
       if (!e.target.classList.contains('EditorCanvas_Image')) {
         return
       }
-      const svgCoordinate = this.getCoordinateByXY(e)
-      this.addHighlight(svgCoordinate)
+      const { x, y } = this.getCoordinateByXY(e)
+      this.addHighlight({ x, y })
     },
     getCoordinateByXY({ x, y }) {
       let svg = this.$refs.svg
       let p = svg.createSVGPoint()
       p.x = x | 0
       p.y = y | 0
-      return p.matrixTransform(svg.getScreenCTM().inverse())
+      const transformed = p.matrixTransform(svg.getScreenCTM().inverse())
+      return {
+        x: Math.round(transformed.x),
+        y: Math.round(transformed.y),
+      }
     },
-    addHighlight(svgCoordinate) {
-      this.$emit('addHighlight', svgCoordinate)
+    addHighlight({ x, y }) {
+      this.$emit('addHighlight', { x, y })
     },
   },
 }
