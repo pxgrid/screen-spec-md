@@ -29,8 +29,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import rootTypes from '../../../store/types'
 import Highlight from './EditorCanvas/Highlight.vue'
 export default {
   name: 'EditorCanvas',
@@ -70,14 +68,14 @@ export default {
     document.removeEventListener('keydown', this._handleKeyDown)
   },
   methods: {
-    ...mapMutations({
-      removeHighlight: rootTypes.REMOVE_HIGHLIGHT,
-    }),
     onSelectHighlight(order) {
       this.$emit('selectHighlight', order)
     },
     onSetCoordinates({ order, coordinateArray }) {
       this.$emit('setCoordinates', { order, coordinateArray })
+    },
+    removeHighlight() {
+      this.$emit('removeHighlight')
     },
     _handleKeyDown(e) {
       if (e.keyCode === 8) {

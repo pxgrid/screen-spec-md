@@ -19,6 +19,7 @@
         @setImage="onSetImage"
         @selectHighlight="onSelectHighlight"
         @setCoordinates="onSetCoordinates"
+        @removeHighlight="removeHighlight"
       />
     </div>
   </div>
@@ -68,6 +69,7 @@ export default {
       selectHighlight: rootTypes.SELECT_HIGHLIGHT,
       changeSelectedItemLabel: rootTypes.CHANGE_SELECTED_ITEM_LABEL,
       setCoordinates: rootTypes.SET_COORDINATES,
+      removeHighlight: rootTypes.REMOVE_HIGHLIGHT,
       zoom: rootTypes.ZOOM,
     }),
     ...mapActions({

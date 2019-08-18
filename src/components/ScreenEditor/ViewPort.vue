@@ -11,6 +11,7 @@
         @addHighlight="onAddHighlight"
         @selectHighlight="onSelectHighlight"
         @setCoordinates="onSetCoordinates"
+        @removeHighlight="onRemoveHighlight"
       />
       <EditorDrop v-else @setImage="onSetImage" />
     </div>
@@ -60,6 +61,9 @@ export default {
     },
     onSetCoordinates({ order, coordinateArray }) {
       this.$emit('setCoordinates', { order, coordinateArray })
+    },
+    onRemoveHighlight() {
+      this.$emit('removeHighlight')
     },
   },
 }
