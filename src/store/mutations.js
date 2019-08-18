@@ -26,10 +26,14 @@ export default {
   },
 
   [types.REMOVE_HIGHLIGHT](state) {
-    if (state.editScreen.selectedItem < 0) {
+    const selectedItemIndex = state.editScreen.selectedItem
+    if (selectedItemIndex < 0) {
       return
     }
-    state.coordinates.splice(state.editScreen.selectedItem, 1)
+    state.coordinates.splice(selectedItemIndex, 1)
+    if (state.coordinates.length <= selectedItemIndex) {
+      state.editScreen.selectedItem--
+    }
   },
 
   [types.SELECT_HIGHLIGHT](state, selectedItem) {
