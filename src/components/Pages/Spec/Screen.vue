@@ -32,36 +32,11 @@
         <!-- eslint-enable vue/no-v-html -->
       </div>
     </div>
-
-    <portal to="portal">
-      <OverlayScreen v-if="isShowScreenEditor" @close="onCloseScreenEditor">
-        <BaseDialog class="Screen_EditorDialog" :overflowScroll="true" @close="onCloseScreenEditor">
-          <div slot="main" style="height:100%">
-            <ScreenEditor
-              :screen="screen"
-              @updateFilenameWithCoordinates="onUpdateFilenameWithCoordinates"
-            />
-          </div>
-          <div v-if="editable" slot="footer" class="Screen_EditorDialogActionBar">
-            <ActionButton :sub="true">
-              <span @click="onCloseScreenEditor()">Cancel</span>
-            </ActionButton>
-            <ActionButton>
-              <span @click="onWriteScreenMetadata()">Save</span>
-            </ActionButton>
-          </div>
-        </BaseDialog>
-      </OverlayScreen>
-    </portal>
   </div>
 </template>
 
 <script>
 import FontAwesomeIcon from '../../Common/FontAwesomeIcon.vue'
-import OverlayScreen from '../../Common/OverlayScreen.vue'
-import BaseDialog from '../../Common/BaseDialog.vue'
-import ActionButton from '../../Common/Buttons/ActionButton.vue'
-import ScreenEditor from '../../ScreenEditor.vue'
 import ScreenToolbar from './Screen/ScreenToolbar.vue'
 
 const ZOOM_MAX = 200
@@ -71,11 +46,7 @@ export default {
   name: 'Screen',
   components: {
     FontAwesomeIcon: FontAwesomeIcon,
-    OverlayScreen: OverlayScreen,
-    BaseDialog: BaseDialog,
     ScreenToolbar: ScreenToolbar,
-    ScreenEditor: ScreenEditor,
-    ActionButton: ActionButton,
   },
   props: {
     editable: {
@@ -97,8 +68,6 @@ export default {
   },
   data() {
     return {
-      filenameWithCoordinates: '',
-      isShowScreenEditor: false,
       isScreenFit: true,
       isHighlight: true,
       zoomValue: 100,
@@ -124,21 +93,7 @@ export default {
       this.isHighlight = !this.isHighlight
     },
     onOpenScreenEditor() {
-      this.isShowScreenEditor = true
-    },
-    onCloseScreenEditor() {
-      this.isShowScreenEditor = false
-    },
-    onUpdateFilenameWithCoordinates({ filenameWithCoordinates }) {
-      this.filenameWithCoordinates = filenameWithCoordinates
-    },
-    onWriteScreenMetadata() {
-      this.$emit('writeScreenMetadata', {
-        filenameWithCoordinates: this.filenameWithCoordinates,
-        done: () => {
-          this.onCloseScreenEditor()
-        },
-      })
+      this.$emit('openScreenEditor')
     },
     _removeZoomClass() {},
     _getSVGRootRef() {
@@ -220,13 +175,6 @@ export default {
       left: 0;
       padding: 0;
     }
-  }
-  &_EditorDialog {
-    width: 90vw;
-    height: 95vh;
-  }
-  &_EditorDialogActionBar {
-    padding: 10px;
   }
 }
 </style>

@@ -4,15 +4,7 @@ import loadImage from '../modules/loadImage'
 
 export default class ScreenEditorManager {
   constructor() {
-    this._editScreen = {
-      width: 300,
-      height: 150,
-      src: '',
-      filename: '',
-      selectedItem: -1, // zero start, -1 is indicates that item is not selected
-      zoom: 1.0,
-    }
-    this._coordinates = [] // 複数のハイライトの座標、幅、高さ情報 [[x, y, w, h], [x, y, w, h],...]
+    this.reset()
   }
 
   // setter
@@ -92,10 +84,26 @@ export default class ScreenEditorManager {
     const screenPath = screen.replace(/\?.+/, '')
     const highlight = getParamsValue(screen, 'highlight')
     this.selectHighlight = 0
-    this.initCoordinates = { coordinateArrayList: JSON.parse(highlight) }
-    loadImage(screenPath).then(({ width, height }) => {
-      this.setImage = { width, height, src: screenPath, filename: screenPath }
-    })
+    try {
+      this.initCoordinates = { coordinateArrayList: JSON.parse(highlight) }
+      loadImage(screenPath).then(({ width, height }) => {
+        this.setImage = { width, height, src: screenPath, filename: screenPath }
+      })
+    } catch (e) {
+      // If screen is undefined or invalid
+      this.reset()
+    }
+  }
+  reset() {
+    this._editScreen = {
+      width: 300,
+      height: 150,
+      src: '',
+      filename: '',
+      selectedItem: -1, // zero start, -1 is indicates that item is not selected
+      zoom: 1.0,
+    }
+    this._coordinates = [] // [[x, y, w, h], [x, y, w, h],...]
   }
   shiftHighlight() {
     const index = this._editScreen.selectedItem

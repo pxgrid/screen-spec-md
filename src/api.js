@@ -65,6 +65,17 @@ class API {
     })
   }
 
+  removeMetadataScreen({ path }) {
+    const url = '/__removeScreenMetadata'
+    return this._request({
+      url,
+      method: 'PATCH',
+      data: {
+        path,
+      },
+    })
+  }
+
   fetchConvertedHtml({ markdown }) {
     const url = '/__html'
     return this._request({

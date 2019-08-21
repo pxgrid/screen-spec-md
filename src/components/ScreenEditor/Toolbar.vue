@@ -40,6 +40,9 @@
         :coordinates="coordinates"
       />
       <ItemZoomControl @zoom="onZoom" />
+      <div>
+        <button @click="onRemoveScreenMetadata">Delete Image</button>
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +85,9 @@ export default {
     onZoom(zoomValue) {
       this.$emit('zoom', zoomValue)
     },
+    onRemoveScreenMetadata() {
+      this.$emit('removeScreenMetadata')
+    },
   },
 }
 </script>
@@ -104,7 +110,7 @@ export default {
   }
   &_HighlightControllers {
     display: grid;
-    grid-template-columns: 100px 100px 100px 100px 100px 300px;
+    grid-template-columns: 100px 100px 100px 100px 100px 220px 100px;
   }
 }
 </style>

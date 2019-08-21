@@ -6,6 +6,7 @@
       :selectedItemLabel="selectedItemLabel"
       :filenameWithCoordinates="filenameWithCoordinates"
       @changeSelectedItemLabel="onChangeSelectedItemLabel"
+      @removeScreenMetadata="onRemoveScreenMetadata"
       @zoom="onZoom"
     />
     <div class="ScreenEditor_Container">
@@ -104,6 +105,10 @@ export default {
     },
     onRemoveHighlight() {
       this.manager.removeHighlight()
+      this.onUpdateFilenameWithCoordinates()
+    },
+    onRemoveScreenMetadata() {
+      this.manager.reset()
       this.onUpdateFilenameWithCoordinates()
     },
   },

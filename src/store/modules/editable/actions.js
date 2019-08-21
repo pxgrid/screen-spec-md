@@ -1,6 +1,10 @@
 import api from '../../../api'
 import types from './types'
 
+const getCurrentPath = () => {
+  return location.pathname.replace(/^\//, '')
+}
+
 export default {
   async [types.FETCH_MARKDOWN]({ commit }) {
     const path = location.pathname
@@ -16,16 +20,22 @@ export default {
   },
 
   async [types.WRITE_MARKDOWN]({ commit }, { markdown }) {
-    const path = location.pathname.replace(/^\//, '')
+    const path = getCurrentPath()
     const res = await api.writeMarkdown({ path, markdown })
     commit(types.SET_PAGE_CONTEXT, res.data.context)
     commit(types.SET_MARKDOWN, { markdown })
   },
 
   async [types.WRITE_SCREEN_METADATA]({ commit }, { screenMetadata }) {
-    const path = location.pathname.replace(/^\//, '')
+    const path = getCurrentPath()
     const res = await api.writeMetadataScreen({ path, screenMetadata })
     commit(types.SET_PAGE_CONTEXT, res.data.context)
     return res.data.context
+  },
+
+  async [types.REMOVE_SCREEN_METADATA]({ commit }) {
+    const path = getCurrentPath()
+    const res = await api.removeMetadataScreen({ path })
+    commit(types.SET_PAGE_CONTEXT, res.data.context)
   },
 }

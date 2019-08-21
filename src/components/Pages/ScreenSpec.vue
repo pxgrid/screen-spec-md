@@ -7,7 +7,7 @@
         :width="screenWidth"
         :screen="screen"
         :svgCanvasHtml="svgCanvasHtml"
-        @writeScreenMetadata="onWriteScreenMetadata"
+        @openScreenEditor="onOpenScreenEditor"
       />
       <Separator @drag="onSeparatorDrag" />
       <Doc
@@ -26,7 +26,28 @@
         </div>
       </BaseDialog>
     </OverlayScreen>
-    <portal-target name="portal" class="ScreenSpec" />
+    <OverlayScreen v-if="isShowScreenEditor" @close="onCloseScreenEditor">
+      <BaseDialog
+        class="Spec_ScreenEditorDialog"
+        :overflowScroll="true"
+        @close="onCloseScreenEditor"
+      >
+        <div slot="main" style="height:100%">
+          <ScreenEditor
+            :screen="screen"
+            @updateFilenameWithCoordinates="onUpdateFilenameWithCoordinates"
+          />
+        </div>
+        <div v-if="editable" slot="footer" class="Spec_ScreenEditorDialogActionBar">
+          <ActionButton :sub="true">
+            <span @click="onCloseScreenEditor">Cancel</span>
+          </ActionButton>
+          <ActionButton>
+            <span @click="onWriteScreenMetadata">Save</span>
+          </ActionButton>
+        </div>
+      </BaseDialog>
+    </OverlayScreen>
   </div>
 </template>
 
@@ -40,6 +61,8 @@ import Tree from '../Common/Tree.vue'
 import Screen from './Spec/Screen.vue'
 import Separator from './Spec/Separator.vue'
 import Doc from './Spec/Doc.vue'
+import ActionButton from '../Common/Buttons/ActionButton.vue'
+import ScreenEditor from '../ScreenEditor.vue'
 
 export default {
   name: 'ScreenSpec',
@@ -51,12 +74,16 @@ export default {
     Separator,
     Doc,
     Tree,
+    ScreenEditor,
+    ActionButton,
   },
   data() {
     return {
       screen: window.SCREEN_SPEC_MD.screen,
+      filenameWithCoordinates: '',
       svgCanvasHtml: window.SCREEN_SPEC_MD.svgCanvasHtml,
       isShowTreeDialog: false,
+      isShowScreenEditor: false,
       screenWidth: '50%',
       documentWidth: '50%',
     }
@@ -77,6 +104,7 @@ export default {
   methods: {
     ...mapActions('editable', {
       writeScreenMetadata: editableTypes.WRITE_SCREEN_METADATA,
+      removeScreenMetadata: editableTypes.REMOVE_SCREEN_METADATA,
     }),
     onSeparatorDrag({ leftScreenRate }) {
       this.screenWidth = `${leftScreenRate * 100}%`
@@ -88,11 +116,29 @@ export default {
     onCloseTreeDialog() {
       this.isShowTreeDialog = false
     },
-    onWriteScreenMetadata({ done, filenameWithCoordinates }) {
-      this.writeScreenMetadata({ screenMetadata: filenameWithCoordinates }).then(context => {
+    onOpenScreenEditor() {
+      this.isShowScreenEditor = true
+    },
+    onCloseScreenEditor() {
+      this.isShowScreenEditor = false
+    },
+    onUpdateFilenameWithCoordinates({ filenameWithCoordinates }) {
+      this.filenameWithCoordinates = filenameWithCoordinates
+    },
+    onWriteScreenMetadata() {
+      if (this.filenameWithCoordinates === '') {
+        this.removeScreenMetadata().then(() => {
+          // TODO: It must change template "ScreenSpec" to "PlaneSpec".
+          this.screen = ''
+          this.svgCanvasHtml = ''
+          this.onCloseScreenEditor()
+        })
+        return
+      }
+      this.writeScreenMetadata({ screenMetadata: this.filenameWithCoordinates }).then(context => {
         this.screen = context.screen
         this.svgCanvasHtml = context.svgCanvas
-        done()
+        this.onCloseScreenEditor()
       })
     },
   },
@@ -105,5 +151,12 @@ export default {
   display: flex;
   max-height: calc(100vh - #{$theHeaderHeight});
   width: 100%;
+  &_ScreenEditorDialog {
+    width: 90vw;
+    height: 95vh;
+  }
+  &_ScreenEditorDialogActionBar {
+    padding: 10px;
+  }
 }
 </style>
