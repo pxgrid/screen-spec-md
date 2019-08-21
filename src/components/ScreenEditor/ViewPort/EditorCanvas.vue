@@ -22,13 +22,13 @@
       :width="editScreen.width"
       :height="editScreen.height"
       :getCoordinateByXY="getCoordinateByXY"
+      @selectHighlight="onSelectHighlight"
+      @setCoordinates="onSetCoordinates"
     />
   </svg>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import rootTypes from '../../../../store/types'
 import Highlight from './EditorCanvas/Highlight.vue'
 export default {
   name: 'EditorCanvas',
@@ -68,9 +68,15 @@ export default {
     document.removeEventListener('keydown', this._handleKeyDown)
   },
   methods: {
-    ...mapMutations({
-      removeHighlight: rootTypes.REMOVE_HIGHLIGHT,
-    }),
+    onSelectHighlight(order) {
+      this.$emit('selectHighlight', order)
+    },
+    onSetCoordinates({ order, coordinateArray }) {
+      this.$emit('setCoordinates', { order, coordinateArray })
+    },
+    removeHighlight() {
+      this.$emit('removeHighlight')
+    },
     _handleKeyDown(e) {
       if (e.keyCode === 8) {
         e.preventDefault()
@@ -83,18 +89,22 @@ export default {
       if (!e.target.classList.contains('EditorCanvas_Image')) {
         return
       }
-      const svgCoordinate = this.getCoordinateByXY(e)
-      this.addHighlight(svgCoordinate)
+      const { x, y } = this.getCoordinateByXY(e)
+      this.addHighlight({ x, y })
     },
     getCoordinateByXY({ x, y }) {
       let svg = this.$refs.svg
       let p = svg.createSVGPoint()
       p.x = x | 0
       p.y = y | 0
-      return p.matrixTransform(svg.getScreenCTM().inverse())
+      const transformed = p.matrixTransform(svg.getScreenCTM().inverse())
+      return {
+        x: Math.round(transformed.x),
+        y: Math.round(transformed.y),
+      }
     },
-    addHighlight(svgCoordinate) {
-      this.$emit('addHighlight', svgCoordinate)
+    addHighlight({ x, y }) {
+      this.$emit('addHighlight', { x, y })
     },
   },
 }

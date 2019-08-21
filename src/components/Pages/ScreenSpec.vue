@@ -2,7 +2,13 @@
   <div class="ScreenSpec">
     <TheHeader @openTreeDialog="onOpenTreeDialog" />
     <div class="Spec">
-      <Screen :editable="editable" :width="screenWidth" />
+      <Screen
+        :editable="editable"
+        :width="screenWidth"
+        :screen="screen"
+        :svgCanvasHtml="svgCanvasHtml"
+        @writeScreenMetadata="onWriteScreenMetadata"
+      />
       <Separator @drag="onSeparatorDrag" />
       <Doc
         :editable="editable"
@@ -25,7 +31,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import editableTypes from '../../store/modules/editable/types'
 import TheHeader from '../TheHeader.vue'
 import OverlayScreen from '../Common/OverlayScreen.vue'
 import BaseDialog from '../Common/BaseDialog.vue'
@@ -47,6 +54,8 @@ export default {
   },
   data() {
     return {
+      screen: window.SCREEN_SPEC_MD.screen,
+      svgCanvasHtml: window.SCREEN_SPEC_MD.svgCanvasHtml,
       isShowTreeDialog: false,
       screenWidth: '50%',
       documentWidth: '50%',
@@ -66,6 +75,9 @@ export default {
     }),
   },
   methods: {
+    ...mapActions('editable', {
+      writeScreenMetadata: editableTypes.WRITE_SCREEN_METADATA,
+    }),
     onSeparatorDrag({ leftScreenRate }) {
       this.screenWidth = `${leftScreenRate * 100}%`
       this.documentWidth = `${(1 - leftScreenRate) * 100}%`
@@ -75,6 +87,13 @@ export default {
     },
     onCloseTreeDialog() {
       this.isShowTreeDialog = false
+    },
+    onWriteScreenMetadata({ done, filenameWithCoordinates }) {
+      this.writeScreenMetadata({ screenMetadata: filenameWithCoordinates }).then(context => {
+        this.screen = context.screen
+        this.svgCanvasHtml = context.svgCanvas
+        done()
+      })
     },
   },
 }

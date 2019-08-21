@@ -17,17 +17,12 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import rootTypes from '../../../../store/types'
 export default {
   name: 'ItemZoomControl',
   methods: {
-    ...mapMutations({
-      zoom: rootTypes.ZOOM,
-    }),
     onInput(e) {
       //changeイベントでは、リアルタイムに変更が反映されない
-      this.zoom(e.target.value)
+      this.$emit('zoom', e.target.value)
     },
   },
 }

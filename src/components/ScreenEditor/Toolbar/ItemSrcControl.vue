@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
   name: 'ItemSrcControl',
-  computed: {
-    ...mapGetters({
-      filenameWithCoordinates: 'filenameWithCoordinates',
-    }),
+  props: {
+    filenameWithCoordinates: {
+      type: String,
+      required: true,
+    },
   },
   methods: {
     onClickFilename() {

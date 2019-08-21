@@ -17,21 +17,17 @@
 </template>
 
 <script>
-import rootTypes from '../../../../store/types'
-import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'ItemOrderControl',
-  computed: {
-    ...mapGetters({
-      selectedItemLabel: 'selectedItemLabel',
-    }),
+  props: {
+    selectedItemLabel: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
-    ...mapMutations({
-      changeSelectedItemLabel: rootTypes.CHANGE_SELECTED_ITEM_LABEL,
-    }),
     onChangeSelectedItemLabel(relativeValue) {
-      this.changeSelectedItemLabel({ relativeValue })
+      this.$emit('changeSelectedItemLabel', { relativeValue })
     },
   },
 }

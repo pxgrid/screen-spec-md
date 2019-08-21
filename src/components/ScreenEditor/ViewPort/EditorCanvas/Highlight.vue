@@ -86,8 +86,6 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex'
-import rootTypes from '../../../../../store/types'
 export default {
   name: 'Highlight',
   props: {
@@ -118,12 +116,16 @@ export default {
       default: null,
     },
   },
+  data() {
+    return {
+      draggingElement: {
+        refCode: null,
+        startOffsetX: 0,
+        startOffsetY: 0,
+      },
+    }
+  },
   computed: {
-    ...mapState({
-      editScreen: 'editScreen',
-      draggingElement: 'draggingElement',
-    }),
-    ...mapGetters({}),
     x() {
       return this.coordinate[0]
     },
@@ -148,11 +150,6 @@ export default {
     document.addEventListener('mouseup', this._dragEnd)
   },
   methods: {
-    ...mapMutations({
-      selectHighlight: rootTypes.SELECT_HIGHLIGHT,
-      setDraggingElement: rootTypes.SET_DRAGGING_ELEMENT,
-      setCoordinates: rootTypes.SET_COORDINATES,
-    }),
     dragStart(refCode, e) {
       e.stopPropagation()
       const svgCoordinate = this.getCoordinateByXY(e)
@@ -166,6 +163,15 @@ export default {
       document.addEventListener('mousemove', this._handleDrag)
 
       this.selectHighlight(this.order)
+    },
+    setDraggingElement({ refCode, startOffsetX, startOffsetY }) {
+      this.draggingElement = { refCode, startOffsetX, startOffsetY }
+    },
+    selectHighlight(order) {
+      this.$emit('selectHighlight', order)
+    },
+    setCoordinates({ order, coordinateArray }) {
+      this.$emit('setCoordinates', { order, coordinateArray })
     },
     _dragEnd() {
       this.setDraggingElement({

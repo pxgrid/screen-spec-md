@@ -9,6 +9,9 @@
         :zoomedHeight="zoomedHeight"
         :viewbox="viewbox"
         @addHighlight="onAddHighlight"
+        @selectHighlight="onSelectHighlight"
+        @setCoordinates="onSetCoordinates"
+        @removeHighlight="onRemoveHighlight"
       />
       <EditorDrop v-else @setImage="onSetImage" />
     </div>
@@ -52,6 +55,15 @@ export default {
     },
     onSetImage({ src, filename }) {
       this.$emit('setImage', { src, filename })
+    },
+    onSelectHighlight(order) {
+      this.$emit('selectHighlight', order)
+    },
+    onSetCoordinates({ order, coordinateArray }) {
+      this.$emit('setCoordinates', { order, coordinateArray })
+    },
+    onRemoveHighlight() {
+      this.$emit('removeHighlight')
     },
   },
 }
