@@ -79,20 +79,28 @@ export default class ScreenEditorManager {
   }
 
   // methods
-  init({ screen }) {
-    // ex. /path/to/index.html?src=index.png&highlight=[[1,2,3,4]] => /path/to/index.html
-    const screenPath = screen.replace(/\?.+/, '')
-    const highlight = getParamsValue(screen, 'highlight')
-    this.selectHighlight = 0
-    try {
-      this.initCoordinates = { coordinateArrayList: JSON.parse(highlight) }
-      loadImage(screenPath).then(({ width, height }) => {
-        this.setImage = { width, height, src: screenPath, filename: screenPath }
-      })
-    } catch (e) {
-      // If screen is undefined or invalid
-      this.reset()
-    }
+  async initialize({ screen }) {
+    return new Promise((resolve, reject) => {
+      // ex. /path/to/index.html?src=index.png&highlight=[[1,2,3,4]] => /path/to/index.html
+      const screenPath = screen.replace(/\?.+/, '')
+      const highlight = getParamsValue(screen, 'highlight')
+      this.selectHighlight = 0
+      if (screenPath === '') {
+        this.reset()
+        resolve()
+      }
+      try {
+        this.initCoordinates = { coordinateArrayList: JSON.parse(highlight) }
+        loadImage(screenPath).then(({ width, height }) => {
+          this.setImage = { width, height, src: screenPath, filename: screenPath }
+          resolve()
+        })
+      } catch (e) {
+        // If screen is undefined or invalid
+        this.reset()
+        reject()
+      }
+    })
   }
   reset() {
     this._editScreen = {

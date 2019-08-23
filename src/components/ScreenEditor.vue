@@ -9,7 +9,8 @@
       @removeScreenMetadata="onRemoveScreenMetadata"
       @zoom="onZoom"
     />
-    <div class="ScreenEditor_Container">
+    <div v-show="isInitializing">Loading...</div>
+    <div v-show="!isInitializing" class="ScreenEditor_Container">
       <ViewPort
         :editScreen="editScreen"
         :coordinates="coordinates"
@@ -44,6 +45,7 @@ export default {
   },
   data() {
     return {
+      isInitializing: true,
       manager: new ScreenEditorManager(),
     }
   },
@@ -70,8 +72,9 @@ export default {
       return this.manager.filenameWithCoordinates
     },
   },
-  mounted() {
-    this.manager.init({ screen: this.screen })
+  async mounted() {
+    await this.manager.initialize({ screen: this.screen })
+    this.onInitialized()
   },
   methods: {
     onSelectHighlight(order) {
@@ -87,6 +90,10 @@ export default {
     },
 
     // need trigger onUpdateFilenameWithCoordinates
+    onInitialized() {
+      this.isInitializing = false
+      this.onUpdateFilenameWithCoordinates()
+    },
     onAddHighlight({ x, y }) {
       this.manager.addHighlight = { x, y }
       this.onUpdateFilenameWithCoordinates()
