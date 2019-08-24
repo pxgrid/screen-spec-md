@@ -1,10 +1,10 @@
 <template>
   <div
     class="EditorDrop"
-    @dragenter.prevent="onDragEnter($event)"
-    @dragover.prevent="onDragOver($event)"
-    @dragleave.prevent="onDragLeave($event)"
-    @drop.prevent="onDrop($event)"
+    @dragenter.prevent="onDragEnter"
+    @dragover.prevent="onDragOver"
+    @dragleave.prevent="onDragLeave"
+    @drop.prevent="onDrop"
   >
     <div class="EditorDrop_Target">
       <svg class="EditorDrop_Icon" width="50" height="43" viewBox="0 0 50 43">
