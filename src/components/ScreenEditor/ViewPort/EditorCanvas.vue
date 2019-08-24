@@ -5,7 +5,7 @@
     :height="zoomedHeight"
     :viewBox="viewbox"
     class="EditorCanvas"
-    @click="onClickSVG($event)"
+    @click="onClickSVG"
   >
     <image
       v-bind="{ 'xlink:href': imageSrc }"

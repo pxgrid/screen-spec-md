@@ -96,7 +96,8 @@ export default class ScreenEditorManager {
         resolve()
       }
       try {
-        this.initCoordinates = { coordinateArrayList: JSON.parse(highlight) }
+        const coordinateArrayList = highlight ? JSON.parse(highlight) : []
+        this.initCoordinates = { coordinateArrayList }
         loadImage(screenPath).then(({ width, height }) => {
           this.setImage = { width, height, src: screenPath, filename: screenPath }
           resolve()

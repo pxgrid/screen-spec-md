@@ -89,7 +89,6 @@ export default {
       })
     },
     onUpdateFileToUpload() {
-      console.log('ScreenEditor: onUpdateFileToUpload', this.manager.fileToUpload)
       this.$emit('updateFileToUpload', {
         fileToUpload: this.manager.fileToUpload,
       })
@@ -108,7 +107,7 @@ export default {
       this.manager.changeSelectedItemLabel = { relativeValue }
       this.onUpdateFilenameWithCoordinates()
     },
-    onSetImage({ src, filename, width, height }, { fileToUpload }) {
+    onSetImage({ src, filename, width, height }, { fileToUpload = null }) {
       this.manager.setImage = { src, filename, width, height }
       this.manager.setFileToUpload = fileToUpload
       this.onUpdateFilenameWithCoordinates()
