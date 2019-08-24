@@ -10,6 +10,7 @@
         step="0.25"
         min="0.5"
         max="1.5"
+        value="1"
         @input="onInput"
       />
     </div>
