@@ -4,6 +4,13 @@ import types from './types'
 const getCurrentPath = () => {
   return location.pathname.replace(/^\//, '')
 }
+const makeImageFormData = (imageFile, imagePath) => {
+  const formData = new FormData()
+  formData.append('imagePath', imagePath)
+  formData.append('filePath', location.pathname)
+  formData.append('image', imageFile)
+  return formData
+}
 
 export default {
   async [types.FETCH_MARKDOWN]({ commit }) {
@@ -26,11 +33,21 @@ export default {
     commit(types.SET_MARKDOWN, { markdown })
   },
 
-  async [types.WRITE_SCREEN_METADATA]({ commit }, { screenMetadata }) {
+  async [types.WRITE_SCREEN_METADATA](
+    { commit },
+    { screenMetadata, fileToUpload = null, imagePath = '' },
+  ) {
     const path = getCurrentPath()
-    const res = await api.writeMetadataScreen({ path, screenMetadata })
-    commit(types.SET_PAGE_CONTEXT, res.data.context)
-    return res.data.context
+    const promiseWriteMetadata = api.writeMetadataScreen({ path, screenMetadata })
+    const promiseUploadImage = fileToUpload
+      ? api.uploadImage({ formData: makeImageFormData(fileToUpload, imagePath) })
+      : Promise.resolve()
+    const [resWriteMetadata, resUploadImage] = await Promise.all([
+      promiseWriteMetadata,
+      promiseUploadImage,
+    ])
+    commit(types.SET_PAGE_CONTEXT, resWriteMetadata.data.context)
+    return resWriteMetadata.data.context
   },
 
   async [types.REMOVE_SCREEN_METADATA]({ commit }) {

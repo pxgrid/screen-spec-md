@@ -1,5 +1,4 @@
 <template>
-  <!-- ${ dragStateClass } -->
   <div
     class="EditorDrop"
     @dragenter.prevent="onDragEnter($event)"
@@ -19,36 +18,48 @@
 </template>
 
 <script>
+import loadImage from '../../../modules/loadImage'
 export default {
   name: 'EditorDrop',
   methods: {
     onDragEnter(e) {},
     onDragOver(e) {},
     onDragLeave(e) {},
-    onDrop(e) {
-      /*
-      const { dropImageAction } = this.props;
-      e.nativeEvent.preventDefault();
-      this.setState({ dragStateClass: '' });
-      */
-      // drop an element currently not supported
-      // let urlList = e.dataTransfer.getData( 'text/uri-list' );
-      // if ( /\.(gif|png|jpg|jpeg|svg)($|\?)/i.test( urlList ) ) {
-      // 	console.log( urlList0 );
-      // }
+    async onDrop(e) {
       const file = e.dataTransfer.files[0]
       if (!/image/.test(file.type)) {
         return
       }
-      const reader = new FileReader()
-      reader.onload = e => {
-        // this.resultはFileReaderインスタンスのresultプロパティを指す?(imgのsrc値が格納)
-        this.setImage({ src: e.target.result, filename: file.name })
+      const imagePath = prompt('Please enter the image file path.', './img/undefined.png')
+      if (imagePath === null) {
+        return false
       }
-      reader.readAsDataURL(file)
+      const imageItem = e.dataTransfer.items[0]
+      const imageFile = imageItem.getAsFile()
+      const imageBase64 = await this.readFileBase64(file)
+      const { width, height } = await loadImage(imageBase64)
+      this.setImage(
+        {
+          src: imageBase64,
+          filename: imagePath,
+          width,
+          height,
+        },
+        {
+          fileToUpload: imageFile,
+        },
+      )
     },
-    setImage({ src, filename }) {
-      this.$emit('setImage', { src, filename })
+    async readFileBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onload = e => resolve(e.target.result)
+        reader.onerror = e => reject(e)
+        reader.readAsDataURL(file)
+      })
+    },
+    setImage({ src, filename, width, height }, { fileToUpload }) {
+      this.$emit('setImage', { src, filename, width, height }, { fileToUpload })
     },
   },
 }

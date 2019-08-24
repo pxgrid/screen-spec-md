@@ -2,7 +2,7 @@
   <div class="Viewport">
     <div class="Viewport_Inner">
       <EditorCanvas
-        v-if="editScreen.src"
+        v-if="editScreen.src || editScreen.srcBase64"
         :editScreen="editScreen"
         :coordinates="coordinates"
         :zoomedWidth="zoomedWidth"
@@ -53,8 +53,8 @@ export default {
     onAddHighlight(svgCoordinate) {
       this.$emit('addHighlight', svgCoordinate)
     },
-    onSetImage({ src, filename }) {
-      this.$emit('setImage', { src, filename })
+    onSetImage({ src, filename, width, height }, { fileToUpload }) {
+      this.$emit('setImage', { src, filename, width, height }, { fileToUpload })
     },
     onSelectHighlight(order) {
       this.$emit('selectHighlight', order)

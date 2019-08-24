@@ -36,6 +36,7 @@
           <ScreenEditor
             :screen="screen"
             @updateFilenameWithCoordinates="onUpdateFilenameWithCoordinates"
+            @updateFileToUpload="onUpdateFileToUpload"
           />
         </div>
         <div v-if="editable" slot="footer" class="Spec_ScreenEditorDialogActionBar">
@@ -81,6 +82,7 @@ export default {
     return {
       screen: window.SCREEN_SPEC_MD.screen,
       filenameWithCoordinates: '',
+      fileToUpload: null,
       svgCanvasHtml: window.SCREEN_SPEC_MD.svgCanvasHtml,
       isShowTreeDialog: false,
       isShowScreenEditor: false,
@@ -125,6 +127,9 @@ export default {
     onUpdateFilenameWithCoordinates({ filenameWithCoordinates }) {
       this.filenameWithCoordinates = filenameWithCoordinates
     },
+    onUpdateFileToUpload({ fileToUpload }) {
+      this.fileToUpload = fileToUpload
+    },
     onWriteScreenMetadata() {
       if (this.filenameWithCoordinates === '') {
         this.removeScreenMetadata().then(() => {
@@ -135,7 +140,12 @@ export default {
         })
         return
       }
-      this.writeScreenMetadata({ screenMetadata: this.filenameWithCoordinates }).then(context => {
+      this.writeScreenMetadata({
+        screenMetadata: this.filenameWithCoordinates,
+        fileToUpload: this.fileToUpload,
+        // ex. /path/to/image.png?highlight=[[1,2,3,4]] => /path/to/index.html
+        imagePath: this.filenameWithCoordinates.replace(/\?.+/, ''),
+      }).then(context => {
         this.screen = context.screen
         this.svgCanvasHtml = context.svgCanvas
         this.onCloseScreenEditor()

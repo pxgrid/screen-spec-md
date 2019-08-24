@@ -88,6 +88,12 @@ export default {
         filenameWithCoordinates: this.manager.filenameWithCoordinates,
       })
     },
+    onUpdateFileToUpload() {
+      console.log('ScreenEditor: onUpdateFileToUpload', this.manager.fileToUpload)
+      this.$emit('updateFileToUpload', {
+        fileToUpload: this.manager.fileToUpload,
+      })
+    },
 
     // need trigger onUpdateFilenameWithCoordinates
     onInitialized() {
@@ -102,9 +108,11 @@ export default {
       this.manager.changeSelectedItemLabel = { relativeValue }
       this.onUpdateFilenameWithCoordinates()
     },
-    onSetImage({ src, filename }) {
-      this.manager.setImage = { src, filename }
+    onSetImage({ src, filename, width, height }, { fileToUpload }) {
+      this.manager.setImage = { src, filename, width, height }
+      this.manager.setFileToUpload = fileToUpload
       this.onUpdateFilenameWithCoordinates()
+      this.onUpdateFileToUpload()
     },
     onSetCoordinates({ order, coordinateArray }) {
       this.manager.setCoordinates = { order, coordinateArray }

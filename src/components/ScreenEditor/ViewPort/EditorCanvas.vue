@@ -8,7 +8,7 @@
     @click="onClickSVG($event)"
   >
     <image
-      v-bind="{ 'xlink:href': editScreen.src }"
+      v-bind="{ 'xlink:href': imageSrc }"
       :width="editScreen.width"
       :height="editScreen.height"
       class="EditorCanvas_Image"
@@ -55,6 +55,11 @@ export default {
     viewbox: {
       type: String,
       required: true,
+    },
+  },
+  computed: {
+    imageSrc() {
+      return this.editScreen.srcBase64 ? this.editScreen.srcBase64 : this.editScreen.src
     },
   },
   created() {

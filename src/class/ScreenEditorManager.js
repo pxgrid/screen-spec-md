@@ -11,6 +11,9 @@ export default class ScreenEditorManager {
   set setImage({ width, height, src, filename }) {
     Object.assign(this._editScreen, { width, height, src, filename })
   }
+  set setFileToUpload(fileToUpload) {
+    this._fileToUpload = fileToUpload
+  }
   set initCoordinates({ coordinateArrayList }) {
     this._coordinates = coordinateArrayList
   }
@@ -77,6 +80,9 @@ export default class ScreenEditorManager {
     }
     return `${filename}?highlight=${JSON.stringify(coordinates)}`
   }
+  get fileToUpload() {
+    return this._fileToUpload
+  }
 
   // methods
   async initialize({ screen }) {
@@ -107,11 +113,13 @@ export default class ScreenEditorManager {
       width: 300,
       height: 150,
       src: '',
+      srcBase64: '',
       filename: '',
       selectedItem: -1, // zero start, -1 is indicates that item is not selected
       zoom: 1.0,
     }
     this._coordinates = [] // [[x, y, w, h], [x, y, w, h],...]
+    this._fileToUpload = null
   }
   shiftHighlight() {
     const index = this._editScreen.selectedItem
