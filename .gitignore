@@ -61,6 +61,8 @@ typings/
 .next
 
 # screen-spec-md
-_template/
+dist/
+built-in-template
 _spec/
-example/
+server/__uploads/*
+!server/__uploads/.gitkeep
