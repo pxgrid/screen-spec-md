@@ -1,8 +1,7 @@
 {
   "name": "screen-spec-md",
-  "version": "1.0.0",
-  "description": "",
-  "main": "bin/cli.js",
+  "version": "0.1.0",
+  "description": "The efficient markdown compiler for Application screen documentation with UI Flows Graph",
   "bin": {
     "screen-spec-md": "./bin/cli.js"
   },
@@ -22,8 +21,8 @@
     "url": "git+https://github.com/tomof/screen-spec-md.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "tomof",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tomof/screen-spec-md/issues"
   },
