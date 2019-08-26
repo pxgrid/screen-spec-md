@@ -1,0 +1,14 @@
+name: PackTracker - Analyze webpack bundle
+
+on: [push]
+
+jobs:
+  build:
+
+    steps:
+      - name: Analyze webpack bundle
+        uses: packtracker/report@2.2.0
+        with:
+          secrets: [${{ secrets.PACKTRACKER_TOKEN }}]
+        env:
+          WEBPACK_CONFIG_PATH: "../../webpack.production.js"
