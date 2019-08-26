@@ -5,6 +5,8 @@ on: [push]
 jobs:
   build:
 
+    runs-on: ubuntu-latest
+
     steps:
       - name: Analyze webpack bundle
         uses: packtracker/report@2.2.0
