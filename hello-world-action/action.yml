@@ -1,7 +1,0 @@
-jobs:
-  my_first_job:
-    name: My Job Name
-    steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 10.x
