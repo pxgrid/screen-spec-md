@@ -10,7 +10,6 @@ jobs:
     steps:
       - name: Analyze webpack bundle
         uses: packtracker/report@2.2.0
-        with:
-          secrets: ${{ secrets.PACKTRACKER_TOKEN }}
         env:
+          PT_PROJECT_TOKEN: ${{ secrets.PACKTRACKER_TOKEN }}
           WEBPACK_CONFIG_PATH: "../../webpack.production.js"
