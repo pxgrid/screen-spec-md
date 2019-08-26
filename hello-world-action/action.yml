@@ -3,5 +3,5 @@ jobs:
     name: My Job Name
     steps:
       - uses: actions/setup-node@v1
-      with:
-        node-version: 10.x
+        with:
+          node-version: 10.x
