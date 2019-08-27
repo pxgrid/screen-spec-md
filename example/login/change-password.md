@@ -1,6 +1,6 @@
 ---
 title: パスワード変更画面
-screen: ./change-password.png
+screen: ./change-password.png?highlight=[[11,7,204,33],[92,52,222,50],[91,120,274,41],[91,162,275,40],[145,215,183,53]]
 ---
 
 # 概要
@@ -20,7 +20,7 @@ screen: ./change-password.png
 設定ルール違反で変更
 ==> パスワード変更画面（設定ルール違反）
 
-[商品画面](../schedule/index.html)
+[商品画面](../product/index.html)
 ```
 
 # 基本仕様
