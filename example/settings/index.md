@@ -1,6 +1,6 @@
 ---
 title: 設定画面
-screen: ./settings.png
+screen: ./settings.png?highlight=[[3,1,310,57],[3,60,310,57],[2,119,312,339]]
 ---
 
 # 概要
@@ -21,7 +21,7 @@ screen: ./settings.png
 
 # 機能詳細
 
-## 1.ページタイトル
+## 1.初期表示
 
 初期表示を表示・編集する。
 

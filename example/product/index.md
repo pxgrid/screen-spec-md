@@ -1,6 +1,6 @@
 ---
 title: 商品一覧画面
-screen: ./product-list.png
+screen: ./product-list.png?highlight=[[620,4,262,41],[3,4,173,40],[1,49,881,484]]
 ---
 
 # 概要

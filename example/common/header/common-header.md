@@ -1,6 +1,6 @@
 ---
 title: 共通ヘッダー
-screen: ./common-header.png
+screen: ./common-header.png?highlight=[[7,5,104,39],[127,6,100,38],[828,5,126,40]]
 ---
 
 # 概要
@@ -32,5 +32,3 @@ screen: ./common-header.png
 ## 3.サブメニュー
 
 クリックでサブメニューを表示する。
-
-[サブメニュー](./common-header-menu.html)
