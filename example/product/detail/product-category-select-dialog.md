@@ -1,6 +1,6 @@
 ---
 title: 商品カテゴリー選択ダイアログ
-screen: ./product-category-select-dialog.png
+screen: ./product-category-select-dialog.png?highlight=[[27,46,330,43],[27,91,330,38],[466,86,124,47],[29,156,552,340],[502,517,79,33]]
 ---
 
 ```uiflows

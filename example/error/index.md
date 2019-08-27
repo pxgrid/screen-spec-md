@@ -1,6 +1,6 @@
 ---
 title: エラー画面 共通事項
-screen: ./error.png
+screen: ./error.png?highlight=[[77,19,206,41],[108,79,153,43],[129,139,101,56]]
 ---
 
 # 概要
@@ -9,8 +9,8 @@ screen: ./error.png
 
 # エラー画面一覧
 
--   [404 Error 画面](./404.html)
--   [500 Error 画面](./500.html)
+-   [404 Error 画面](./error-404.html)
+-   [500 Error 画面](./error-500.html)
 
 # 機能一覧
 
