@@ -20,15 +20,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tomof/screen-spec-md.git"
+    "url": "git+https://github.com/pxgrid/screen-spec-md.git"
   },
   "keywords": [],
   "author": "tomof",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tomof/screen-spec-md/issues"
+    "url": "https://github.com/pxgrid/screen-spec-md/issues"
   },
-  "homepage": "https://github.com/tomof/screen-spec-md#readme",
+  "homepage": "https://github.com/pxgrid/screen-spec-md#readme",
   "dependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
