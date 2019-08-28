@@ -15,7 +15,8 @@
     "server:spec": "http-server -p 8081 ./_spec",
     "edit-server": "node ./bin/cli.js edit-server -m ./example -d ./_spec",
     "generate:spec": "node ./bin/cli.js -m ./example -d ./_spec",
-    "build-generate:spec": "npm run build && npm run generate:spec"
+    "build-generate:spec": "npm run build && npm run generate:spec",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
