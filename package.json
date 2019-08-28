@@ -1,6 +1,6 @@
 {
   "name": "screen-spec-md",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The efficient markdown compiler for Application screen documentation with UI Flows Graph",
   "bin": {
     "screen-spec-md": "./bin/cli.js"
@@ -15,19 +15,20 @@
     "server:spec": "http-server -p 8081 ./_spec",
     "edit-server": "node ./bin/cli.js edit-server -m ./example -d ./_spec",
     "generate:spec": "node ./bin/cli.js -m ./example -d ./_spec",
-    "build-generate:spec": "npm run build && npm run generate:spec"
+    "build-generate:spec": "npm run build && npm run generate:spec",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tomof/screen-spec-md.git"
+    "url": "git+https://github.com/pxgrid/screen-spec-md.git"
   },
   "keywords": [],
   "author": "tomof",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tomof/screen-spec-md/issues"
+    "url": "https://github.com/pxgrid/screen-spec-md/issues"
   },
-  "homepage": "https://github.com/tomof/screen-spec-md#readme",
+  "homepage": "https://github.com/pxgrid/screen-spec-md#readme",
   "dependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
