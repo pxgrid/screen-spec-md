@@ -1,6 +1,6 @@
 {
   "name": "screen-spec-md",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The efficient markdown compiler for Application screen documentation with UI Flows Graph",
   "bin": {
     "screen-spec-md": "./bin/cli.js"
