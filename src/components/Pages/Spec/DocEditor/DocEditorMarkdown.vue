@@ -4,7 +4,7 @@
       :value="markdown"
       class="DocEditorMarkdown_TextArea"
       @change="changeMarkdown"
-      @paste="handlePaste"
+      @paste="onPaste"
       @dragenter.prevent="onDragEnter"
       @dragover.prevent="onDragOver"
       @dragleave.prevent="onDragLeave"
@@ -29,33 +29,17 @@ export default {
     changeMarkdown(e) {
       this._updateMarkdown(e.target.value)
     },
-    handlePaste(e) {
-      if (!this._isSingleFileType(e.clipboardData)) return true
-      const imagePath = prompt(
-        'Please enter the image file path. If the width is specified, specify as \'! [./img/foo.png] (./img/foo.png "=100x")\'.',
-        './img/undefined.png',
-      )
-      if (imagePath === null) {
-        return false
-      }
-      const imageFile = e.clipboardData.items[0].getAsFile()
-      this._uploadImage(imagePath, imageFile)
-        .then(() => {
-          const textBefore = e.target.value.substring(0, e.target.selectionStart)
-          const textAfter = e.target.value.substring(e.target.selectionEnd, e.target.value.length)
-          const markdown = textBefore + `![${imagePath}](${imagePath})` + textAfter
-          this._updateMarkdown(markdown)
-        })
-        .catch(e => {
-          console.error(e)
-        })
-    },
     onDragEnter(e) {},
     onDragOver(e) {},
     onDragLeave(e) {},
-    async onDrop(e) {
-      const dataTransfer = e.dataTransfer
-      if (!singleDTHandler.isSingleImageFile(dataTransfer)) return true
+    onPaste(e) {
+      this._insertImage(e.clipboardData, e.target)
+    },
+    onDrop(e) {
+      this._insertImage(e.dataTransfer, e.target)
+    },
+    _insertImage(dataTransfer, target) {
+      if (!singleDTHandler.isSingleImageFile(dataTransfer)) return false
       const imagePath = prompt(
         'Please enter the image file path. If the width is specified, specify as \'! [./img/foo.png] (./img/foo.png "=100x")\'.',
         './img/undefined.png',
@@ -64,8 +48,8 @@ export default {
       const imageFile = singleDTHandler.getAsSingleFile(dataTransfer)
       this._uploadImage(imagePath, imageFile)
         .then(() => {
-          const textBefore = e.target.value.substring(0, e.target.selectionStart)
-          const textAfter = e.target.value.substring(e.target.selectionEnd, e.target.value.length)
+          const textBefore = target.value.substring(0, target.selectionStart)
+          const textAfter = target.value.substring(target.selectionEnd, target.value.length)
           const markdown = textBefore + `![${imagePath}](${imagePath})` + textAfter
           this._updateMarkdown(markdown)
         })
