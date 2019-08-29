@@ -5,12 +5,17 @@
       class="DocEditorMarkdown_TextArea"
       @change="changeMarkdown"
       @paste="handlePaste"
+      @dragenter.prevent="onDragEnter"
+      @dragover.prevent="onDragOver"
+      @dragleave.prevent="onDragLeave"
+      @drop.prevent="onDrop"
     ></textarea>
   </div>
 </template>
 
 <script>
 import api from '../../../../api'
+import singleDTHandler from '../../../../modules/singleDataTransferHandler'
 
 export default {
   name: 'DocEditorMarkdown',
@@ -34,6 +39,29 @@ export default {
         return false
       }
       const imageFile = e.clipboardData.items[0].getAsFile()
+      this._uploadImage(imagePath, imageFile)
+        .then(() => {
+          const textBefore = e.target.value.substring(0, e.target.selectionStart)
+          const textAfter = e.target.value.substring(e.target.selectionEnd, e.target.value.length)
+          const markdown = textBefore + `![${imagePath}](${imagePath})` + textAfter
+          this._updateMarkdown(markdown)
+        })
+        .catch(e => {
+          console.error(e)
+        })
+    },
+    onDragEnter(e) {},
+    onDragOver(e) {},
+    onDragLeave(e) {},
+    async onDrop(e) {
+      const dataTransfer = e.dataTransfer
+      if (!singleDTHandler.isSingleImageFile(dataTransfer)) return true
+      const imagePath = prompt(
+        'Please enter the image file path. If the width is specified, specify as \'! [./img/foo.png] (./img/foo.png "=100x")\'.',
+        './img/undefined.png',
+      )
+      if (imagePath === null) return false
+      const imageFile = singleDTHandler.getAsSingleFile(dataTransfer)
       this._uploadImage(imagePath, imageFile)
         .then(() => {
           const textBefore = e.target.value.substring(0, e.target.selectionStart)
