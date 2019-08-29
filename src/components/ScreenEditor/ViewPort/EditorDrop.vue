@@ -40,16 +40,19 @@ export default {
     onDragLeave(e) {},
     async onDrop(e) {
       const dataTransfer = e.dataTransfer
-      return this._setImage(dataTransfer)
-    },
-    async onPaste(e) {
-      const clipboardData = e.clipboardData
-      return this._setImage(clipboardData)
-    },
-    async _setImage(dataTransfer) {
       if (!singleDTHandler.isSingleImageFile(dataTransfer)) return true
       const imagePath = prompt('Please enter the image file path.', './img/undefined.png')
       if (imagePath === null) return false
+      await this._setImage(dataTransfer, imagePath)
+    },
+    async onPaste(e) {
+      const clipboardData = e.clipboardData
+      if (!singleDTHandler.isSingleImageFile(clipboardData)) return true
+      const imagePath = prompt('Please enter the image file path.', './img/undefined.png')
+      if (imagePath === null) return false
+      await this._setImage(clipboardData, imagePath)
+    },
+    async _setImage(dataTransfer, imagePath) {
       const imageFile = singleDTHandler.getAsSingleFile(dataTransfer)
       const imageBase64 = await singleDTHandler.readBase64(dataTransfer)
       const { width, height } = await loadImage(imageBase64)
