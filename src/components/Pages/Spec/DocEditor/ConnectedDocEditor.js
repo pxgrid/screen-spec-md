@@ -15,6 +15,15 @@ export default connect({
       fetchConvertedHtml: editableTypes.FETCH_CONVERTED_HTML,
     }),
   },
+  methodsToEvents: {
+    uploadImage: async ({ dispatch }, { imageFile, imagePath, done }) => {
+      await dispatch(`editable/${editableTypes.UPLOAD_IMAGE}`, {
+        imageFile,
+        imagePath,
+      })
+      done()
+    },
+  },
   lifecycle: {
     mounted: async store => {
       await store.dispatch(`editable/${editableTypes.FETCH_MARKDOWN}`)

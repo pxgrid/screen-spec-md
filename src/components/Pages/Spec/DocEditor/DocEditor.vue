@@ -5,7 +5,8 @@
       <DocEditorMarkdown
         v-show="isActiveWrite"
         :markdown="editingMarkdown"
-        @updateMarkdown="updateMarkdown"
+        @updateMarkdown="onUpdateMarkdown"
+        @uploadImage="onUploadImage"
       />
       <DocEditorPreview
         v-show="!isActiveWrite"
@@ -18,7 +19,7 @@
         <span @click="cancelEditMarkdown()">Cancel</span>
       </ActionButton>
       <ActionButton>
-        <span @click="writeMarkdown()">Save</span>
+        <span @click="onWriteMarkdown()">Save</span>
       </ActionButton>
     </div>
   </div>
@@ -67,10 +68,13 @@ export default {
       this.$emit('fetchConvertedHtml', { markdown: this.editingMarkdown })
       this.isActiveWrite = false
     },
-    updateMarkdown(changedMarkdown) {
+    onUpdateMarkdown(changedMarkdown) {
       this.editingMarkdown = changedMarkdown
     },
-    writeMarkdown() {
+    onUploadImage({ imageFile, imagePath, done }) {
+      this.$emit('uploadImage', { imageFile, imagePath, done })
+    },
+    onWriteMarkdown() {
       this.$emit('writeMarkdown', { markdown: this.editingMarkdown })
       this.$emit('closeEditor')
     },

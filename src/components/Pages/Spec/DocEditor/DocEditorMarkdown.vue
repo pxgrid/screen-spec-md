@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import api from '../../../../api'
 import singleDTHandler from '../../../../modules/singleDataTransferHandler'
 
 export default {
@@ -46,16 +45,16 @@ export default {
       )
       if (imagePath === null) return false
       const imageFile = singleDTHandler.getAsSingleFile(dataTransfer)
-      this._uploadImage(imagePath, imageFile)
-        .then(() => {
+      this.$emit('uploadImage', {
+        imageFile,
+        imagePath,
+        done: () => {
           const textBefore = target.value.substring(0, target.selectionStart)
           const textAfter = target.value.substring(target.selectionEnd, target.value.length)
           const markdown = textBefore + `![${imagePath}](${imagePath})` + textAfter
           this._updateMarkdown(markdown)
-        })
-        .catch(e => {
-          console.error(e)
-        })
+        },
+      })
     },
     _updateMarkdown(markdown) {
       this.$emit('updateMarkdown', markdown)
@@ -65,13 +64,6 @@ export default {
       if (!clipboardData.types) return false
       if (clipboardData.types.length !== 1) return false
       return clipboardData.types[0] === 'Files'
-    },
-    _uploadImage(imagePath, imageFile) {
-      const formData = new FormData()
-      formData.append('imagePath', imagePath)
-      formData.append('filePath', location.pathname)
-      formData.append('image', imageFile)
-      return api.uploadImage({ formData })
     },
   },
 }
