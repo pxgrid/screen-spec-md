@@ -26,6 +26,13 @@ export default {
     commit(types.SET_CONVERTED_HTML, { html })
   },
 
+  async [types.UPLOAD_IMAGE]({ commit }, { imageFile, imagePath }) {
+    const res = await api.uploadImage({
+      formData: makeImageFormData(imageFile, imagePath),
+    })
+    return res.data.context
+  },
+
   async [types.WRITE_MARKDOWN]({ commit }, { markdown }) {
     const path = getCurrentPath()
     const res = await api.writeMarkdown({ path, markdown })
