@@ -20,9 +20,19 @@ exports.builder = yargs => {
       describe: 'Path of directory to generated spec files',
       type: 'string',
     },
+    t: {
+      alias: 'templateDir',
+      demandOption: false,
+      requiresArg: true,
+      describe: 'Path of directory that include template files',
+      type: 'string',
+    },
   })
 }
 
 exports.handler = async argv => {
-  await generateSpecAndTree(argv.mdDir, argv.destDir, { isEditable: false })
+  await generateSpecAndTree(argv.mdDir, argv.destDir, {
+    isEditable: false,
+    templateDir: argv.templateDir,
+  })
 }

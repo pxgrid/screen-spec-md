@@ -64,5 +64,6 @@ typings/
 dist/
 built-in-template
 _spec/
+_standard/
 server/__uploads/*
 !server/__uploads/.gitkeep
