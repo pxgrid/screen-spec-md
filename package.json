@@ -73,7 +73,7 @@
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
-    "viz.js": "^1.8.2",
+    "viz.js": "^2.1.2",
     "vue": "^2.5.17",
     "vue-loader": "^15.4.2",
     "vue-style-loader": "^4.1.2",
