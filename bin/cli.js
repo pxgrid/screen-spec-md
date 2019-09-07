@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const convertAbsPathBasedWd = require('../lib/utils/convert-abs-path-based-wd')
+const convertAbsPathBasedCwd = require('../lib/utils/convert-abs-path-based-cwd')
 
 const argv = require('yargs')
   .commandDir('commands')
-  .coerce(['mdDir', 'destDir'], convertAbsPathBasedWd).argv
+  .coerce(['mdDir', 'destDir', 'templateDir'], convertAbsPathBasedCwd).argv
