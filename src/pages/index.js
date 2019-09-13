@@ -4,8 +4,6 @@
  */
 import '../assets/common.scss'
 
-import '@babel/polyfill'
-
 import Vue from 'vue'
 import store from '../store'
 import types from '../store/types'
