@@ -63,7 +63,7 @@ const editable = (app, mdDir) => {
       // ページを構成するための情報を返す
       const gitLog = await parseGitLog(absoluteMdPath)
       const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdDir + '/' + mdPath)
-      const context = makeTemplateContext(pageInfo, { isEditable: true })
+      const context = await makeTemplateContext(pageInfo, { isEditable: true })
       res.json({ context: context })
     })().catch(next)
   })
@@ -86,7 +86,7 @@ const editable = (app, mdDir) => {
       // ページを構成するための情報を返す
       const gitLog = await parseGitLog(absoluteMdPath)
       const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdDir + '/' + mdPath)
-      const context = makeTemplateContext(pageInfo, { isEditable: true })
+      const context = await makeTemplateContext(pageInfo, { isEditable: true })
       res.json({ context: context })
     })().catch(next)
   })
@@ -107,16 +107,18 @@ const editable = (app, mdDir) => {
       // ページを構成するための情報を返す
       const gitLog = await parseGitLog(absoluteMdPath)
       const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdDir + '/' + mdPath)
-      const context = makeTemplateContext(pageInfo, { isEditable: true })
+      const context = await makeTemplateContext(pageInfo, { isEditable: true })
       res.json({ context: context })
     })().catch(next)
   })
 
-  app.post('/__html', (req, res) => {
-    const mdSource = req.body.markdown
-    const mdSourceWithoutMeta = mdSource.replace(regexpConstants.markdownMeatArea, '')
-    const html = md2html(mdSourceWithoutMeta)
-    res.json({ html: html })
+  app.post('/__html', (req, res, next) => {
+    ;(async () => {
+      const mdSource = req.body.markdown
+      const mdSourceWithoutMeta = mdSource.replace(regexpConstants.markdownMeatArea, '')
+      const html = await md2html(mdSourceWithoutMeta)
+      res.json({ html: html })
+    })().catch(next)
   })
 }
 

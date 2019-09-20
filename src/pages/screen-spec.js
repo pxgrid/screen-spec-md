@@ -1,8 +1,6 @@
 import '../assets/common.scss'
 import '../assets/template.scss'
 
-import '@babel/polyfill'
-
 import Vue from 'vue'
 import store from '../store'
 import PortalVue from 'portal-vue'
