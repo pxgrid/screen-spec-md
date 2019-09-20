@@ -63,7 +63,7 @@ const editable = (app, mdDir) => {
       // ページを構成するための情報を返す
       const gitLog = await parseGitLog(absoluteMdPath)
       const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdDir + '/' + mdPath)
-      const context = makeTemplateContext(pageInfo, { isEditable: true })
+      const context = await makeTemplateContext(pageInfo, { isEditable: true })
       res.json({ context: context })
     })().catch(next)
   })
@@ -86,7 +86,7 @@ const editable = (app, mdDir) => {
       // ページを構成するための情報を返す
       const gitLog = await parseGitLog(absoluteMdPath)
       const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdDir + '/' + mdPath)
-      const context = makeTemplateContext(pageInfo, { isEditable: true })
+      const context = await makeTemplateContext(pageInfo, { isEditable: true })
       res.json({ context: context })
     })().catch(next)
   })
@@ -107,7 +107,7 @@ const editable = (app, mdDir) => {
       // ページを構成するための情報を返す
       const gitLog = await parseGitLog(absoluteMdPath)
       const pageInfo = parsePageMd(mdSource, gitLog, mdRootPath, mdDir + '/' + mdPath)
-      const context = makeTemplateContext(pageInfo, { isEditable: true })
+      const context = await makeTemplateContext(pageInfo, { isEditable: true })
       res.json({ context: context })
     })().catch(next)
   })
