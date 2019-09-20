@@ -112,11 +112,13 @@ const editable = (app, mdDir) => {
     })().catch(next)
   })
 
-  app.post('/__html', (req, res) => {
-    const mdSource = req.body.markdown
-    const mdSourceWithoutMeta = mdSource.replace(regexpConstants.markdownMeatArea, '')
-    const html = md2html(mdSourceWithoutMeta)
-    res.json({ html: html })
+  app.post('/__html', (req, res, next) => {
+    ;(async () => {
+      const mdSource = req.body.markdown
+      const mdSourceWithoutMeta = mdSource.replace(regexpConstants.markdownMeatArea, '')
+      const html = await md2html(mdSourceWithoutMeta)
+      res.json({ html: html })
+    })().catch(next)
   })
 }
 
