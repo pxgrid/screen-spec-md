@@ -1,6 +1,6 @@
-# Duplicated！！！
-https://github.com/pxgrid/ui-spec-md のメジャーバージョンアップとして取り込まれたので、ui-spec-mdを使用してください。
-
+# Duplicated!
+https://github.com/pxgrid/ui-spec-md のメジャーバージョンアップとして取り込まれたので、このリポジトリはメンテナンスされません。
+代わりにui-spec-mdの最新版を使用してください。
 
 # Screen Spec MD
 
