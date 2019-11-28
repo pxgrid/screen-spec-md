@@ -1,3 +1,7 @@
+# Duplicated！！！
+https://github.com/pxgrid/ui-spec-md のメジャーバージョンアップとして取り込まれたので、ui-spec-mdを使用してください。
+
+
 # Screen Spec MD
 
 This is the successor to [ui\-spec\-md](https://github.com/pxgrid/ui-spec-md).
