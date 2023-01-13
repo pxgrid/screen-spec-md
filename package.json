@@ -83,7 +83,7 @@
     "vuex-connect": "^2.2.0",
     "vuex-connect-namespace-helper": "^1.1.0",
     "webpack": "^4.21.0",
-    "webpack-cli": "^3.1.2",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.1.4",
     "write-file-webpack-plugin": "^4.4.1",
